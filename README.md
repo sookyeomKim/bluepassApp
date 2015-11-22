@@ -4,7 +4,7 @@ README for bluepass
 
 그 외의 이름은 모두 camel case
 
-=================파일명=================
+##=================파일명=================
 
 script/app - 웹을 구축하고 있는 실질적인 소스들
 
@@ -24,7 +24,7 @@ script/component/api명/api명.factory.js || script/component/api명/resource/ap
 script/component/util/**.* - 웹의 비즈니스 로직 || 이벤트 로직을 담당하는 directive, factory, service가 모여있음
 
 
-=================소스 스타일=================
+##=================소스 스타일=================
 
 기본적인 스타일은 https://github.com/johnpapa/angular-styleguide 을 따름
 
