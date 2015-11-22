@@ -1,0 +1,14 @@
+.clubAdminWrap {
+  height: 100%;
+}
+
+.clubAdminRegWrap {
+  width: 100%;
+}
+
+.clubAdminRegWrap #closeButton {
+  line-height: 0;
+  font-size: 22px;
+}
+
+

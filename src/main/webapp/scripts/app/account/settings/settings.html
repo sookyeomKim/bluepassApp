@@ -1,0 +1,18 @@
+<div class="settingWrap">
+    <!-- <div layout="row" layout-align="center" layout-padding>
+    <div ui-view="profile" flex="80" flex-sm="95" class="md-whiteframe-z3 mypage-section"></div>
+</div> -->
+    <div class="mypageWrapPadding">
+        <div layout="row" layout-align="center">
+            <div ui-view="password" flex="40" flex-sm="100" flex-md="60"
+                 class="md-whiteframe-z1 passwordWrap"></div>
+        </div>
+    </div>
+    <div class="mypageWrapPadding"
+         ng-if="(settingsAccount.roles | contains:'ROLE_REGISTER') && settingsAccount.registerStatus==='등록'">
+        <div layout="row" layout-align="center">
+            <div ui-view="detailInfo" flex="40" flex-sm="100" flex-md="60"
+                 class="md-whiteframe-z1 detailInfoWrap"></div>
+        </div>
+    </div>
+</div>

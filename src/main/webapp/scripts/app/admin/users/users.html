@@ -1,0 +1,70 @@
+<div layout="row">
+    <div flex="100" layout-padding>
+        <table class="row-border hover" datatable="ng" dt-options="dtOptions">
+            <thead>
+            <tr>
+                <th>이메일</th>
+                <th>회원이름</th>
+                <th>나이</th>
+                <th>회원성별</th>
+                <th>전화번호</th>
+                <th>회원상태</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="user in userList">
+                <td>{{user.email}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+                <td>
+                    <div ng-if="user.gender==='F'">여자</div>
+                    <div ng-if="user.gender==='M'">남자</div>
+                </td>
+                <td>{{user.phoneNumber}}</td>
+                <td>{{user.registerStatus}}</td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>이메일</th>
+                <th>회원이름</th>
+                <th>나이</th>
+                <th>회원성별</th>
+                <th>전화번호</th>
+                <th>회원상태</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!--
+
+<nav ng-if="userList.length>0" layout="row" layout-align="center">
+	<ul class="pagination md-whiteframe-z1">
+		<li ng-show="links['first']" ng-click="loadPage(links['first'])">
+			<a> <i class="glyphicon glyphicon-backward"></i>
+		</a>
+		</li>
+		<li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a>
+				<i class="glyphicon glyphicon-triangle-left"></i>
+		</a></li>
+		<li ng-show="page > 2" ng-click="loadPage(page - 2)"><a>{{page
+				- 2}}</a></li>
+		<li ng-show="page > 1" ng-click="loadPage(page - 1)"><a>{{page
+				- 1}}</a></li>
+		<li class="active"><a>{{page}}</a></li>
+		<li ng-show="page < links['last']" ng-click="loadPage(page + 1)">
+			<a>{{page + 1}}</a>
+		</li>
+		<li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)">
+			<a>{{page + 2}}</a>
+		</li>
+		<li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>
+				<i class="glyphicon glyphicon-triangle-right"></i>
+		</a></li>
+		<li ng-show="links['last']" ng-click="loadPage(links['last'])"><a>
+				<i class="glyphicon glyphicon-forward"></i>
+		</a></li>
+	</ul>
+</nav> -->

@@ -1,0 +1,9 @@
+<div ng-show="vm.buttonShow" layout="row" layout-sm="column">
+    <md-button class="md-raised no-padding no-margin"
+               ng-disabled="vm.buttonLock" ng-click="vm.reservationRegisterDialog($event)">{{vm.reservationStateText}}
+    </md-button>
+    &nbsp;
+    <timer class="md-button noPaddingMargin" timer-stop="true"
+           countdown="vm.timeRemaining" interval="1000" finish-callback="vm.callback()">예약마감시간&nbsp;&nbsp;:&nbsp;&nbsp;{{days}}일&nbsp;{{hours}}시간&nbsp;{{mminutes}}분&nbsp;{{sseconds}}초
+    </timer>
+</div>

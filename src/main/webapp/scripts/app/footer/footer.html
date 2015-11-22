@@ -1,0 +1,59 @@
+<md-bottom-sheet class="md-grid">
+    <div class="footerWrap">
+        <div layout="row" layout-wrap layout-padding>
+            <div flex="45" flex-sm="100">
+                <p>상호명&nbsp;&nbsp;:&nbsp;&nbsp;㈜버드네스트</p>
+
+                <p>주소&nbsp;&nbsp;:&nbsp;&nbsp;서울 강남구 역삼로 180 4호 ㈜버드네스트</p>
+
+                <p>대표자&nbsp;&nbsp;:&nbsp;&nbsp;박해윤 외 1명</p>
+
+                <p>고객문의&nbsp;&nbsp;:&nbsp;&nbsp;(카톡)@블루패스</p>
+
+                <p>기타문의&nbsp;&nbsp;:&nbsp;&nbsp;contact@bluepass.co</p>
+
+                <p layout="row" layout-wrap>
+                    <span flex-sm="100">운영시간&nbsp;&nbsp;:&nbsp;&nbsp;평일 10am~8pm</span><span
+                    flex-sm="100"> 토요일 10am~6pm (일요일,공휴일 휴무)</span>
+                </p>
+
+                <p>사업자등록번호&nbsp;&nbsp;:&nbsp;&nbsp;437-88-00141</p>
+
+                <p>통신판매업신고번호&nbsp;&nbsp;:&nbsp;&nbsp;제2015-서울강남-02318호</p>
+
+                <p>개인정보 관리 책임자&nbsp;&nbsp;:&nbsp;&nbsp;정태현</p>
+            </div>
+            <div flex="20" flex-sm="100">
+                <p>
+                    <a ui-sref="clause3">자주 묻는 질문</a>
+                </p>
+
+                <p>
+                    <a ui-sref="clause2">서비스 약관</a>
+                </p>
+
+                <p>
+                    <a ui-sref="clause1">개인정보 취급방침</a>
+                </p>
+
+                <p>
+                    <a ui-sref="partnersHome">파트너사 제휴 문의</a>
+                </p>
+            </div>
+            <div flex="35" flex-sm="100">
+                <div ng-show="vm.rendering">렌더링...</div>
+                <div class="fb-like" onrender="vm.rendered()" data-width="280px"
+                     data-href="https://www.facebook.com/bluepassbp"
+                     data-layout="standard" data-action="like" data-show-faces="true"
+                     data-share="true"></div>
+            </div>
+        </div>
+        <div layout="row" layout-align="end end" layout-padding>
+            <div>
+                <p>Copyright ⓒ 2015 Birdnest All rights reserved</p>
+            </div>
+        </div>
+        <md-button id="footerCloseButton" class="md-fab md-mini"
+                   ng-click="vm.cancleSheet()" aria-label="close sheet">닫기</md-button>
+    </div>
+</md-bottom-sheet>

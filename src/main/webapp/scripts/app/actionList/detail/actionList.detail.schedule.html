@@ -1,0 +1,66 @@
+<div layout="row">
+    <div class="directButton prev" layout="row"
+         layout-align="center center" flex="5" show-sm show-md show-lg hide
+         role="button">
+        <i class="glyphicon glyphicon-triangle-left"></i>
+    </div>
+    <div flex="90" flex-gt-lg="100">
+        <ul id="detailTableLegend" class="tableTab nav nav-tabs"
+            style="border-bottom: 0;" role="tablist">
+            <li ng-class="navigationState==={{$index}}?'selected':''" role="tab"
+                ng-repeat="day in dayArry">
+                <div class="dateButton"
+                     ng-click="selected_day($index)">
+                    <span>{{day.month}}/{{day.date}}/{{day.day}}</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="directButton next" layout="row"
+         layout-align="center center" flex="5" show-sm show-md show-lg hide
+         role="button">
+        <i class="glyphicon glyphicon-triangle-right"></i>
+    </div>
+</div>
+<table class="table table-hover table-striped footable">
+    <thead>
+    <tr>
+        <th>시간</th>
+        <th>담임 강사</th>
+        <th data-hide="phone">예약하기</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="detailSchedule in actionSchedulesList"
+        ng-show="actionScheduleList.length > 0 || error === false">
+    <td>{{detailSchedule.startTime | date:"HH : mm"}} ~
+        {{detailSchedule.endTime | date:"HH : mm"}}
+    </td>
+    <td class="moreButtonWrap mobile">{{detailSchedule.instructor.name}}
+        <div class="moreButton mobile footable-toggle">자세히</div>
+    </td>
+    <td>
+        <reservation-register
+            schedule-id="{{detailSchedule.id}}" user-id="{{account.id}}"
+            user-status="{{account.registerStatus}}"
+            user-roles="{{account.roles}}"
+            year="{{dayArry[navigationState].year}}"
+            month="{{dayArry[navigationState].month}}"
+            date="{{dayArry[navigationState].date}}"
+            hour="{{detailSchedule.startTime | date:'HH'}}"
+            minute="{{detailSchedule.startTime | date:'mm'}}"
+            reservation-close="{{detailSchedule.club.reservationClose}}"
+            >
+        </reservation-register>
+    </td>
+    </tr>
+    <tr>
+        <td colspan="4"
+            ng-show="actionSchedulesList.length === 0 || error ===true">
+            <div class="notSchduleAlert" layout="row" layout-align="center">등록된
+                스케줄이 없습니다
+            </div>
+        </td>
+    </tr>
+    </tbody>
+</table>

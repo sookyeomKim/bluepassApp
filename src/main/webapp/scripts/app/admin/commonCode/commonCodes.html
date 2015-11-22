@@ -1,0 +1,157 @@
+<h2>공통코드</h2>
+<div layout="row" layout-align="start center">
+    <div>
+        <md-button class="md-raised" data-toggle="modal" data-target="#saveCommonCodeModal" ng-click="clear()">등록하기
+        </md-button>
+    </div>
+    <div>
+        <md-select ng-model="queryCommonCode" placeholder="전체보기">
+            <md-option ng-value="">전체보기</md-option>
+            <md-option ng-value="comminCode.name"
+                       ng-repeat="comminCode in commonCodes | filterBy : ['name'] : 'CATEGORY'">{{ comminCode.value }}
+            </md-option>
+        </md-select>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Value</th>
+            <th>Description</th>
+            <th>Option1</th>
+            <th>Option2</th>
+            <th>Option3</th>
+            <th>parent</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="commonCode in commonCodes | filterBy : ['parent.name'] : queryCommonCode">
+            <td>
+                <a ui-sref="commonCodeDetail({id:commonCode.id})">{{commonCode.id}}</a>
+            </td>
+            <td>{{commonCode.name}}</td>
+            <td>{{commonCode.value}}</td>
+            <td>{{commonCode.description}}</td>
+            <td>{{commonCode.option1}}</td>
+            <td>{{commonCode.option2}}</td>
+            <td>{{commonCode.option3}}</td>
+            <td>{{commonCode.parent.name}}</td>
+            <td>
+                <button type="submit" ui-sref="commonCodeDetail({id:commonCode.id})" class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                </button>
+                <button type="submit" ng-click="showUpdate(commonCode.id)" class="btn btn-primary btn-sm">
+                    <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                </button>
+                <button type="submit" ng-click="delete(commonCode.id)" class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                </button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<div class="modal fade" id="saveCommonCodeModal" tabindex="-1" role="dialog" aria-labelledby="myCommonCodeLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="editForm" role="form" novalidate ng-submit="save()" show-validation>
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="clear()">&times;</button>
+                    <h4 class="modal-title" id="myCommonCodeLabel">카테고리 생성</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text"id="name" class="form-control" name="name" ng-model="commonCode.name" required
+                               ng-maxlength="100">
+
+                        <div ng-show="editForm.name.$invalid">
+                            <p class="help-block" ng-show="editForm.name.$error.required">This field is required.</p>
+
+                            <p class="help-block" ng-show="editForm.name.$error.maxlength">This field cannot be longer
+                                than 100 characters.</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="value">벨류</label>
+                        <input type="text"id="value" class="form-control" name="value" ng-model="commonCode.value" required>
+
+                        <div ng-show="editForm.value.$invalid">
+                            <p class="help-block" ng-show="editForm.value.$error.required">This field is required.</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="description">설명</label>
+                        <input type="text"id="description" class="form-control" name="description" ng-model="commonCode.description">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="option1">옵션1</label>
+                        <input type="text" id="option1" class="form-control" name="option1" ng-model="commonCode.option1">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="option2">옵션2</label>
+                        <input type="text"id="option2" class="form-control" name="option2" ng-model="commonCode.option2">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="option3">옵션3</label>
+                        <input type="text"id="option3" class="form-control" name="option3" ng-model="commonCode.option3">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="parent">대표코드</label>
+                        <select id="parent" class="form-control" name="parent" ng-model="commonCode.parent.id"
+                                ng-options="commonCode.id as commonCode.name for commonCode in commonCodes">
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>취소</span>
+                    </button>
+                    <button type="submit" ng-disabled="editForm.$invalid" class="btn btn-primary">
+                        <span class="glyphicon glyphicon-save"></span>&nbsp;<span>등록</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteCommonCodeConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="deleteForm" ng-submit="confirmDelete(commonCode.id)">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                            ng-click="clear()">&times;</button>
+                    <h4 class="modal-title">Confirm delete operation</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to delete this CommonCode?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                        <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                    </button>
+                    <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>Delete</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

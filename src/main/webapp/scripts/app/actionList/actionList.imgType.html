@@ -1,0 +1,51 @@
+<!-- 카드컨테이너 -->
+<div class="card-container">
+    <div class="card-innercontainer-outer">
+        <div class="card-innercontainer-inner"
+             infinite-scroll="loadPage(page + 1,exerciseType,siteType)"
+             infinite-scroll-disabled="links['last'] == page">
+            <!-- 클래스 카드-->
+            <article class="class-card panel" ng-repeat="action in actionList">
+                <div class="card-wrap">
+                    <div class="img-wrap" auto-height md-number="{{2}}"
+                         lg-number="{{2}}">
+                        <a ui-sref="actionListDetail({id:action.id})"> <img
+                            auto-height md-number="{{}}2}}" lg-number="{{2}}"
+                            ng-src="image/picture/{{action.images[0].image.id}}" alt="{{action.title}} 이미지"/>
+                        </a>
+                    </div>
+                    <div class="textWrap">
+                        <header>
+                            <h1 class="className">{{action.title}}</h1>
+                        </header>
+                        <p class="classDescription">{{action.shortDescription}}</p>
+                        <aside class="classInfo" layout="row" layout-align="center center">
+							<span class="icon"> <i
+                                class="glyphicon glyphicon-map-marker"></i>
+							</span>
+
+                            <h1>{{action.club.name}}</h1>
+                            &middot;
+                            <address>{{action.club.addressSimple}}</address>
+                            &middot;
+                            <small ng-show="action.useLimitType==='무제한'">무제한
+                                이용
+                            </small>
+                            <small ng-show="action.useLimitType==='월'">월&nbsp;{{action.useLimitValue}}회
+                                제한
+                            </small>
+                            <small ng-show="action.useLimitType==='총'">총&nbsp;{{action.useLimitValue}}회
+                                제한
+                            </small>
+                        </aside>
+                    </div>
+                </div>
+            </article>
+            <!-- 클래스 카드 끝-->
+        </div>
+    </div>
+</div>
+<!-- 카드컨테이너 끝-->
+<div layout="row" layout-align="center center" ng-show="mpc">
+    <md-progress-circular class="md-hue-2 spinner" md-mode="indeterminate"></md-progress-circular>
+</div>

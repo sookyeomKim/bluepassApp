@@ -1,0 +1,152 @@
+/****************등록관리********************/
+/* 강사 */
+.partnersWrap .card-container {
+	margin: 10px auto;
+	width: 100%;
+	height: 100%;
+}
+
+.partnersWrap .card-container .card-innercontainer-outer {
+	display: table;
+	width: 100%;
+	height: 100%;
+}
+
+.partnersWrap .card-container .card-innercontainer-outer .card-innercontainer-inner
+	{
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+}
+
+.partnersWrap .card-container .card-innercontainer-outer .card-innercontainer-inner .instructorCard
+	{
+	position: relative;
+	display: inline-block;
+	margin: 1px;
+	background-color: #fff;
+	word-wrap: break-word;
+}
+
+.partnersWrap .introduceImgWrap {
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.partnersWrap .introduceImgWrap img {
+	position: absolute;
+	left: -100%;
+	right: -100%;
+	top: -100%;
+	bottom: -100%;
+	margin: auto;
+	min-height: 100%;
+	min-width: 100%;
+}
+
+.partnersWrap .instructorCard.panel {
+	margin-bottom: 0;
+}
+
+.partnersWrap .adminLegend {
+	font-size: 20px;
+	padding: 10px !important;
+}
+
+.partnersWrap .dateButton {
+	text-align: center;
+	padding: 7px 5px;
+	font-weight: 300;
+	font-size: 16px;
+	color: #fff;
+}
+
+.partnersWrap .dateButton .status {
+	text-align: left;
+}
+
+.partnersWrap .directButton {
+	font-size: 16px;
+	background-color: #7dc1f8;
+}
+
+.partnersWrap .tableTab {
+	background-color: #349ff4;
+}
+
+.partnersWrap .tableTab .selected {
+	background-color: #7dc1f8;
+}
+
+.partnersWrap .footable {
+	border: 3px solid #7dc1f8;
+}
+
+.partnersWrap .footable>thead>tr>th {
+	background-color: #7dc1f8;
+	border: 1px solid #7dc1f8;
+}
+
+@media ( max-width : 1199px) {
+}
+
+@media ( min-width : 1200px) {
+}
+
+@media ( min-width : 992px) {
+	.partnersWrap .instructorCard {
+		width: 220px;
+	}
+	.partnersWrap .introduceImgWrap {
+		height: 256.667px;
+	}
+	.partnersWrap .introduceImgWrap img {
+		height: 256.667px;
+	}
+}
+
+@media ( max-width : 991px) {
+	.partnersWrap .instructorCard {
+		width: 180px;
+	}
+	.partnersWrap .introduceImgWrap {
+		height: 210px;
+	}
+	.partnersWrap .introduceImgWrap img {
+		height: 210px;
+	}
+}
+
+@media ( min-width : 768px) {
+}
+
+@media ( max-width : 767px) {
+	.partnersWrap .instructorCard {
+		width: 140px;
+	}
+	.partnersWrap .introduceImgWrap {
+		height: 163.333px;
+	}
+	.partnersWrap .introduceImgWrap img {
+		height: 163.333px;
+	}
+}
+
+/****************예약관리********************/
+.partnersWrap table tbody tr td {
+	line-height: 36px;
+}
+
+.partnersWrap .clubInfoWrap {
+	margin: 10px;
+	background-color: #fff;
+	font-size: 20px;
+	font-weight: 400;
+	padding: 10px;
+}
+
+.partnersWrap .classWrap .leftSide, .partnersWrap .classWrap .rightSide
+	{
+	background-color: #fff;
+}

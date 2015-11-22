@@ -1,0 +1,84 @@
+<md-sidenav id="bpDrawer" class="md-sidenav-right md-whiteframe-z2"
+            md-component-id="right" ng-cloak>
+        <md-toolbar
+            class="md-theme-right" ng-switch="vm.isAuthenticated()">
+            <div class="md-toolbar-tools">
+                <h1 class="md-toolbar-item md-breadcrumb md-headline"
+                     ng-switch-when="false" ng-click="vm.close()">
+                    <a ui-sref="main"> <img id="bpLogo"
+                                            src="/images/logo/newlogo1.png" alt="Logo">
+                    </a>
+                </h1>
+                <div class="userInfo" ui-sref="mypage" ng-switch-when="true"
+                     ng-click="vm.close()">
+                    <div layout="row" layout-align="center center" ng-switch="vm.isInRoleRegister">
+                        <img src="/images/profile/defaultAvartar.jpg" alt="profile img">
+
+                        <div class="userName" ng-switch-when="false">{{vm.account.email}}</div>
+                        <div class="userName" ng-switch-when="true">
+                            <div>{{vm.account.name}}</div>
+                            <div remain-ticket user-id="{{vm.account.id}}" remain="remain"
+                                 closed="closed">
+                                <span ng-show="!closed">잔여일 : {{remain}}일</span> <span
+                                ng-show="closed">기간이 만료되었습니다.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <md-button id="drawer-close-button" ng-click="vm.close()"
+                       class="md-icon-button" aria-label="Close drawer">
+                <i class="glyphicon glyphicon-remove"></i></md-button>
+            </md-button>
+        </md-toolbar>
+        <md-content ng-switch="vm.isAuthenticated()" layout-padding>
+            <md-list>
+                <md-list-item ng-switch-when="true">
+                    <div class="drawerMenu" layout="row" layout-align="center center">
+                        <img alt="home icon" src="/images/drawer/login.png"> <a
+                        class="drawerCategoryLegend" ui-sref="main" ng-click="vm.close()">홈</a>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-switch-when="true">
+                    <div class="drawerMenu" layout="row" layout-align="center center">
+                        <img alt="login icon" src="/images/drawer/login.png"> <a
+                        class="drawerCategoryLegend" ui-sref="mypage" ng-click="vm.close()">마이페이지</a>
+                    </div>
+                </md-list-item>
+                <md-list-item>
+                    <div class="drawerMenu" layout="row" layout-align="center center">
+                        <img alt="find icon" src="/images/drawer/find.png"> <a
+                        class="drawerCategoryLegend" ui-sref="actionListImgtype"
+                        ng-click="vm.close()">수업 찾기</a>
+                    </div>
+                </md-list-item>
+                <md-list-item>
+                    <div class="drawerMenu" layout="row" layout-align="center center">
+                        <img alt="reservation icon" src="/images/drawer/reservation.png">
+                        <a class="drawerCategoryLegend" ui-sref="actionListTabletype"
+                           ng-click="vm.close()">예약 하기</a>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-switch-when="false">
+                    <div class="drawerMenu" layout="row" layout-align="center center">
+                        <img alt="login icon" src="/images/drawer/login.png"> <a
+                        class="drawerCategoryLegend" ui-sref="login" ng-click="vm.close()">
+                        로그인 </a>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-switch-when="false">
+                    <div class="drawerMenu" layout="row" layout-align="center center">
+                        <img alt="logup icon" src="/images/drawer/logup.png"> <a
+                        class="drawerCategoryLegend" ui-sref="register" ng-click="vm.close()">회원가입
+                    </a>
+                    </div>
+                </md-list-item>
+                <md-list-item ng-switch-when="true">
+                    <div class="drawerMenu" layout="row" layout-align="center center">
+                        <img alt="logup icon" src="/images/drawer/logout.png"> <a
+                        class="drawerCategoryLegend" href="" ng-click="vm.logout()"> 로그아웃 </a>
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+</md-sidenav>

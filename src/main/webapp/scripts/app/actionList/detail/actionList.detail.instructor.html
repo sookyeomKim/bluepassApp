@@ -1,0 +1,28 @@
+<div class="card-container">
+    <div class="card-innercontainer-outer">
+        <div class="card-innercontainer-inner">
+            <div class="instructorCard panel panel-default"
+                 ng-repeat="instructor in insList">
+                <div class="introduceImgWrap" auto-height margin="0.002"
+                     outer-ratio="1.1667" outer-lg-number="4" outer-md-number="4"
+                     outer-sm-number="3" outer-xs-number="2" custom-max-width="1366"
+                     mode="detail">
+                    <img ng-src="/image/picture/{{instructor.photo.id}}"
+                         alt="instructor img" auto-height margin="0.002"
+                         outer-ratio="1.1667" outer-lg-number="4" outer-md-number="4"
+                         outer-sm-number="3" outer-xs-number="2" custom-max-width="1366"
+                         mode="detail">
+                </div>
+                <div class="panel-body">
+                    <div layout="row" layout-align="end center">
+                        <md-button class="md-fab md-mini btn-material-indigo-700"
+                                   style="margin-top:-3.5rem; margin-right:-1.25rem"
+                                   ng-click="showIntroduce(instructor.id)" aria-label="edit button">소개
+                        </md-button>
+                    </div>
+                    <div layout="row" layout-align="center center">{{instructor.name}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

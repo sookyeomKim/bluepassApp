@@ -1,0 +1,78 @@
+<div>
+    <h2><span translate="bluepassApp.commonCode.detail.title">CommonCode</span> {{commonCode.id}}</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th translate="entity.detail.field">Field</th>
+                <th translate="entity.detail.value">Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <span translate="bluepassApp.commonCode.name">Name</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{commonCode.name}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bluepassApp.commonCode.value">Value</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{commonCode.value}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bluepassApp.commonCode.description">Description</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{commonCode.description}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bluepassApp.commonCode.option1">Option1</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{commonCode.option1}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bluepassApp.commonCode.option2">Option2</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{commonCode.option2}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bluepassApp.commonCode.option3">Option3</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{commonCode.option3}}" readonly>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span translate="bluepassApp.commonCode.parent">parent</span>
+                </td>
+                <td>
+                    <input type="text" class="input-sm form-control" value="{{commonCode.parent.name}}" readonly>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <button type="submit"
+            ui-sref="commonCode"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span translate="entity.action.back"> Back</span>
+    </button>
+</div>

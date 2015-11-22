@@ -1,0 +1,12 @@
+<div layout="row" ng-hide="(checkButton===true) || (checkButton===false)">
+    <input type="text" class="form-control" placeholder="체크코드 6자리를 입력해주세요."
+           ng-model="attendancePrams.checkCode">
+    <md-button type="button" class="enableButton noPaddingMargin"
+               ng-click="attendanceFn()">출석체크
+    </md-button>
+</div>
+<div ng-show="checkButton===true">
+    <md-button type="button" class="enableButton noPaddingMargin"
+               ng-disabled="true">출석완료
+    </md-button>
+</div>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="20150828010000" author="taehyun">
+    	
+	    <addUniqueConstraint tableName="CLASS_SCHEDULE"
+            columnNames="start_time, end_time, actionschedule_id"
+            constraintName="class_schedule_uniq_1"
+            deferrable="true"
+            disabled="true"
+            initiallyDeferred="true"/>
+            	    
+    </changeSet>
+</databaseChangeLog>

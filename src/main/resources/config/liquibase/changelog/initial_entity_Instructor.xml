@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Instructor.
+    -->
+    <changeSet id="20150529134109" author="taehyun">
+        <createTable tableName="INSTRUCTOR">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(30)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="photo_id" type="bigint" />
+            <column name="club_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="club_id"
+                                 baseTableName="INSTRUCTOR"
+                                 constraintName="fk_instructor_club_id"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedTableName="CLUB"/>
+        
+        <addForeignKeyConstraint baseColumnNames="photo_id"
+                                 baseTableName="INSTRUCTOR"
+                                 constraintName="fk_instructor_photo_id"
+                                 referencedColumnNames="id"
+                                 onDelete="SET NULL"
+                                 onUpdate="CASCADE"
+                                 referencedTableName="IMAGE"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,77 @@
+<md-dialog class="" aria-label="companyItem reg" ng-cloak>
+    <md-dialog-content>
+        <div class="reservationModal">
+            <section class="top">
+                <img src="/images/reservationModal/popup.jpg">
+            </section>
+            <section class="bottom" layout="row">
+                <div flex="100">
+                    <div class="content-xs"
+                         ng-show="vm.messages.length===0 && vm.reservatable===false && vm.registerStatus===false">
+                        <div style="padding-top: 20px; padding-bottom: 7.5px;">잠깐!
+                            이 수업이 마음에 드셨나요?
+                        </div>
+                        <div style="padding-top: 7.5px; padding-bottom: 7.5px;">오늘은
+                            필라테스센터, 내일은 핫요가센터
+                        </div>
+                        <div
+                            style="line-height: 1.1; padding-top: 7.5px; padding-bottom: 25px;">
+                            1회 이용료 3만원 이상의 고급피트니스 업체를<br> 블루패스로 <span class="point">자유롭게</span>
+                            이용해보세요!
+                        </div>
+                        <div class="content-xs" layout="row">
+                            <div flex></div>
+                            <md-button class="button1" data-dismiss="modal" flex="40">구경만
+                                하기
+                            </md-button>
+                            <div flex></div>
+                            <md-button class="button2" ui-sref="bpRegGo" flex="40">회원권
+                                구매
+                            </md-button>
+                            <div flex></div>
+                        </div>
+                    </div>
+                    <div class="content-xs"
+                         ng-show="vm.messages.length===0 && vm.reservatable===false && vm.registerStatus===true">
+                        등록 대기 중입니다. 잠시만 기다려주세요!
+                    </div>
+                    <div class="content-xs"
+                         ng-show="vm.messages.length>0 && vm.reservatable===false">{{messages[0]}}
+                    </div>
+                    <div class="content-xs"
+                         ng-show="vm.messages.length===0 && vm.reservatable===true">
+                        <div>잠깐!</div>
+                        <div>주차가능여부, 복장, 시간 등의 유의사항 잘 확인하셨죠?</div>
+                        <div>수업을 예약하시겠습니까?</div>
+                    </div>
+                    <br>
+
+                    <div class="reservationAlert" ng-show="vm.reservatable===true">
+                        <div>수업 시작 3시간 이내 취소나 불참 시</div>
+                        <div>
+                            블루패스 이용 기간 4일 단축의 패널티가 발생합니다.<br> -<a ui-sref="clause3">왜
+                            패널티가 발생하는 건가요?</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="content-xs"
+                     ng-show="vm.messages.length>0 && vm.reservatable===false" layout="row">
+                <div flex></div>
+                <md-button class="md-raised" flex="40" ng-click="vm.cancel()">닫기
+                </md-button>
+                <div flex></div>
+            </section>
+            <section class="content-xs" ng-hide="vm.reservatable===false"
+                     layout="row">
+                <div flex></div>
+                <md-button class="md-raised" flex="40" ng-click="vm.cancel()">닫기
+                </md-button>
+                <div flex></div>
+                <md-button class="md-raised" flex="40" ng-click="vm.getReservation()" ng-disabled="vm.isDisabled">예약
+                </md-button>
+                <div flex></div>
+            </section>
+        </div>
+    </md-dialog-content>
+</md-dialog>

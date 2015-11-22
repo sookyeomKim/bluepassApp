@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity ClassSchedule.
+    -->
+    <changeSet id="20150709035757" author="taehyun">
+        <createTable tableName="CLASS_SCHEDULE">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="start_time" type="timestamp">
+                <constraints nullable="false" />
+            </column>
+            <column name="end_time" type="timestamp"/>
+            <column name="enable" type="bit"/>
+            <column name="finished" type="bit"/>
+            <column name="etc" type="varchar(255)"/>
+            <column name="actionschedule_id" type="bigint"/>
+            <column name="action_id" type="bigint"/>
+            <column name="club_id" type="bigint"/>
+            <column name="instructor_id" type="bigint"/>
+            <column name="category_id" type="bigint"/>
+        </createTable>
+        <dropDefaultValue tableName="CLASS_SCHEDULE" columnName="start_time" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="CLASS_SCHEDULE" columnName="end_time" columnDataType="datetime"/>
+        
+        <addForeignKeyConstraint baseColumnNames="actionschedule_id"
+                                 baseTableName="CLASS_SCHEDULE"
+                                 constraintName="fk_class_schedule_actionschedule_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ACTION_SCHEDULE"/>
+        
+        <addForeignKeyConstraint baseColumnNames="club_id"
+                                 baseTableName="CLASS_SCHEDULE"
+                                 constraintName="fk_class_schedule_club_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CLUB"/>
+        
+        <addForeignKeyConstraint baseColumnNames="action_id"
+                                 baseTableName="CLASS_SCHEDULE"
+                                 constraintName="fk_class_schedule_action_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ACTION"/>
+        
+        <addForeignKeyConstraint baseColumnNames="instructor_id"
+                                 baseTableName="CLASS_SCHEDULE"
+                                 constraintName="fk_class_schedule_instructor_id"
+                                 onDelete="SET NULL"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="INSTRUCTOR"/>
+
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="CLASS_SCHEDULE"
+                                 constraintName="fk_class_schedule_category"
+                                 onDelete="SET NULL"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="COMMON_CODE"/>                                    
+
+    </changeSet>
+</databaseChangeLog>

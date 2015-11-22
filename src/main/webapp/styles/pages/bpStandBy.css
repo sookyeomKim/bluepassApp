@@ -1,0 +1,26 @@
+.standByWrap {
+	padding-top: 10%;
+	font-weight: 500;
+}
+
+/* 반응형 */
+@media ( max-width : 1199px) {
+}
+
+@media ( min-width : 1200px) {
+}
+
+@media ( min-width : 960px) {
+}
+
+@media ( max-width : 959px) {
+}
+
+@media ( min-width : 600px) {
+}
+
+@media ( max-width : 599px) {
+	.standByWrap {
+		padding-top: 20%;
+	}
+}

@@ -1,0 +1,123 @@
+<md-toolbar id="bpHeader" ng-class="vm.trigger===true?'':'trigger'">
+    <nav class="md-toolbar-tools" role="navigation">
+        <div class="fill-height" flex="100">
+            <div class="logoWrap">
+                <a ui-sref="main">
+                    <h1 layout="row" layout-align="center center">
+                        <img class="bpLogo"
+                             src="../../images/logo/newlogo1white.png" alt="Logo"
+                             ng-if="vm.trigger===true">
+                        <img class="bpLogo"
+                             src="../../images/logo/newlogo1.png"
+                             alt="Logo"
+                             ng-if="vm.trigger===false">
+                    </h1>
+                </a>
+            </div>
+            <div class="menuWrap" hide-sm hide-md>
+                <div layout="row">
+                    <a class="menuLegend" ui-sref="actionListImgtype">
+                        <div layout="row" layout-align="center center">
+                            <img alt="find icon" src="../../images/drawer/find.png">&nbsp;<span>수업
+							찾기</span>
+                        </div>
+                    </a>
+                    <a class="menuLegend  padding-left-20" ui-sref="actionListTabletype">
+                        <div layout="row" layout-align="center center">
+                            <img alt="find icon" src="../../images/drawer/reservation.png">&nbsp;<span>
+							예약 하기</span>
+                        </div>
+                    </a>
+                    <md-menu-bar ng-if="vm.isInRoleAdmin">
+                        <md-menu>
+                            <md-button aria-label="Open phone interactions menu"
+                                       ng-click="vm.openMenu($mdOpenMenu, $event)">
+                                관리자 메뉴
+                            </md-button>
+                            <md-menu-content width="4">
+                                <md-menu-item>
+                                    <md-button ui-sref="users">
+                                        사용자
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ui-sref="ticketHistory">
+                                        티켓구매내역관리
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ui-sref="partnerRequest">
+                                        제휴사 요청 관리
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ui-sref="allPartners">
+                                        제휴사 관리
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ui-sref="reservation">
+                                        예약정보 관리
+                                    </md-button>
+                                </md-menu-item>
+                                <md-menu-item>
+                                    <md-button ui-sref="commonCode">
+                                        공통코드 관리
+                                    </md-button>
+                                </md-menu-item>
+                            </md-menu-content>
+                        </md-menu>
+                    </md-menu-bar>
+                </div>
+            </div>
+            <div flex></div>
+            <div class="menuWrap" hide-md="" hide-sm="">
+                <div ng-if="!vm.isAuthenticated()">
+                    <a class="menuLegend" ui-sref="login">
+                        <div layout="row" layout-align="center center">
+                            <img alt="find icon" src="../../images/drawer/login.png"> <span>로그인</span>
+                        </div>
+                    </a>
+                </div>
+                <md-menu ng-if="vm.isAuthenticated()">
+                    <md-button class="userInfo" aria-label="Toggle account menu"
+                               ng-click="vm.openMenu($mdOpenMenu, $event)">
+                        <div layout="row" layout-align="center center" ng-switch="vm.isInRoleRegister"
+                             ng-click="$mdOpenMenu($event)">
+                            <img src="../../images/profile/defaultAvartar.jpg"
+                                 alt="profile img">
+
+                            <div class="userName" ng-switch-when="false">{{vm.account.email}}</div>
+                            <div class="userName" ng-switch-when="true">
+                                <div>{{vm.account.name}}</div>
+                                <div remain-ticket user-id="{{vm.account.id}}" remain="remain"
+                                     closed="closed">
+                                    <span ng-show="!closed">잔여일 : {{remain}}일</span> <span
+                                    ng-show="closed">기간이 만료되었습니다.</span>
+                                </div>
+                            </div>
+                            <i class="glyphicon glyphicon-triangle-bottom"></i>
+                        </div>
+                    </md-button>
+                    <md-menu-content width="4">
+                        <md-menu-item>
+                            <md-button ui-sref="mypage">
+                                마이페이지
+                            </md-button>
+                        </md-menu-item>
+                        <md-menu-item>
+                            <md-button ng-click="vm.logout()">
+                                로그아웃
+                            </md-button>
+                        </md-menu-item>
+                    </md-menu-content>
+                </md-menu>
+            </div>
+            <div class="menuWrap" hide-gt-md>
+                <md-button id="drawerOpenButton" class="md-icon-button"
+                           ng-click="vm.toggleRight()" aria-label="Toggle Menu"><i
+                    class="glyphicon glyphicon-menu-hamburger"></i></md-button>
+            </div>
+        </div>
+    </nav>
+</md-toolbar>

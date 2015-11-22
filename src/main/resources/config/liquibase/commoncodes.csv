@@ -1,0 +1,38 @@
+parent_id;name;value;description;option1
+null;CATEGORY_SPORTART;종목;클럽 또는 클래스의 운동종목;null
+1;SPORTART_001;요가;요가 설명;yoga
+1;SPORTART_002;발레 피트니스;발레 피트니스 설명;ballet
+1;SPORTART_003;점핑 피트니스;점핑 피트니스 설명;jumping
+1;SPORTART_004;필라테스;필라테스 설명;pilates
+1;SPORTART_005;웨이트 트레이닝;웨이트 트레이닝 설명;weight
+1;SPORTART_006;크로스핏;크로스핏 설명;crossfit
+1;SPORTART_007;익스트림;익스트림 설명;extream
+1;SPORTART_008;구기스포츠;구기스포츠 설명;ball
+1;SPORTART_009;코어강화운동;코어강화운동 설명;core
+1;SPORTART_010;러닝;러닝 설명;running
+1;SPORTART_011;댄스;댄스 설명;dance
+1;SPORTART_012;스피닝;스피닝 설명;spinning
+1;SPORTART_013;그룹트레이닝;그룹트레이닝 설명;group
+null;CATEGORY_TICKET;회원권;회원권 종류;null
+15;TICKET_001;한달 회원권;한달동안 사용할 수 있는 회원권입니다.;null
+null;CATEGORY_FEATURE;업체특징;업체의 특징을 설명하는 코드입니다.;null
+17;FEATURE_001;주차관련 선택사항;주차와 관련된 코드의 부모코드입니다.;null
+17;FEATURE_002;운동복 관련 선택사항;운동복과 관련된 코드의 부모코드입니다.;null
+17;FEATURE_003;샤워시설 관련 선택사항;샤워시설과 관련된 코드의 부모코드입니다.;null
+17;FEATURE_004;실내화 관련 선택사항;실내화와 관련된 코드의 부모코드입니다.;null
+18;FEATURE_001_001;주차가능;주차가 가능한 시설이 있습니다.;null
+18;FEATURE_001_002;주차유료;유료주차가 가능한 시설이 있습니다.;null
+18;FEATURE_001_003;주차불가;주차가 가능한 시설이 없습니다.;null
+18;FEATURE_001_004;주차협소;주차가 가능한 시설이 있지만 협소합니다.;null
+19;FEATURE_002_001;편한복장;편한 복장으로 운동이 가능합니다.;null
+19;FEATURE_002_002;운동복무료대여;무료로 운동복을 대여해 줍니다.;null
+19;FEATURE_002_003;운동복유료대여;유료로 운동복을 대여해 줍니다.;null
+20;FEATURE_003_001;샤워불가;샤워가능한 시설이 없습니다.;null
+20;FEATURE_003_002;샤워가능(세제류 있음);샤워가능한 시설이 있고 세제류가 준비되어 있습니다.;null
+20;FEATURE_003_003;샤워가능(세제류 없음);샤워가능한 시설이 있으나 세제류는 준비되어 있지 않습니다.;null
+20;FEATURE_003_004;수건유료;샤워가 가능하고 수건을 유료로 사용할 수 있습니다.;null
+20;FEATURE_003_005;사우나가능;사우나가 가능한 시설이 있습니다.;null
+21;FEATURE_004_001;실내화지참;실내화를 반드시 지참하셔야 합니다.;null
+21;FEATURE_004_002;실내화대여(유료);유료로 실내화를 대여할 수 있습니다.;null
+21;FEATURE_004_003;실내화대여(무료);실내화를 무료로 대여해 줍니다.;null
+21;FEATURE_004_004;맨발;맨발로 운동;null

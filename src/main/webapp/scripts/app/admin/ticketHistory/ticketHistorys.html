@@ -1,0 +1,49 @@
+<div layout="row">
+    <div flex="100" layout-padding>
+        <h2>등록된 회원권 목록</h2>
+
+        <div class="table-responsive">
+            <table class="row-border hover" datatable="ng" dt-options="dtOptions">
+                <thead>
+                <tr>
+                    <th>유저</th>
+                    <th>티켓정보</th>
+                    <th>요청날짜</th>
+                    <th>엑티베이트</th>
+                    <th>시작날짜</th>
+                    <th>끝나는날짜</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="ticketHistory in ticketHistorys">
+                    <td>{{ticketHistory.user.name}}/{{ticketHistory.user.id}}</td>
+                    <td>{{ticketHistory.ticket.id}}</td>
+                    <td>{{ticketHistory.requestDate | date : "short":"KST"}}</td>
+                    <td>{{ticketHistory.activated}}</td>
+                    <td>{{ticketHistory.activatedDate| date : "short":"KST"}}</td>
+                    <td>{{ticketHistory.closeDate| date : "short":"KST"}}</td>
+                    <td>
+                        <user-register p-id="{{ticketHistory.id}}"
+                                             user-id="{{ticketHistory.user.id}}"
+                                             user-name="{{ticketHistory.user.name}}"
+                                             ticket-id="{{ticketHistory.ticket.id}}"
+                                             activated="ticketHistory.activated"></user-register>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <th>유저</th>
+                    <th>티켓정보</th>
+                    <th>요청날짜</th>
+                    <th>엑티베이트</th>
+                    <th>시작날짜</th>
+                    <th>끝나는날짜</th>
+                    <th></th>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

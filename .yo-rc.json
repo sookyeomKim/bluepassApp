@@ -1,0 +1,17 @@
+{
+  "generator-jhipster": {
+    "baseName": "bluepass",
+    "packageName": "co.bluepass",
+    "packageFolder": "co/bluepass",
+    "authenticationType": "xauth",
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": "no",
+    "useCompass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "8",
+    "rememberMeKey": "d1bc6d59a2c86df631d220a5e63a6d5075408e5a"
+  }
+}

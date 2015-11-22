@@ -1,0 +1,340 @@
+.mainWrap {
+	background-color: #fff;
+}
+
+.mainWrap .wrap {
+	max-width: 1366px;
+}
+
+.mainWrap .legend {
+	font-size: 24px;
+	font-weight: 400;
+}
+
+.mainWrap .firstSection {
+	position: relative;
+	margin-top: -50px;
+	margin-bottom: -5px;
+}
+
+.mainWrap .firstSection .mobileBackground {
+	padding-bottom: 57%;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-image: url(../../images/main/poster.jpg);
+}
+
+.mainWrap .firstSection video {
+	width: 100%;
+}
+
+.mainWrap .firstSection .text {
+	position: absolute;
+	top: 30%;
+	width: 100%;
+	text-align: center;
+	color: #fff;
+}
+
+.mainWrap .firstSection .text .first {
+	font-size: 34px;
+	letter-spacing: -2px;
+	font-weight: 500;
+}
+
+.mainWrap .firstSection .text .second {
+	font-size: 21px;
+	letter-spacing: -2px;
+}
+
+.mainWrap .firstSection .text .first, .mainWrap .firstSection .text .second
+	{
+	padding-bottom: 30px;
+}
+
+.mainWrap .firstSection .text .third md-input-container input {
+	color: #fff;
+}
+
+.mainWrap .firstSection .text .third md-input-container .md-input {
+	border-color: #fff;
+}
+
+.mainWrap .firstSection .text .third md-input-container label {
+	color: #fff;
+}
+
+.mainWrap .firstSection .text .third md-input-container.md-input-invalid.md-input-focused label
+	{
+	color: #d50000 !important;
+}
+
+.mainWrap .firstSection .text .third md-input-container:not (.md-input-invalid
+	 ).md-input-has-value label {
+	color: #fff;
+}
+
+.mainWrap .firstSection .text .third md-input-container:not (.md-input-invalid
+	 ).md-input-has-value .md-input {
+	border-color: #fff;
+}
+
+.mainWrap .firstSection .text .third md-input-container.md-input-focused label
+	{
+	color: #fff;
+}
+
+.mainWrap .firstSection .text .third md-input-container.md-input-focused .md-input
+	{
+	border-color: #fff;
+}
+
+.mainWrap .firstSection .text .third button {
+	margin: 0 5px;
+	border-radius: 5px;
+	border: 0;
+	padding: 5px;
+	background-color: #46afe5;
+	color: #fff;
+	min-width: 75px;
+}
+
+.mainWrap .secondScetion {
+	background-color: #46afe5;
+	padding: 150px 150px 0;
+}
+
+.mainWrap .secondScetion .wrap .text {
+	text-align: center;
+	color: #fff;
+}
+
+.mainWrap .secondScetion .wrap .text .first {
+	font-weight: 400;
+	font-size: 26px;
+}
+
+.mainWrap .secondScetion .wrap .text .second, .mainWrap .secondScetion .wrap .text .third
+	{
+	font-size: 21px;
+}
+
+.mainWrap .secondScetion .wrap .text .first, .mainWrap .secondScetion .wrap .text .second,
+	.mainWrap .secondScetion .wrap .text .third {
+	padding-bottom: 30px;
+}
+
+.mainWrap .secondScetion .wrap .img img {
+	width: 230px;
+}
+
+.mainWrap .thirdSection {
+	padding-top: 150px;
+}
+
+.mainWrap .thirdSection .wrap .imgWrap {
+	padding: 100px 0 150px 0;
+}
+
+.mainWrap .thirdSection .wrap .imgWrap .thumbnailImg {
+	padding: 10px;
+}
+
+.mainWrap .thirdSection .wrap .imgWrap .categoryImg {
+	background-size: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	padding-bottom: 147%;
+}
+
+.mainWrap .thirdSection .wrap .categoryImg.first {
+	background-image: url(../../images/main/popularstudio1.jpg);
+}
+
+.mainWrap .thirdSection .wrap .categoryImg.second {
+	background-image: url(../../images/main/popularstudio2.jpg);
+}
+
+.mainWrap .thirdSection .wrap .categoryImg.third {
+	background-image: url(../../images/main/popularstudio3.jpg);
+}
+
+.mainWrap .thirdSection .wrap .categoryImg.forth {
+	background-image: url(../../images/main/popularstudio4.jpg);
+}
+
+.mainWrap .thirdSection .wrap .categoryImg.first:HOVER {
+	background-image: url(../../images/main/popularstudio1_1.jpg);
+}
+
+.mainWrap .thirdSection .wrap .categoryImg.second:HOVER {
+	background-image: url(../../images/main/popularstudio2_1.jpg);
+}
+
+.mainWrap .thirdSection .wrap .categoryImg.third:HOVER {
+	background-image: url(../../images/main/popularstudio3_1.jpg);
+}
+
+.mainWrap .thirdSection .wrap .categoryImg.forth:HOVER {
+	background-image: url(../../images/main/popularstudio4_1.jpg);
+}
+
+.mainWrap .forthSection .first, .mainWrap .forthSection .second {
+	padding-bottom: 70%;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+.mainWrap .forthSection .first {
+	background-image: url(../../images/main/event1.jpg);
+}
+
+.mainWrap .forthSection .second {
+	background-image: url(../../images/main/event2.jpg);
+}
+
+.mainWrap .fifthSection .wrap .buttonWrap {
+	padding: 30px 0 150px 0;
+}
+
+.mainWrap .fifthSection .wrap .buttonWrap .listGoButton {
+	padding: 10px;
+	border-style: solid;
+	border-radius: 6px;
+	background-color: #fff;
+	color: #81d4fa;
+	font-weight: 500;
+}
+
+.mainWrap .fifthSection .wrap .buttonWrap .listGoButton:HOVER, .mainWrap .fifthSection .wrap .buttonWrap .listGoButton:FOCUS
+	{
+	color: #fff;
+	background-color: #81d4fa;
+	cursor: pointer;
+}
+
+@media ( min-width : 960px) and ( max-width : 1199px) {
+	.mainWrap .firstSection .text {
+		top: 29%;
+	}
+	.mainWrap .firstSection .text .first {
+		font-size: 29px;
+	}
+	.mainWrap .firstSection .text .second {
+		font-size: 18px;
+	}
+	.mainWrap .firstSection .text .first, .mainWrap .firstSection .text .second
+		{
+		padding-bottom: 22.5px;
+	}
+	.mainWrap .firstSection .text .third md-input-container .md-input {
+		line-height: 18px;
+	}
+	.mainWrap .firstSection .text .third button {
+		padding: 4px;
+	}
+	.mainWrap .secondScetion {
+		padding: 100px 100px 0;
+	}
+	.mainWrap .secondScetion .wrap .text .first {
+		font-size: 22px;
+	}
+	.mainWrap .secondScetion .wrap .text .second, .mainWrap .secondScetion .wrap .text .third
+		{
+		font-size: 17px;
+	}
+	.mainWrap .secondScetion .wrap .img img {
+		width: 200px;
+	}
+	.mainWrap .thirdSection {
+		padding-top: 90px;
+	}
+	.mainWrap .thirdSection .wrap .imgWrap {
+		padding: 80px 0 130px 0;
+	}
+	.mainWrap .fifthSection .wrap .buttonWrap {
+		padding: 27px 0 130px 0;
+	}
+}
+
+@media ( min-width : 600px) and ( max-width : 959px) {
+	.mainWrap .firstSection .text {
+		top: 28%;
+	}
+	.mainWrap .firstSection .text .first {
+		font-size: 24px;
+	}
+	.mainWrap .firstSection .text .second {
+		font-size: 15px;
+	}
+	.mainWrap .firstSection .text .first, .mainWrap .firstSection .text .second
+		{
+		padding-bottom: 15px;
+	}
+	.mainWrap .firstSection .text .third md-input-container .md-input {
+		line-height: 10px;
+	}
+	.mainWrap .firstSection .text .third button {
+		padding: 3px;
+	}
+	.mainWrap .secondScetion {
+		padding: 75px 75px 0;
+	}
+	.mainWrap .secondScetion .wrap .text .first {
+		font-size: 18px;
+	}
+	.mainWrap .secondScetion .wrap .text .second, .mainWrap .secondScetion .wrap .text .third
+		{
+		font-size: 13px;
+	}
+	.mainWrap .thirdSection {
+		padding-top: 80px;
+	}
+	.mainWrap .thirdSection .wrap .imgWrap {
+		padding: 60px 0 110px 0;
+	}
+	.mainWrap .fifthSection .wrap .buttonWrap {
+		padding: 24px 0 110px 0;
+	}
+}
+
+@media ( max-width : 599px) {
+	.mainWrap .firstSection .text {
+		top: 27%;
+	}
+	.mainWrap .firstSection .text .first {
+		font-size: 19px;
+	}
+	.mainWrap .firstSection .text .second {
+		font-size: 12px;
+	}
+	.mainWrap .firstSection .text .first, .mainWrap .firstSection .text .second
+		{
+		padding-bottom: 5px;
+	}
+	.mainWrap .firstSection .text .third md-input-container .md-input {
+		line-height: 0;
+	}
+	.mainWrap .firstSection .text .third button {
+		padding: 2px;
+	}
+	.mainWrap .secondScetion {
+		padding: 50px 50px 0;
+	}
+	.mainWrap .secondScetion .wrap .text .first {
+		font-size: 16px;
+	}
+	.mainWrap .secondScetion .wrap .text .second, .mainWrap .secondScetion .wrap .text .third
+		{
+		font-size: 11px;
+	}
+	.mainWrap .thirdSection {
+		padding-top: 70px;
+	}
+	.mainWrap .thirdSection .wrap .imgWrap {
+		padding: 40px 0 90px 0;
+	}
+	.mainWrap .fifthSection .wrap .buttonWrap {
+		padding: 21px 0 90px 0;
+	}
+}

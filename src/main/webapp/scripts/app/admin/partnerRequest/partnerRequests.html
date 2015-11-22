@@ -1,0 +1,31 @@
+<div layout="row">
+    <div flex="100" layout-padding>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>업체이름</th>
+                <th>보낸 이</th>
+                <th>주소</th>
+                <th>전화번호</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="partnerRequest in vm.partnerRequests">
+                <td>{{partnerRequest.clubName}}</td>
+                <td>{{partnerRequest.user.id}}</td>
+                <td>{{partnerRequest.zipcode}}/{{partnerRequest.address1}}{{partnerRequest.address2}}</td>
+                <td>{{partnerRequest.phoneNumber}}</td>
+                <td>
+                    <div layout="row" layout-align="center">
+                        <change-type change-type="VENDOR" model="{{partnerRequest}}"></change-type>
+                        <md-button type="button" ng-click="vm.deleteConfirm($event,partnerRequest.id)"
+                                   class="btn-danger">삭제
+                        </md-button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

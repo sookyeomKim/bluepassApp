@@ -1,0 +1,157 @@
+/* 헤더 */
+#bpHeader {
+    position: fixed;
+    top: 0px;
+    min-height: 50px;
+    width: 100%;
+    z-index: 50;
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#bpHeader .md-button {
+    color: #fff;
+}
+
+#bpHeader .md-button.md-icon-button {
+    line-height: 0;
+}
+
+#bpHeader.trigger .md-button {
+    color: #46afe5;
+}
+
+#bpHeader.trigger {
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .14), 0 2px 2px 0 rgba(0, 0, 0, .098), 0 1px 5px 0 rgba(0, 0, 0, .084);
+    background-color: rgba(255, 255, 255, 1);
+    color: #46afe5;
+}
+
+#bpHeader .logoWrap {
+    position: absolute;
+    top: 10.5px;
+    width: 100%;
+    z-index: 51;
+}
+
+#bpHeader .menuWrap {
+    z-index: 52;
+    padding: 0 20px;
+}
+
+#bpHeader .menuLegend {
+    font-size: 16px;
+    text-align: center;
+}
+
+#bpHeader .menuLegend:HOVER, #bpHeader .menuLegend:FOCUS {
+    cursor: pointer;
+}
+
+#bpHeader .md-toolbar-tools {
+    height: 50px;
+    padding: 0 !important;
+}
+
+.md-toolbar-tools {
+    position: relative;
+}
+
+.bpLogo {
+    width: 100px;
+    margin-top: 3px;
+}
+
+md-toolbar.md-theme-right {
+    background-color: #fff;
+    color: #000;
+}
+
+#drawerOpenButton {
+    position: absolute;
+    right: 3px;
+    top: 0.5px;
+    z-index: 52;
+}
+
+#drawerOpenButton i {
+    font-size: 22px;
+}
+
+#drawer-close-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    color: #0f0f0f;
+    line-height: 0;
+    font-size: 22px;
+}
+
+.drawerCategoryLegend {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+#bpHeader .userInfo {
+    margin-top: 5px;
+    line-height: normal;
+}
+
+#bpHeader .userInfo i {
+    padding-left: 5px;
+}
+
+#bpHeader .userInfo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#bpHeader .userInfo .userName {
+    padding-left: 8px;
+}
+
+/* 드로워 */
+#bpDrawer #bpLogo {
+    width: 130px;
+    padding-left: 15px;
+}
+
+#bpDrawer .userInfo {
+    font-size: 14px;
+}
+
+#bpDrawer .userInfo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+#bpDrawer .userInfo .userName {
+    padding-left: 8px;
+}
+
+#bpDrawer .drawerMenu img {
+    width: 40px;
+}
+
+
+
+@media ( max-width: 599px) {
+    #drawerOpenButton {
+        right: 0;
+        top: 8px;
+    }
+
+    #bpHeader .md-toolbar-tools {
+        padding: 0 0 0.9px 5px;
+    }
+
+    #bpHeader .md-button.md-icon-button {
+        width: 36px;
+        height: 36px;
+    }
+
+    #bpHeader .menuLegend {
+        font-size: 14px;
+    }
+}

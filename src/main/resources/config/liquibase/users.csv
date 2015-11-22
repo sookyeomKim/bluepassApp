@@ -1,0 +1,9 @@
+id;password;name;email;activated;lang_key;created_by;zipcode;address1;address2;age;gender
+1;$2a$10$mE.qmcV0mFU5NcKh73TZx.z4ueI/.bDWbj0T1BYyqP481kGGarKLG;System;system@localhost;true;kr;system;123456;서울특별시 강남구 역삼로 180;마루180;100;U;
+2;$2a$10$j8S5d7Sr7.8VTOYNviDPOeWX8KcYILUVJBsYV83Y5NtECayypx9lO;Anonymous;anonymous@localhost;true;kr;system;123456;서울특별시 강남구 역삼로 180;마루180;100;U;
+3;$2a$10$gSAhZrxMllrbgj/kkK9UceBPpChGWJA7SYIb1Mqo.n5aNLq1/oRrC;Administrator;admin@localhost;true;kr;system;123456;서울특별시 강남구 역삼로 180;마루180;100;U;
+4;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;User;user@localhost;true;kr;system;123456;서울특별시 강남구 역삼로 180;마루180;100;U;
+5;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;Register;register@localhost;true;kr;system;123456;서울특별시 강남구 역삼로 180;마루180;100;M;
+6;$2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K;Vendor;vendor@localhost;true;kr;system;123456;서울특별시 강남구 역삼로 180;마루180;100;F;
+7;$2a$10$G4TzcVGjtYNNo/4a//wuzebuJTX.1WNPlnY6qXIW/Z2XCzNzOkvaa;null;blupass@naver.com;true;kr;anonymousUser;null;null;null;0;null;
+8;$2a$10$fAvVxhIIx1gVHqOOPA1ZbOC7R.WqXqMU7AtepwR3ubTibRV2U/MfS;null;dev@bluepass.co;true;kr;anonymousUser;null;null;null;0;null;

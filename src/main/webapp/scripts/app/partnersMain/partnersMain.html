@@ -1,0 +1,187 @@
+<div class="partnersIntroduceWrap">
+    <section class="firstSection" layout="row" layout-align="center"
+             auto-height outer-lg-number="1" outer-md-number="1"
+             outer-sm-number="1" no-max-width="true" outer-ratio="0.5625"
+             no-margin="true">
+        <div class="introText weight_5">
+            <div>
+                <span class="point">블루패스</span>와 함께라면
+            </div>
+            <div>회원모집 걱정도 끝!</div>
+        </div>
+    </section>
+
+    <div class="margin-bottom-60"></div>
+
+    <section class="content-sm bpContainer" layout="row"
+             layout-align="center center" layout-wrap>
+        <div flex="8" hide-sm hide-md></div>
+        <img flex="15" flex-md="25" flex-sm="55"
+             src="/images/partnersMain/partnerpageicon1.png"
+             alt="explain img">
+
+        <div flex="8" hide-sm hide-md></div>
+        <img flex="15" flex-md="25" flex-sm="55"
+             src="/images/partnersMain/partnerpageicon2.png"
+             alt="explain img">
+
+        <div flex="8" hide-sm hide-md></div>
+        <img flex="15" flex-md="25" flex-sm="55"
+             src="/images/partnersMain/partnerpageicon3.png"
+             alt="explain img">
+
+        <div flex="8" hide-sm hide-md></div>
+        <img flex="15" flex-md="25" flex-sm="55"
+             src="/images/partnersMain/partnerpageicon4.png"
+             alt="explain img">
+
+        <div flex="8" hide-sm hide-md></div>
+    </section>
+
+    <section class="content-sm bpContainer" layout="row"
+             layout-align="center center" layout-wrap>
+        <div flex="" hide-sm></div>
+        <img flex="30" flex-sm="75"
+             src="/images/partnersMain/partnersIntro1.png" alt="explain img">
+
+        <div flex="" hide-sm></div>
+        <img flex="30" flex-sm="75"
+             src="/images/partnersMain/partnersIntro2.png" alt="explain img">
+
+        <div flex="" hide-sm></div>
+        <img flex="30" flex-sm="75"
+             src="/images/partnersMain/partnersIntro3.png" alt="explain img">
+
+        <div flex="" hide-sm></div>
+    </section>
+
+    <div class="margin-bottom-60"></div>
+
+    <section class="secondSection" layout="row" layout-align="center">
+        <div class="introText">
+            <q>블루패스는 프리미엄 피트니스를<br/>다수 제휴하고 있어서<br/> 서로 윈윈할 수 있죠.<br/>
+                <br/>비어있는 시간을 활용할 수 있고<br/>이미지 손실이 없어요.
+            </q>
+
+            <div class="margin-bottom-60"></div>
+            <q>유료회원으로 운영되기 때문에<br/>정회원 전환율도 높죠.<br/> <br/>일회성 고객보다는<br/>운동에
+                관심이 많은 분들이 오더군요.
+            </q>
+        </div>
+    </section>
+
+    <div class="margin-bottom-60"></div>
+    <div class="content-sm container">
+        <div class="inquireFormLegend" layout="row"
+             layout-align="center center">제휴 문의하기
+        </div>
+        <div layout="row" layout-align="center">문의를 위해선 로그인이 필요합니다!</div>
+        <div class="content-sm" layout="row" layout-align="center">
+            <div flex="50" flex-sm="90">
+                <form name="editForm" role="form" ng-submit="vm.getPartnerRequest()">
+                    <div class="margin-bottom-40">
+                        <label for="clubName">업체/그룹 이름</label>
+                        <input type="text" class="form-control" id="clubName"
+                               name="clubName" ng-model="vm.partnerRequestPrams.clubName"
+                               required>
+
+                        <div ng-show="editForm.clubName.$invalid">
+                            <p class="help-block" ng-show="editForm.clubName.$error.required">반드시
+                                입력해주세요.</p>
+                        </div>
+                    </div>
+                    <div class="margin-bottom-40">
+                        <label for="userName">보내는 이</label>
+                        <input type="text" id="userName" class="form-control"
+                               name="userName" ng-model="vm.partnerRequestPrams.userName" required>
+
+                        <div ng-show="editForm.userName.$invalid">
+                            <p class="help-block" ng-show="editForm.userName.$error.required">반드시
+                                입력해주세요.</p>
+                        </div>
+                    </div>
+
+                    <div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <div class="margin-bottom-20" layout="row">
+                                <div flex>
+                                    <!-- 우편번호 -->
+                                    <label label="zipcode">우편번호</label>
+                                    <input type="text" id="zipcode"
+                                           class="form-control" name="zipcode"
+                                           ng-model="vm.partnerRequestPrams.zipcode"
+                                           required readonly>
+                                </div>
+                                <md-button type="button" class="md-raised"
+                                           ng-click="vm.addressFormOpen()">주소찾기
+                                </md-button>
+                            </div>
+                            <div>
+                                <md-content id="addrWrap"
+                                            style="display: none; border: 1px solid; width: 100%; height: 300px; margin: 5px 0; position: relative">
+                                    <img
+                                        src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+                                        id="btnFoldWrap"
+                                        style="cursor: pointer; position: absolute; right: 0; top: -1px; z-index: 1"
+                                        ng-click="vm.addressFormClose()" alt="접기 버튼"></md-content>
+                            </div>
+                            <!-- 주소1 -->
+                            <div class="margin-bottom-20">
+                                <label label="address1">시/군/구</label>
+                                <input type="text" id="address1"
+                                       class="form-control" name="address1"
+                                       ng-model="vm.partnerRequestPrams.address1"
+                                       required readonly>
+                            </div>
+                            <!-- 주소2 -->
+                            <div class="margin-bottom-20">
+                                <label label="address2">상세주소</label>
+                                <input type="text" id="address2"
+                                       class="form-control" name="address2"
+                                       ng-model="vm.partnerRequestPrams.address2"
+                                       required>
+
+                                <div ng-messages="editForm.address2.$error">
+                                    <div ng-message="required">반드시 입력해주세요.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="margin-bottom-40">
+                        <label label="phoneNumber">전화번호</label>
+                        <input type="text" id="phoneNumber" class="form-control"
+                               name="phoneNumber" ng-model="vm.partnerRequestPrams.phoneNumber" required
+                               ng-pattern="/^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/">
+
+                        <div>ex)01012345678 또는 0212345678</div>
+                        <div ng-show="editForm.phoneNumber.$invalid">
+                            <p class="help-block"
+                               ng-show="editForm.phoneNumber.$error.required">반드시 입력해주세요.</p>
+
+                            <p class="help-block"
+                               ng-show="editForm.phoneNumber.$error.pattern">전화번호가 옳지 않습니다.</p>
+                        </div>
+                    </div>
+                    <div class="margin-bottom-40">
+                        <label label="message">문의 내용</label>
+						<textarea id="message" class="form-control" name="message"
+                                  ng-model="vm.partnerRequestPrams.message" required rows="10"></textarea>
+
+                        <div ng-show="editForm.message.$invalid">
+                            <p class="help-block" ng-show="editForm.message.$error.required">반드시
+                                입력해주세요.</p>
+                        </div>
+                    </div>
+                    <div layout="row" layout-align="center">
+                        <button type="submit" ng-disabled="editForm.$invalid"
+                                class="btn btn-primary">
+                            <span>문의하기</span>
+                        </button>
+                    </div>
+                </form>
+                <!-- <div><youtube-video video-id="theBestVideo[0]"></youtube-video></div>
+                <div><youtube-video video-id="theBestVideo[1]"></youtube-video></div> -->
+            </div>
+        </div>
+    </div>
+</div>

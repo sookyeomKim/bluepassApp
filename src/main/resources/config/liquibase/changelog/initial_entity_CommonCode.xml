@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity CommonCode.
+    -->
+    <changeSet id="20150529135645" author="taehyun">
+        <createTable tableName="COMMON_CODE">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="value" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="description" type="varchar(255)"/>
+            <column name="option1" type="varchar(255)"/>
+            <column name="option2" type="varchar(255)"/>
+            <column name="option3" type="varchar(255)"/>
+            <column name="parent_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="COMMON_CODE"
+                                 constraintName="fk_commoncode_parent_id"
+                                 referencedColumnNames="id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedTableName="COMMON_CODE"/>
+                                 
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/commoncodes.csv"
+                  separator=";"
+                  tableName="COMMON_CODE">
+        </loadData>                                 
+
+    </changeSet>
+</databaseChangeLog>

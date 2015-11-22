@@ -1,0 +1,91 @@
+<!-- 신버전 -->
+<div class="mainWrap">
+    <section class="firstSection">
+        <video autoplay loop muted poster="images/main/poster.jpg"
+               hide-sm>
+            <!--<source src="images/main/video/mainMovie.webm"
+                    type="video/webm">
+            <source src="images/main/video/mainMovie.mp4" type="video/mp4">
+            <source src="images/main/video/mainMovie.ogv" type="video/ogv">-->
+        </video>
+        <div class="mobileBackground" hide-gt-sm></div>
+        <div class="text">
+            <div class="first" layout="row" layout-align="center center">운동프리패스</div>
+            <div class="second" layout="row" layout-align="center center">
+                건조한 도시의 삶,<br>즐거운 피트니스 세계로 떠나보자
+            </div>
+            <div class="third" layout="row" layout-align="center center">
+                <md-input-container>
+                    <label for="email">이메일 입력</label>
+                    <input
+                    type="text"id="email" ng-model="email"></md-input-container>
+                <button ui-sref="register({email:email})">가입하기</button>
+            </div>
+        </div>
+    </section>
+    <section class="secondScetion" layout="row"
+             layout-align="center center">
+        <div class="wrap" flex="100" layout="row">
+            <div class="text" flex="55" flex-sm="100" flex-md="100" layout="row"
+                 layout-align="center start">
+                <div flex="100">
+                    <div class="first">
+                        지역 최고의 피트니스 센터를 <br>내 스케줄에 맞게 경험해보세요
+                    </div>
+                    <div class="second">
+                        Pilates, Aerial Yoga, Balletfit, Crossfit, Running,<br>
+                        Personal Training, Pole Dance, Jazz Dance, Fencing,<br> Latin
+                        Dance, Surfing, Climbing, Martial Arts, Baseball...
+                    </div>
+                    <div class="third">마음대로 즐기는 세상의 모든 피트니스</div>
+                </div>
+            </div>
+            <div flex="10" hide-sm hide-md></div>
+            <div class="img" flex="35" hide-sm hide-md>
+                <img alt="main secondImg" src="/images/main/mockupiphone.png">
+            </div>
+        </div>
+    </section>
+    <section class="thirdSection" layout="row" layout-align="center center">
+        <div class="wrap" layout="row" flex="100">
+            <div flex="100">
+                <div class="legend" flex="100" layout="row"
+                     layout-align="center center">popular studio
+                </div>
+                <div class="imgWrap" layout="row" layout-align="center center"
+                     layout-wrap flex="100">
+                    <div class="thumbnailImg" flex="20" flex-md="50" flex-sm="50">
+                        <div class="categoryImg first"></div>
+                    </div>
+                    <div class="thumbnailImg" flex="20" flex-md="50" flex-sm="50">
+                        <div class="categoryImg second"></div>
+                    </div>
+                    <div class="thumbnailImg" flex="20" flex-md="50" flex-sm="50">
+                        <div class="categoryImg third"></div>
+                    </div>
+                    <div class="thumbnailImg" flex="20" flex-md="50" flex-sm="50">
+                        <div class="categoryImg forth"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--<section class="forthSection">
+        <div id="owlIntro">
+            <div class="first"></div>
+            <div class="second"></div>
+        </div>
+    </section>-->
+    <section class="fifthSection" layout="row" layout-align="center center">
+        <div class="wrap" flex="100">
+            <div class="legend" layout="row" layout-align="center center">내
+                마음에 드는 수업을 찾아보세요
+            </div>
+            <div class="buttonWrap" layout="row" layout-align="center center">
+                <button class="listGoButton" ui-sref="actionListImgtype">수업
+                    찾기
+                </button>
+            </div>
+        </div>
+    </section>
+</div>

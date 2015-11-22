@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity ActionSchedule.
+    -->
+    <changeSet id="20150529142655" author="taehyun">
+        <createTable tableName="ACTION_SCHEDULE">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="attendee_limit" type="integer"/>
+            <column name="day" type="varchar(1)">
+                <constraints nullable="false" />
+            </column>
+            <column name="start_time" type="varchar(30)">
+                <constraints nullable="false" />
+            </column>
+            <column name="end_time" type="varchar(30)">
+                <constraints nullable="false" />
+            </column>
+            <column name="start_date" type="timestamp"/>
+            <column name="end_date" type="timestamp"/>
+            <column name="schedule_type" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="club_id" type="bigint"/>
+            <column name="instructor_id" type="bigint"/>
+            <column name="action_id" type="bigint"/>
+            <column name="enable" type="bit"/>
+        </createTable>
+        
+        <sql>ALTER TABLE ACTION_SCHEDULE ADD CONSTRAINT check_schedule_type CHECK (schedule_type = '반복' OR schedule_type = '하루' OR schedule_type = '기간')</sql>
+        
+        <dropDefaultValue tableName="ACTION_SCHEDULE" columnName="start_date" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="ACTION_SCHEDULE" columnName="end_date" columnDataType="datetime"/>
+
+        
+        <addForeignKeyConstraint baseColumnNames="club_id"
+                                 baseTableName="ACTION_SCHEDULE"
+                                 constraintName="fk_actionschedule_club_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CLUB"/>
+
+        <addForeignKeyConstraint baseColumnNames="instructor_id"
+                                 baseTableName="ACTION_SCHEDULE"
+                                 constraintName="fk_actionschedule_instructor_id"
+                                 onDelete="SET NULL"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="INSTRUCTOR"/>
+
+        <addForeignKeyConstraint baseColumnNames="action_id"
+                                 baseTableName="ACTION_SCHEDULE"
+                                 constraintName="fk_actionschedule_action_id"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"
+                                 referencedColumnNames="id"
+                                 referencedTableName="ACTION"/>
+
+    </changeSet>
+</databaseChangeLog>

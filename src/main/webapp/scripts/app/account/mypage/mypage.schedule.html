@@ -1,0 +1,177 @@
+<div class="mypageWrapPadding" layout="row" layout-align="center"
+     layout-wrap ng-if="vm.account.registerStatus==='미등록'">
+    <div class="md-whiteframe-z1 mypage-section" flex="80" flex-md="100"
+         flex-sm="100">
+        <div class="margin-bottom-40"></div>
+        <div class="intro">
+            <div>아직 등록회원이 아니십니다.</div>
+            <div>블루패스를 무제한으로 즐기시려면!</div>
+        </div>
+        <div layout="row" layout-align="center">
+            <md-button class="md-raised" ui-sref="bpReg" ng-disabled="false">회원등록</md-button>
+        </div>
+        <div class="margin-bottom-40"></div>
+    </div>
+</div>
+
+<div class="mypageWrapPadding" layout="row" layout-align="center"
+     layout-wrap layout-padding ng-if="vm.account.registerStatus==='등록요청'">
+    <div class="md-whiteframe-z1 mypage-section breakWord" flex="80"
+         flex-md="100" flex-sm="100">
+        <div class="weight_5" layout="column" layout-align="center center">
+            <p>계좌번호 : 068-081865-04-016</p>
+
+            <p>은행 : 기업은행</p>
+
+            <p>예금주 : (주)버드네스트</p>
+
+            <p>금액 : {{vm.ticket.option1 | currency : '':0}}원</p>
+
+            <p>입금이 확인되시면 바로 블루패스 서비스 이용이 가능하십니다!</p>
+
+            <p>입금자명을 본인 이름으로 해주시는 것 잊지말아주세요 데헿♡</p>
+        </div>
+    </div>
+</div>
+
+<div class="mypageWrapPadding" layout="row" layout-align="center"
+     layout-wrap ng-if="vm.account.registerStatus==='등록'">
+    <div class="
+	md-whiteframe-z1 mypage-section" flex="80" flex-md="100"
+         flex-sm="100">
+        <div class="btn-material-light-blue-500" layout="row" layout-wrap>
+            <md-button class="noPaddingMargin"
+                       ng-class="vm.userReservation===0?'selected':''" flex
+                       ng-click="vm.userReservation=0">예약한 스케줄
+            </md-button>
+            <md-button class="noPaddingMargin"
+                       ng-class="vm.userReservation===1?'selected':''" flex
+                       ng-click="vm.userReservation=1">취소한 스케줄
+            </md-button>
+            <md-button class="noPaddingMargin"
+                       ng-class="vm.userReservation===2?'selected':''" flex
+                       ng-click="vm.userReservation=2">완료된 스케줄
+            </md-button>
+            <md-button class="noPaddingMargin"
+                       ng-class="vm.userReservation===3?'selected':''" flex
+                       ng-click="vm.userReservation=3">결석한 스케줄
+            </md-button>
+        </div>
+
+        <div ng-if="vm.userReservation===0" layout="row" layout-align="center">
+            <div flex="100">
+                <table class="table table-hover footable table-striped">
+                    <thead>
+                    <tr>
+                        <th>날짜/시간</th>
+                        <th>스케줄 이름</th>
+                        <th data-hide="phone">강사</th>
+                        <th data-hide="phone">위치</th>
+                        <th data-hide="all">주소</th>
+                        <th data-hide="all">유의사항</th>
+                        <th data-hide="all">체크코드</th>
+                        <th data-hide="phone,tablet">예약관련</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="mySchedule in vm.myScheduleList"
+                        ng-show="vm.myScheduleList.length > 0">
+                        <td>{{mySchedule.classSchedule.startTime | date :
+                            "yy-MM-dd"}}<br>{{mySchedule.classSchedule.startTime | date
+                            : "HH:mm"}} ~ {{mySchedule.classSchedule.endTime | date :
+                            "HH-mm"}}
+                        </td>
+                        <td><a class="weight_4"
+                               ui-sref="actionListDetail({id:mySchedule.classSchedule.actionSchedule.action.id})">{{mySchedule.classSchedule.actionSchedule.action.title}}</a>
+                        </td>
+                        <td>{{mySchedule.classSchedule.instructor.name}}</td>
+                        <td>{{mySchedule.club.addressSimple}}</td>
+                        <td>{{mySchedule.club.zipcode}}/{{mySchedule.club.address1}}{{mySchedule.club.address2}}</td>
+                        <td>
+                            <div layout="row" layout-wrap>
+                                <div layout="row" layout-align="center center" layout-padding
+                                     ng-repeat="feature in mySchedule.club.feature">
+                                    <img ng-src="images/feature/{{feature.parent.id}}.png"
+                                         alt="feature" width="24" height="24"> &nbsp;&nbsp;<b>{{feature.value}}</b>
+                                </div>
+                            </div>
+                        </td>
+                        <td>{{mySchedule.checkCode}}</td>
+                        <td>
+                            <reservation-cancel
+                                year="{{mySchedule.startTime | date : 'yyyy'}}"
+                                month="{{mySchedule.startTime | date : 'M'}}"
+                                date="{{mySchedule.startTime | date : 'dd'}}"
+                                hour="{{mySchedule.startTime | date : 'HH'}}"
+                                minute="{{mySchedule.startTime | date : 'mm'}}"
+                                reservation-id="{{mySchedule.id}}"
+                                reservation-close="{{mySchedule.club.reservationClose}}"
+                                canceled="mySchedule.canceled" used="mySchedule.used">
+                            </reservation-cancel>
+                        </td>
+                    </tr>
+                    <tr ng-show="vm.myScheduleList.length === 0">
+                        <td colspan="7">
+                            <div layout="row" layout-align="center center">예약한 스케줄이
+                                없습니다.
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div ng-if="vm.userReservation!==0" layout="row" layout-align="center">
+            <div flex="100">
+                <table class="table table-hover footable table-striped">
+                    <thead>
+                    <tr>
+                        <th>날짜/시간</th>
+                        <th>스케줄 이름</th>
+                        <th data-hide="phone">강사</th>
+                        <th data-hide="phone">위치</th>
+                        <th data-hide="all">주소</th>
+                        <!-- <th data-hide="all">유의사항</th> -->
+                        <th data-hide="all">체크코드</th>
+                        <th data-hide="phone,tablet">예약관련</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="mySchedule in vm.myScheduleList"
+                        ng-show="vm.myScheduleList.length > 0">
+                        <td>{{mySchedule.startTime | date : "yy-MM-dd"}}<br>{{mySchedule.startTime
+                            | date : "HH:mm"}} ~ {{mySchedule.endTime | date : "HH-mm"}}
+                        </td>
+                        <td><a class="weight_4"
+                               ui-sref="actionListDetail({id:mySchedule.classSchedule.actionSchedule.action.id})">{{mySchedule.actionTitle}}</a>
+                        </td>
+                        <td>{{mySchedule.instructorName}}</td>
+                        <td>{{mySchedule.addressSimple}}</td>
+                        <td>{{mySchedule.clubZipcode}}/{{mySchedule.clubAddress1}}{{mySchedule.clubAddress2}}</td>
+                        <td>{{mySchedule.checkCode}}</td>
+                        <td>
+                            <reservation-cancel
+                                year="{{mySchedule.startTime | date : 'yyyy'}}"
+                                month="{{mySchedule.startTime | date : 'M'}}"
+                                date="{{mySchedule.startTime | date : 'dd'}}"
+                                hour="{{mySchedule.startTime | date : 'HH'}}"
+                                minute="{{mySchedule.startTime | date : 'mm'}}"
+                                reservation-id="{{mySchedule.reservationId}}"
+                                reservation-close="{{mySchedule.reservationClose}}">
+                            </reservation-cancel>
+                        </td>
+                    </tr>
+                    <tr ng-show="vm.myScheduleList.length === 0">
+                        <td colspan="7">
+                            <div layout="row" layout-align="center center">예약한 스케줄이
+                                없습니다.
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

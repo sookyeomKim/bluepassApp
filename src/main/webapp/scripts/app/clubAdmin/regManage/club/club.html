@@ -1,0 +1,172 @@
+<!-- 업체 -->
+<div class="margin-bottom-10"></div>
+<div layout="row">
+    <div flex ng-show="clubList.length === 0">
+        <div layout="row" layout-align="center center">
+            <div>
+                <h2>먼저 업체/그룹을 등록해주세요</h2>
+                <q class="margin-bottom-40">업체/그룹은 최초 한 개만 등록 가능하고 이후의 등록은 별도
+                    가맹점 신청을 하셔야 합니다.</q>
+                <md-button class="md-raised" ui-sref="adminRegManage.edit">등록하기</md-button>
+            </div>
+        </div>
+    </div>
+    <div flex ng-show="clubList.length > 0">
+        <div class="panel-group" id="manage-tab" role="tablist"
+             aria-multiselectable="true">
+            <div class="panel panel-default" ng-repeat="club in clubList">
+                <div role="tab" id="heading-{{club.id}}">
+                    <div layout="row" layout-wrap hide show-sm>
+                        <div>
+                            <md-button
+                                class="btn-material-pink-300 noPaddingMargin paddingSide-10"
+                                role="button" data-toggle="collapse" data-parent="#manage-tab"
+                                href="#collapse-{{club.id}}" aria-expanded="true"
+                                aria-controls="collapse-{{club.id}}" flex
+                                onclick="return false;">{{club.name}}
+                            </md-button>
+                        </div>
+                        <div flex flex-sm="100"></div>
+                        <div>
+                            <md-button class="md-raised noPaddingMargin paddingSide-10"
+                                       ui-sref="adminRegManage.Instructor({id:club.id})">강사&클래스
+                                관리
+                            </md-button>
+                        </div>
+                        <div>
+                            <md-button class="md-raised noPaddingMargin paddingSide-10"
+                                       ui-sref="adminRegManage.edit({id:club.id})">수정하기
+                            </md-button>
+                        </div>
+                        <div>
+                            <md-button class="md-raised noPaddingMargin paddingSide-10"
+                                       ng-click="clubDelete(club.id)">삭제하기
+                            </md-button>
+                        </div>
+                    </div>
+
+                    <div layout="row" layout-wrap hide-sm>
+                        <div>
+                            <md-button class="btn-material-pink-300" role="button"
+                                       data-toggle="collapse" data-parent="#manage-tab"
+                                       href="#collapse-{{club.id}}" aria-expanded="true"
+                                       aria-controls="collapse-{{club.id}}" flex
+                                       onclick="return false;">{{club.name}}
+                            </md-button>
+                        </div>
+                        <div flex flex-sm="100"></div>
+                        <div>
+                            <md-button class="md-raised"
+                                       ui-sref="adminRegManage.Instructor({id:club.id})">강사&클래스
+                                관리
+                            </md-button>
+                        </div>
+                        <div>
+                            <md-button class="md-raised"
+                                       ui-sref="adminRegManage.edit({id:club.id})">수정하기
+                            </md-button>
+                        </div>
+                        <div>
+                            <md-button class="md-raised" ng-click="clubDelete(club.id)">삭제하기</md-button>
+                        </div>
+                    </div>
+                </div>
+                <div id="collapse-{{club.id}}" class="panel-collapse collapse in"
+                     role="tabpanel" aria-labelledby="heading-{{club.id}}">
+                    <div class="panel-body">
+                        <div layout="row" layout-align="center" layout-wrap></div>
+                        <div layout="row" layout-wrap>
+                            <div flex="50" flex-sm="100">
+                                <h3>업체명</h3>
+                                <ul class="list-inline margin-bottom-30">
+                                    <li>{{club.name}}</li>
+                                </ul>
+
+                                <h3>업체특이사항</h3>
+                                <ul class="list-inline add-to-wishlist margin-bottom-30">
+                                    <li ng-show="{{club.onlyFemale === true}}">여성전용</li>
+                                    <li ng-show="{{club.onlyFemale === false}}">남여공용</li>
+                                </ul>
+                                <h3>업체소개</h3>
+                                <ul class="list-inline margin-bottom-30">
+                                    <li><q ng-bind-html="club.description| nl2br | nl2br2"></q>
+                                    </li>
+                                </ul>
+                                <h3>업체사업자번호</h3>
+                                <ul class="list-inline margin-bottom-30">
+                                    <li>{{club.licenseNumber}}</li>
+                                </ul>
+                                <h3>알림 방법</h3>
+                                <ul class="list-inline  margin-bottom-30">
+                                    <li ng-show="club.notificationType==='0'">수업 시작 한 시간 전</li>
+                                    <li ng-show="club.notificationType==='1'">예약할 때마다</li>
+                                </ul>
+                                <h3>예약 마감시간</h3>
+                                <ul class="list-inline  margin-bottom-30">
+                                    <li ng-show="club.reservationClose==='0'">1시간 전</li>
+                                    <li ng-show="club.reservationClose==='1'">3시간 전</li>
+                                    <li ng-show="club.reservationClose==='2'">전 날 자정</li>
+                                </ul>
+                            </div>
+                            <div flex="50" flex-sm="100">
+                                <h3>주소</h3>
+                                <ul class="list-inline margin-bottom-30">
+                                    <li>{{club.address1}} {{club.address2}}</li>
+                                </ul>
+                                <h3>간단주소</h3>
+                                <ul class="list-inline margin-bottom-30">
+                                    <li>{{club.addressSimple}}</li>
+                                </ul>
+                                <h3>연락처</h3>
+                                <ul class="list-inline  margin-bottom-30">
+                                    <li>{{club.phoneNumber}}</li>
+                                </ul>
+                                <h3>홈페이지</h3>
+                                <ul class="list-inline  margin-bottom-30">
+                                    <li>{{club.homepage}}</li>
+                                </ul>
+                                <h3>매니저번호</h3>
+                                <ul class="list-inline  margin-bottom-30">
+                                    <li>{{club.managerMobile}}</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div layout="row" layout-wrap>
+                            <div layout="row" layout-align="center center" layout-padding
+                                 ng-repeat="feature in club.features">
+                                <img ng-src="images/feature/{{feature.parent.id}}.png"
+                                     alt="feature" width="24" height="24"> &nbsp;&nbsp;<b>{{feature.value}}</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 클럽 삭제 확인 모달 -->
+<div class="modal fade" id="deleteClubConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form name="deleteForm" ng-submit="confirmDelete(club.id)">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true" ng-click="clear()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>업체/그룹을 정말 삭제하시겠습니까?</p>
+                </div>
+                <div class="modal-footer">
+                    <md-button class="md-raised" data-dismiss="modal"
+                               ng-click="clear()"><span>아니오</span></md-button>
+                    <md-button ng-disabled="deleteForm.$invalid"
+                               class="md-primary md-raised"><span>예</span></md-button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- 클럽 삭제 확인 모달 끝-->
+<md-progress-circular class="md-hue-2 spinner" md-mode="indeterminate"
+                      ng-show="mpc"></md-progress-circular>

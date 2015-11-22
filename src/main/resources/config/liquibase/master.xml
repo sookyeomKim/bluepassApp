@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+	<include file="classpath:config/liquibase/changelog/initial_entity_Zip.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/initial_entity_Image.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_CommonCode.xml" relativeToChangelogFile="false"/>
+    <include file="classpath:config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_Club.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_Instructor.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_Action.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_ActionSchedule.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_PartnerRequest.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_Feature.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_Action_Image.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_TicketHistory.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_ClassSchedule.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/initial_entity_Reservation.xml" relativeToChangelogFile="false"/>
+	
+	<include file="classpath:config/liquibase/changelog/change_entity_0001_PartnerRequest.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0002_InstructorNAction.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0003_Club.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0004_Club.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0005_Reservation.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0006_ClassSchedule.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0007_ActionSchedule.xml" relativeToChangelogFile="false"/>
+	
+	<include file="classpath:config/liquibase/changelog/20150831164256_added_entity_ReservationHistory.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0008_ReservationHistory.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0009_ReservationHistory.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0010_ReservationHistory.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0011_ClassSchedule.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0012_ClassSchedule.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0013_Club.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/20150913033029_added_entity_AddressIndex.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/change_entity_0014_Action.xml" relativeToChangelogFile="false"/>
+	<include file="classpath:config/liquibase/changelog/20150914023029_added_entity_AddressIndex.xml" relativeToChangelogFile="false"/>
+
+</databaseChangeLog>

@@ -1,0 +1,15 @@
+<div class="content-md" layout="row" layout-align="center center">
+    <div class="activateWrap" ng-show="vm.success">
+        <div class="bpAlert">인증이 완료되었습니다!</div>
+        <div layout="row" layout-align="center">
+            <md-button ui-sref="login">로그인 하기</md-button>
+        </div>
+    </div>
+
+    <div class="activateWrap" ng-show="vm.error">
+        <div class="bpAlert">인증이 완료되지 않았습니다ㅜ</div>
+        <div layout="row" layout-align="center">
+            <md-button ui-sref="register">재가입 하기</md-button>
+        </div>
+    </div>
+</div>

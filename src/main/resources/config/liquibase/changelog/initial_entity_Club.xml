@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Club.
+    -->
+    <changeSet id="20150529122403" author="taehyun">
+        <createTable tableName="CLUB">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false" />
+            </column>            
+            <column name="license_number" type="varchar(30)"/>
+            <column name="phone_number" type="varchar(30)"/>            
+            <column name="zipcode" type="varchar(6)"/>
+            <column name="address1" type="varchar(255)"/>
+            <column name="address2" type="varchar(255)"/>
+            <column name="address_simple" type="varchar(255)"/>            
+            <column name="description" type="varchar(150)"/>
+            <column name="homepage" type="varchar(255)"/>
+            <column name="only_female" type="boolean" valueBoolean="false"/>
+            <column name="category_id" type="bigint"/>
+            <column name="creator_id" type="bigint"/>
+        </createTable>
+        
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="CLUB"
+                                 constraintName="fk_club_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="COMMON_CODE"/>
+        
+        <addForeignKeyConstraint baseColumnNames="creator_id"
+                                 baseTableName="CLUB"
+                                 constraintName="fk_club_creator_id"
+                                 referencedColumnNames="id"
+                                 onDelete="SET NULL"
+                                 onUpdate="CASCADE"
+                                 referencedTableName="USER"/>      
+		
+		<loadData encoding="UTF-8"
+                  file="config/liquibase/clubs.csv"
+                  separator=";"
+                  tableName="CLUB">
+        	<column name="only_female" type="boolean"/>
+        </loadData>
+
+    </changeSet>
+</databaseChangeLog>

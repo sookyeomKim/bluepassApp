@@ -1,0 +1,286 @@
+<!-- 블루패스 회원 등록-->
+<div class="mypageWrapPadding bpRegWrap" layout="row"
+     layout-align="center">
+    <div flex="40" flex-md="60" flex-sm="100" class="md-whiteframe-z1"
+         layout-padding>
+        <form name="editForm" role="form">
+            <div layout="row" layout-align="center">
+                <div class="legend">{{vm.wizardLegend}}</div>
+            </div>
+
+            <md-divider></md-divider>
+
+            <wizard on-finish="vm.finishedWizard()">
+                <wz-step>
+                    <div class="margin-bottom-40"></div>
+                    <div class="ticketWrap">
+                        <md-radio-group ng-model="vm.user.ticketId">
+                            <md-radio-button ng-value="{{ticket.id}}" ng-repeat="ticket in vm.ticketList">
+                                <div layout="row" layout-align="space-between center">
+                                    <span>{{ticket.option2}}<small>{{ticket.option3}}</small></span>
+                                    <span>{{ticket.option1| currency : '':0}}원</span>
+                                </div>
+                            </md-radio-button>
+                        </md-radio-group>
+                    </div>
+                    <div layout="row" layout-align="center center">
+                        <md-button type="button"
+                                   class="md-raised btn-material-light-blue-A400"
+                                   ng-click="vm.changeFromFirstToSecond()">다음
+                        </md-button>
+                    </div>
+                </wz-step>
+                <!-- 회원권선택 -->
+                <wz-step>
+                    <md-subheader
+                        class="md-no-sticky">
+                        <h3>필수 입력 사항</h3>
+                    </md-subheader>
+                    <!-- 성별() -->
+                    <div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <md-radio-group ng-model="vm.user.gender" layout="row">
+                                <md-radio-button value="M" class="md-primary">남자</md-radio-button>
+                                <md-radio-button value="F"> 여자</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                    </div>
+
+
+                    <!-- 이름() -->
+                    <div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <md-input-container class="margin-bottom-40">
+                                <label for="name">이름(본명)</label>
+                                <input type="text" id="name" name="name" ng-model="vm.user.name" kr-input
+                                       focus-me="true"
+                                       required>
+
+                                <div ng-messages="editForm.name.$error">
+                                    <p ng-message="required">필수항목입니다!</p>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <!-- 주소() -->
+                    <div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <div layout="row">
+                                <div flex>
+                                    <!-- 우편번호 -->
+                                    <md-input-container>
+                                        <label for="zipcode">우편번호</label>
+                                        <input type="text" id="zipcode" name="zipcode" ng-model="vm.user.zipcode"
+                                               required readonly>
+
+                                        <div ng-messages="editForm.zipcode.$error">
+                                            <div ng-message="required">필수항목입니다!</div>
+                                        </div>
+                                    </md-input-container>
+                                </div>
+                                <md-button type="button" class="md-raised"
+                                           ng-click="vm.addressFormOpen()">주소찾기
+                                </md-button>
+                            </div>
+                            <div>
+                                <md-content id="addrWrap"
+                                            style="display: none; border: 1px solid; width: 100%; height: 300px; margin: 5px 0; position: relative">
+                                    <img
+                                        src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+                                        id="btnFoldWrap"
+                                        style="cursor: pointer; position: absolute; right: 0; top: -1px; z-index: 1"
+                                        ng-click="vm.addressFormClose()" alt="접기 버튼"></md-content>
+                            </div>
+                            <!-- 주소1 -->
+                            <div>
+                                <md-input-container>
+                                    <label for="address1">시/군/구</label>
+                                    <input type="text" id="address1" name="address1"
+                                           ng-model="vm.user.address1" required readonly>
+
+                                    <div ng-messages="editForm.address1.$error">
+                                        <div ng-message="required">필수항목입니다!</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                            <!-- 주소2 -->
+                            <div>
+                                <md-input-container class="margin-bottom-40">
+                                    <label for="address2">상세주소</label>
+                                    <input type="text" id="address2" name="address2" ng-model="vm.user.address2"
+                                           required>
+
+                                    <div ng-messages="editForm.address2.$error">
+                                        <div ng-message="required">필수항목입니다!</div>
+                                    </div>
+                                </md-input-container>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 연락처() -->
+                    <div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <md-input-container class="margin-bottom-40">
+                                <label for="phoneNumber">연락처</label>
+                                <input type="text" id="phoneNumber" name="phoneNumber"
+                                       ng-model="vm.user.phoneNumber"
+                                       pattern="^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$"
+                                       required>
+
+                                <div ng-messages="editForm.phoneNumber.$error">
+                                    <p>예)01012345678</p>
+
+                                    <p>수업예약 확인문자를 수신할 정확한 휴대폰 번호를 입력해주세요.</p>
+
+                                    <div ng-message="required">필수항목입니다!</div>
+                                    <div ng-message="pattern">아직 전화번호 형식에 맞지 않습니다!</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <!-- 나이() -->
+                    <div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <md-input-container class="margin-bottom-40">
+                                <label for="age">나이</label>
+                                <input type="number" id="age" name="age" ng-model="vm.user.age"
+                                       pattern="^[0-9]*$" required>
+
+                                <div ng-messages="editForm.age.$error" role="alert">
+                                    <div ng-message="required">필수항목입니다!</div>
+                                    <div ng-message="pattern">숫자만 허용합니다!</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <md-subheader class="md-no-sticky">
+                        <h3>선택 입력 사항</h3>
+                    </md-subheader>
+
+                    <div class="margin-bottom-20"></div>
+                    <!-- 선호지역() -->
+                    <!--<div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <md-autocomplete flex md-input-name="favorSite" md-no-cache="false"
+                                             md-selected-item="selectedItem" md-search-text="searchText"
+                                             md-search-text-change="searchTextChange"
+                                             md-items="item in querySearch(searchText)"
+                                             md-item-text="item.dong"
+                                             md-selected-item-change="selectedItemChange(item)"
+                                             md-floating-label="선호지역">
+                                <md-item-template
+                                    ng-bind="vm.user.favorSiteId=item.id"> <span
+                                    md-highlight-text="searchText">{{item.sido}}</span> <span
+                                    md-highlight-text="searchText">{{item.dong}}</span></md-item-template>
+                            </md-autocomplete>
+                            <div>예)노량진동</div>
+                        </div>
+                    </div>-->
+
+                    <!-- 상의치수() --> <!-- <div class="margin-bottom-40" layout="row">
+				<div flex="100">
+					<label>상의 치수</label>
+					<div class="margin-bottom-20"></div>
+					<md-radio-group ng-model="vm.user.jacketSizeId"> <md-radio-button
+						value="{{size.id}}" ng-repeat="size in sizeList">{{size.value}}</md-radio-button>
+					</md-radio-group>
+				</div>
+			</div> --> <!-- 하의치수() --> <!-- <div class="margin-bottom-40" layout="row">
+				<div flex="100">
+					<label>하의 치수</label>
+					<div class="margin-bottom-20"></div>
+					<md-radio-group ng-model="vm.user.pantsSize"> <md-radio-group
+						ng-model="vm.user.pantsSizeId"> <md-radio-button
+						value="{{size.id}}" ng-repeat="size in sizeList">{{size.value}}</md-radio-button>
+					</md-radio-group> </md-radio-group>
+				</div>
+			</div> --> <!-- 선호운동() -->
+                    <div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <label>선호하시는 운동을 선택해주세요!</label>
+
+                            <div class="margin-bottom-20"></div>
+                            <div ng-repeat="item in vm.exerciseList">
+                                <md-checkbox ng-checked="vm.exists(item.id, vm.selected)"
+                                             ng-click="vm.toggle(item.id, vm.selected)"> {{ item.value
+                                    }} <span ng-if="vm.exists(item.id, vm.selected)">선택됨</span></md-checkbox>
+                            </div>
+                            <input type="hidden" ng-bind="vm.user.favorCategoryId=vm.selected">
+                        </div>
+                    </div>
+
+                    <!-- 운동횟수() -->
+                    <div class="margin-bottom-40" layout="row">
+                        <div flex="100">
+                            <md-input-container>
+                                <label for="exersizeCount">일주일간 운동횟수가 어떻게 되시나요?</label>
+                                <input type="text" id="exersizeCount" name="exersizeCount"
+                                       ng-model="vm.user.exersizeCount" pattern="^[0-9]*$">
+
+                                <div ng-messages="editForm.exersizeCount.$error">
+                                    <div ng-message="pattern">숫자만 허용합니다!</div>
+                                </div>
+                            </md-input-container>
+                        </div>
+                    </div>
+
+                    <div layout="row" layout-align="center center">
+                        <md-button type="button" class="md-raised"
+                                   ng-click="vm.changeFromSecondToFirst()">이전
+                        </md-button>
+                        <md-button type="button"
+                                   class="md-raised btn-material-light-blue-A400"
+                                   ng-click="vm.changeFromSecondToThird()"
+                                   ng-disabled="editForm.$invalid">다음
+                        </md-button>
+                    </div>
+                </wz-step>
+                <wz-step> <!-- 결제 방식 -->
+                    <div layout="row" layout-align="center">
+                        <div flex="100">
+                            <div layout="row" layout-wrap>
+                                <md-button class="noPaddingMargin md-raised"
+                                           ng-class="{selected:vm.paymentWay===0}" flex="50"
+                                           ng-click="vm.selectedPw(0)">무통장입금
+                                </md-button>
+                                <md-button class="noPaddingMargin md-raised"
+                                           ng-class="{selected:vm.paymentWay===1}" flex="50"
+                                           ng-click="vm.selectedPw(1)">실시간계좌이체
+                                </md-button>
+                            </div>
+                            <div layout="row" layout-align="center" ng-show="vm.paymentWay===0">
+                                <div flex="100" layout-padding>
+                                    <p>입금까지 완료되어야 신청이 완료되니 유의바랍니다.</p>
+
+                                    <p>
+                                        입금 시 통장 표시내용을 <span class="point">본인 이름</span>으로 적어주시기 바랍니다.
+                                    </p>
+
+                                    <p>입금 확인에 걸리는 시간은 통상 영업시간 내 1시간입니다.</p>
+                                </div>
+                            </div>
+                            <div layout="row" layout-align="center" ng-show="vm.paymentWay===1">
+                                <div flex="100" layout-padding>
+                                    <p>준비 중입니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div layout="row" layout-align="center center">
+                        <md-button type="button" class="md-raised"
+                                   ng-click="vm.changeFromThirdToSecond()">이전
+                        </md-button>
+                        <md-button type="button"
+                                   class="md-raised btn-material-light-blue-A400" wz-next>계속진행
+                        </md-button>
+                    </div>
+                </wz-step>
+            </wizard>
+        </form>
+    </div>
+</div>
+<!-- 블루패스 회원 등록 끝-->

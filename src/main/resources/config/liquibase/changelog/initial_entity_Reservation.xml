@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <!--
+        Added the entity Reservation.
+    -->
+    <changeSet id="20150714141433" author="taehyun">
+        <createTable tableName="RESERVATION">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="reservation_method" type="varchar(255)"/>
+            <column name="reservation_time" type="timestamp"/>
+            <column name="start_time" type="timestamp"/>
+            <column name="end_time" type="timestamp"/>
+            <column name="canceled" type="bit"/>
+            <column name="used" type="bit"/>
+            <column name="user_id" type="bigint"/>
+            <column name="classschedule_id" type="bigint"/>
+            <column name="club_id" type="bigint"/>
+            <column name="ticket_id" type="bigint"/>
+            <column name="check_code" type="integer"/>
+        </createTable>
+        
+        <dropDefaultValue tableName="RESERVATION" columnName="reservation_time" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="RESERVATION" columnName="start_time" columnDataType="datetime"/>
+
+        <dropDefaultValue tableName="RESERVATION" columnName="end_time" columnDataType="datetime"/>
+
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="RESERVATION"
+                                 constraintName="fk_reservation_user_id"
+                                 onDelete="SET NULL"
+                                 referencedColumnNames="id"
+                                 referencedTableName="USER"/>
+
+        <addForeignKeyConstraint baseColumnNames="classschedule_id"
+                                 baseTableName="RESERVATION"
+                                 constraintName="fk_reservation_classschedule_id"
+                                 onDelete="SET NULL"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CLASS_SCHEDULE"/>
+
+        <addForeignKeyConstraint baseColumnNames="club_id"
+                                 baseTableName="RESERVATION"
+                                 constraintName="fk_reservation_club_id"
+                                 onDelete="SET NULL"
+                                 referencedColumnNames="id"
+                                 referencedTableName="CLUB"/>
+
+        <addForeignKeyConstraint baseColumnNames="ticket_id"
+                                 baseTableName="RESERVATION"
+                                 constraintName="fk_reservation_ticket_id"
+                                 onDelete="SET NULL"
+                                 referencedColumnNames="id"
+                                 referencedTableName="COMMON_CODE"/>
+
+    </changeSet>
+</databaseChangeLog>

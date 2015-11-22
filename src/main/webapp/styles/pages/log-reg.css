@@ -1,0 +1,115 @@
+body.loginBackground {
+    background-size: cover;
+    background-image: url(../../images/logreg/login.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+body.logupBackground {
+    background-size: cover;
+    background-image: url(../../images/logreg/logup.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.loginWrap, .logupWrap {
+    font-size: 16px;
+    font-weight: 500;
+    color: #f0f0f0;
+    position: relative;
+}
+
+.loginWrap {
+    padding: 100px 0 0 0;
+}
+
+.logupWrap {
+    padding: 100px 0 0 0;
+}
+
+.logregPanel {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 15px;
+}
+
+.logregPanel .alertText {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding: 3px;
+}
+
+.logregPanel .legend {
+    font-size: 22px;
+}
+
+.logregPanel a {
+    color: #bbdefb;
+}
+
+.logregPanel .success {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.logregPanel md-input-container label {
+    color: #fff;
+}
+
+.logregPanel md-input-container.md-input-invalid.md-input-focused label {
+    color: #d50000 !important;
+}
+
+.logregPanel md-input-container:not (.md-input-invalid ).md-input-has-value label {
+    color: #fff;
+}
+
+.logregPanel md-input-container:not (.md-input-invalid ).md-input-has-value .md-input {
+    border-color: #fff;
+}
+
+.logregPanel md-input-container.md-input-focused label {
+    color: #fff;
+}
+
+.logregPanel md-input-container.md-input-focused .md-input {
+    border-color: #fff;
+}
+
+.regCause {
+    font-size: 12px;
+}
+
+/* 반응형 */
+@media ( max-width: 1199px) {
+}
+
+@media ( min-width: 1200px) {
+}
+
+@media ( min-width: 960px) {
+}
+
+@media ( max-width: 959px) {
+    .loginWrap {
+        padding: 40px 0 0 0;
+    }
+
+    .logupWrap {
+        padding: 40px 0 0 0;
+    }
+}
+
+@media ( min-width: 600px) {
+}
+
+@media ( max-width: 599px) {
+    .loginWrap {
+        padding: 20px 0 0 0;
+    }
+
+    .logupWrap {
+        padding: 20px 0 0 0;
+    }
+}

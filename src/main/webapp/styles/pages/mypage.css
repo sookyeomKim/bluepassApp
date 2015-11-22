@@ -1,0 +1,94 @@
+/* 사용자 */
+.mypageWrapPadding {
+	padding: 10px;
+}
+
+.myPageWrap .selected {
+	background-color: #52b9e9
+}
+
+.myPageWrap table tbody tr td {
+	line-height: 36px;
+}
+
+.myPageWrap #mypageProfileImg {
+	padding: 5px;
+}
+
+.myPageWrap .profileHello {
+	font-size: 25px;
+	font-weight: 700;
+}
+
+.myPageWrap .mypageButton {
+	font-size: 14px;
+}
+
+.myPageWrap .mypage-section {
+	position: relative;
+	background-color: #fff;
+}
+
+.myPageWrap .payment.thumbnail {
+	border: 0;
+}
+
+/* 스케줄 */
+.myPageWrap .scheduleWrap .intro {
+	text-align: center;
+	font-size: 19px;
+	font-weight: 400;
+	padding: 10px 0;
+}
+
+/* 비번 수정 */
+.settingWrap .passwordWrap {
+	background-color: #fff;
+}
+/* 상세정보 수정 */
+.settingWrap .detailInfoWrap {
+	background-color: #fff;
+}
+/* response */
+@media ( max-width : 1199px) {
+}
+
+@media ( min-width : 1200px) {
+}
+
+@media ( min-width : 960px) {
+	.myPageWrap #mypageProfileImg {
+		width: 150px;
+		height: 150px;
+	}
+}
+
+@media ( max-width : 959px) {
+	.myPageWrap #mypageProfileImg {
+		width: 85px;
+		height: 85px;
+	}
+	.myPageWrap .mypageWrapPadding {
+		padding: 0;
+	}
+	.myPageWrap .profileHello {
+		font-size: 17.5px;
+		font-weight: 600;
+	}
+	.myPageWrap .mypageButton {
+		font-size: 12px
+	}
+}
+
+@media ( min-width : 600px) {
+}
+
+@media ( max-width : 599px) {
+	.myPageWrap .profileHello {
+		font-size: 12.5px;
+		font-weight: 500;
+	}
+	.myPageWrap .mypageButton {
+		font-size: 10px;
+	}
+}

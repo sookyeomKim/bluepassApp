@@ -1,0 +1,121 @@
+<div layout="row" layout-align="center"
+     style="margin-top: 8px;">
+    <div flex="100" class="md-whiteframe-z1 mypage-section">
+        <div layout="row">
+            <div class="directButton prev" layout="row"
+                 layout-align="center center" flex="5" show-sm show-md show-lg hide
+                 role="button">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+            </div>
+            <div flex="90" flex-gt-lg="100">
+                <ul id="tableTypeLegend" class="tableTab"
+                    style="border-bottom: 0;" role="tablist">
+
+                    <li ng-class="navigationState==={{$index}}?'selected':''"
+                        role="tab" ng-repeat="day in dayArry">
+                        <div class="dateButton"
+                             ng-click="selected_day($index)">
+                            <span>{{day.month}}/{{day.date}}/{{day.day}}</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="directButton next" layout="row"
+                 layout-align="center center" flex="5" show-sm show-md show-lg hide
+                 role="button">
+                <i class="glyphicon glyphicon-triangle-right"></i>
+            </div>
+        </div>
+        <table class="table table-hover footable table-striped">
+            <thead>
+            <tr>
+                <th>클래스 이름</th>
+                <th data-hide="phone,tablet">업체 이름</th>
+                <th>시간</th>
+                <th data-hide="phone">클래스 강사</th>
+                <th data-hide="phone,tablet">주소</th>
+                <th data-hide="phone,tablet">클래스 예약하기</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="actionSchedule in actionScheduleList"
+                ng-show="actionScheduleList.length>0 || error === false">
+                <td><a class="weight_4"
+                       ui-sref="actionListDetail({id:actionSchedule.action.id})">{{actionSchedule.action.title}}</a>
+                </td>
+                <td>{{actionSchedule.club.name}}</td>
+                <td class="moreButtonWrap mobile">{{actionSchedule.startTime |
+                    date:"HH : mm"}} ~ {{actionSchedule.endTime | date:"HH : mm"}}
+                    <div class="moreButton mobile footable-toggle">자세히</div>
+                </td>
+                <td class="moreButtonWrap tablet">{{actionSchedule.instructor.name}}
+                    <div class="moreButton tablet footable-toggle">자세히</div>
+                </td>
+                <td>{{actionSchedule.club.addressSimple}}</td>
+                <td>
+                    <reservation-register
+                        schedule-id="{{actionSchedule.id}}" user-id="{{account.id}}"
+                        user-status="{{account.registerStatus}}" user-roles="{{account.roles}}"
+                        year="{{dayArry[navigationState].year}}"
+                        month="{{dayArry[navigationState].month}}"
+                        date="{{dayArry[navigationState].date}}"
+                        hour="{{actionSchedule.startTime | date:'HH'}}"
+                        minute="{{actionSchedule.startTime | date:'mm'}}"
+                        reservation-close="{{actionSchedule.club.reservationClose}}">
+                    </reservation-register>
+                </td>
+            </tr>
+            <tr ng-show="actionScheduleList.length===0 || error ===true">
+                <td colspan="6">
+                    <div ng-show="mpc" layout="row" layout-align="center center">
+                        <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
+                    </div>
+                    <div ng-show="!mpc" layout="row" layout-align="center center">등록된
+                        스케줄이 없습니다
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<nav ng-if="actionScheduleList.length>0" layout="row"
+     layout-align="center">
+    <ul class="pagination md-whiteframe-z1">
+        <li ng-show="links['first']"
+            ng-click="loadPage(links['first'],navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+            <a> <i class="glyphicon glyphicon-backward"></i>
+            </a>
+        </li>
+        <li ng-show="links['prev']"
+            ng-click="loadPage(links['prev'],navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+            <a>
+                <i class="glyphicon glyphicon-triangle-left"></i>
+            </a></li>
+        <li ng-show="page > 2"
+            ng-click="loadPage(page - 2,navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)"><a>{{page
+            - 2}}</a></li>
+        <li ng-show="page > 1"
+            ng-click="loadPage(page - 1,navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)"><a>{{page
+            - 1}}</a></li>
+        <li class="active"><a>{{page}}</a></li>
+        <li ng-show="page < links['last']"
+            ng-click="loadPage(page + 1,navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+            <a>{{page + 1}}</a>
+        </li>
+        <li ng-show="page < links['last'] - 1"
+            ng-click="loadPage(page + 2,navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+            <a>{{page + 2}}</a>
+        </li>
+        <li ng-show="links['next']"
+            ng-click="loadPage(links['next'],navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+            <a>
+                <i class="glyphicon glyphicon-triangle-right"></i>
+            </a></li>
+        <li ng-show="links['last']"
+            ng-click="loadPage(links['last'],navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+            <a>
+                <i class="glyphicon glyphicon-forward"></i>
+            </a></li>
+    </ul>
+</nav>

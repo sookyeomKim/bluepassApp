@@ -1,0 +1,84 @@
+.partnersIntroduceWrap {
+  background-color: #fff;
+}
+
+.partnersIntroduceWrap .firstSection {
+  background-size: 100%;
+  background-image: url(../../images/partnersMain/first.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.partnersIntroduceWrap .firstSection .introText {
+  padding-top: 15.5%;
+  font-size: 32px;
+}
+
+.partnersIntroduceWrap .firstSection .introText .point {
+  color: #86addd;
+}
+
+.partnersIntroduceWrap .secondSection {
+  background-size: cover;
+  background-position: center;
+  background-image: url(../../images/partnersMain/second.jpg);
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  height: 500px;
+}
+
+.partnersIntroduceWrap .secondSection .introText {
+  padding-top: 110px;
+  font-size: 18px;
+  color: #fff;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.partnersIntroduceWrap .inquireFormLegend {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+/* 반응형 */
+@media ( max-width: 1199px) {
+}
+
+@media ( min-width: 1200px) {
+}
+
+@media ( min-width: 960px) {
+}
+
+@media ( max-width: 959px) {
+  .partnersIntroduceWrap .firstSection .introText {
+    font-size: 26px;
+  }
+
+  .partnersIntroduceWrap .secondSection .introText {
+    padding-top: 95px;
+    font-size: 16.5px;
+  }
+
+  .partnersIntroduceWrap .secondSection {
+    height: 450px;
+  }
+}
+
+@media ( min-width: 600px) {
+}
+
+@media ( max-width: 599px) {
+  .partnersIntroduceWrap .firstSection .introText {
+    font-size: 20px;
+  }
+
+  .partnersIntroduceWrap .secondSection .introText {
+    padding-top: 80px;
+    font-size: 15px;
+  }
+
+  .partnersIntroduceWrap .secondSection {
+    height: 400px;
+  }
+}

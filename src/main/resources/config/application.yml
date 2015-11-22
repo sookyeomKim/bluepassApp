@@ -1,0 +1,39 @@
+# Disable the spring security default configuration from spring-boot-actuator
+management.security.enabled: true
+security.basic.enabled: false
+
+# Disable Jolokia - An http/json bridge for remote JMX access
+endpoints.jolokia.enabled: false
+
+# security configuration (this key should be unique for your application, and kept secret)
+bluepass.security.rememberme.key: d1bc6d59a2c86df631d220a5e63a6d5075408e5a
+
+async:
+    corePoolSize: 2
+    maxPoolSize: 50
+    queueCapacity: 10000
+
+mail:
+    host: smtp.worksmobile.com
+    port: 587
+    username: info@bluepass.co
+    password: 'bluepass1290#!'
+    protocol: smtp
+    tls: true
+    auth: true
+    from: info@bluepass.co
+
+authentication:
+    xauth:
+        secret: myXAuthSecret
+        # Token is valid 30 minutes
+        tokenValidityInSeconds: 1800
+
+swagger:
+    title: bluepass API
+    description: bluepass applications and beyond!
+    termsOfServiceUrl: http://bluepass.co/api/terms
+    contact:
+    license: Apache 2.0
+    licenseUrl: http://www.apache.org/licenses/LICENSE-2.0.html
+     

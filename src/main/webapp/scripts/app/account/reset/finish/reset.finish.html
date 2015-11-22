@@ -1,0 +1,62 @@
+<!--=== 비밀번호 변경하기 ===-->
+<div class="loginWrap">
+	<div class="loginOverWrap">
+		<div layout="row" layout-align="center" layout-padding>
+			<div class="logregPanel" flex="30" flex-sm="100" flex-md="60">
+				<div class="alertText" layout="row"
+					layout-align="center center" ng-show="doNotMatch">
+					<div>비밀번호가 일치하지 않습니다.</div>
+				</div>
+
+				<div class="alertText" layout="row"
+					layout-align="center center" ng-show="error">
+					<div>변경되지 않았습니다. 다시 시도해주세요.</div>
+					<div>
+						<a ui-sref="requestReset">다시 시도</a>
+					</div>
+				</div>
+
+				<div class="alertText" layout="row"
+					layout-align="center center" ng-show="success">
+					<div>변경이 완료되었습니다.</div>
+					<div>
+						<a ui-sref="login">로그인 하기</a>
+					</div>
+				</div>
+
+				<form name="form" ng-show="!success" class="form margin-bottom-15"
+					role="form" ng-submit="finishReset()">
+					<md-input-container class="logreg">
+                        <label for="password">비밀번호</label>
+					<input type="password"id="password" name="password"
+						ng-model="resetAccount.password" ng-minlength=5 ng-maxlength=50
+						required>
+					<div ng-messages="form.password.$error" role="alert"
+						ng-show="form.password.$dirty && form.password.$invalid">
+						<div ng-message="required">비밀번호를 입력하세요!</div>
+						<div ng-message="minlength">5자리 이상 입력해주세요!</div>
+						<div ng-message="maxlength">너무 길어요!</div>
+					</div>
+					</md-input-container>
+					<md-input-container>
+                        <label for="confirmPassword">비밀번호 확인</label>
+                        <input
+						type="password"id="confirmPassword" name="confirmPassword" ng-model="confirmPassword"
+						ng-minlength=5 ng-maxlength=50 required>
+					<div ng-messages="form.confirmPassword.$error"
+						ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">
+						<div ng-message="required">비밀번호를 입력하세요!</div>
+						<div ng-message="minlength">5자리 이상 입력해주세요!</div>
+						<div ng-message="maxlength">너무 길어요!</div>
+					</div>
+					</md-input-container>
+					<!-- <md-checkbox ng-model="rememberMe" class="md-warn">비밀번호 기억{{rememberMe ? " 안 하기" : "하기"}}</md-checkbox> -->
+					<div layout="row" layout-align="center">
+						<md-button type="submit" class="" ng-disabled="form.$invalid">변경하기</md-button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!--=== 비밀번호 변경하기 끝===-->

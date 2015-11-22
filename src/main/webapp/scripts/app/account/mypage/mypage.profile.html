@@ -1,0 +1,37 @@
+<div class="mypageWrapPadding" layout="row" layout-align="center"
+     layout-wrap>
+    <div class="md-whiteframe-z1 mypage-section" flex="80" flex-md="100"
+         flex-sm="100">
+        <div layout="row">
+            <div flex-sm="30" flex-md="25" flex="20">
+                <div layout="row" layout-align="start center">
+                    <a> <img id="mypageProfileImg" class=""
+                             src="/images/profile/defaultAvartar.jpg" alt="profile img">
+                    </a>
+                </div>
+            </div>
+            <div flex-sm="70" flex-md="75" flex="80">
+                <div id="" layout="row" layout-align="end center">
+                    <a ui-sref="adminRegManage"
+                       ng-if="vm.stateConfirmVendor > 0 || vm.stateConfirmAdmin > 0 ">
+                        <md-button
+                            class="md-mini mypageButton">관리자버튼
+                        </md-button>
+                    </a>
+                    <a ui-sref="settings">
+                        <md-button
+                            class="btn-material-orange-600 mypageButton">프로필 수정
+                        </md-button>
+                    </a>
+                </div>
+                <div class="profileHello"
+                     ng-if="vm.account.name===null">{{vm.account.email}}님
+                    어서오세요!
+                </div>
+                <div class="profileHello" ng-if="vm.account.name!==null">{{vm.account.name}}님
+                    어서오세요!
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

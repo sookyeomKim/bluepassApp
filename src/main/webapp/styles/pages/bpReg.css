@@ -1,0 +1,133 @@
+.steps-indicator {
+    display: none;
+}
+
+.bpRegBackground {
+    background-size: cover;
+    background-image: url(../../images/bpReg/bpRegBackground.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+.bpRegWrap {
+    color: #d9d9d9;
+}
+
+.bpRegWrap .legend {
+    font-size: 28px;
+    font-weight: 400;
+}
+
+.bpRegWrap .payment {
+    background-color: inherit;
+    border: none;
+}
+
+.bpRegWrap .md-subheader {
+    color: #d9d9d9;
+}
+
+.bpRegWrap md-input-container label {
+    color: #d9d9d9;
+}
+
+.bpRegWrap md-input-container .md-input {
+    color: #d9d9d9;
+}
+
+.bpRegWrap md-input-container:not(.md-input-invalid ).md-input-has-value label {
+    color: #d9d9d9;
+}
+
+.bpRegWrap md-input-container.md-input-invalid.md-input-focused label {
+    color: rgb(244, 67, 54) !important;
+}
+
+.bpRegWrap md-input-container:not(.md-input-invalid ).md-input-has-value .md-input {
+    border-color: #d9d9d9;
+}
+
+.bpRegWrap md-input-container.md-input-focused label {
+    color: #d9d9d9;
+}
+
+.bpRegWrap md-input-container.md-input-focused .md-input {
+    border-color: #d9d9d9;
+}
+
+.bpRegWrap .md-button.md-raised {
+    color: inherit;
+    background-color: rgba(250, 250, 250, 0.1);
+}
+
+.bpRegWrap .md-button.md-raised:not([disabled] ):hover {
+    background-color: rgba(250, 250, 250, 0.3);
+}
+
+.bpRegWrap .md-button.md-raised.selected {
+    background-color: rgba(3, 169, 244, 0.7);
+}
+
+.bpRegWrap .md-button.md-raised.selected:not([disabled] ):hover {
+    background-color: rgba(3, 169, 244, 0.7);
+}
+
+.bpRegWrap .intro {
+    text-align: center;
+}
+
+.bpRegWrap .point {
+    color: #03a9f4;
+}
+
+.bpRegWrap .point2 {
+    color: #ff8080;
+}
+
+.bpRegWrap .delete {
+    text-decoration: line-through;
+}
+
+.bpRegWrap #reviewCarousel {
+    background-color: inherit;
+}
+
+.bpRegWrap #reviewCarousel img {
+    width: 100%;
+}
+
+.bpRegWrap .ticketWrap {
+    max-width: 300px;
+    margin: 0 auto;
+    padding-right: 25px;
+}
+
+.bpRegWrap .ticketWrap .md-label {
+    width: 100% !important;
+}
+
+/* 반응형 */
+@media ( min-width: 1200px) {
+}
+
+@media ( max-width: 1199px) {
+}
+
+@media ( min-width: 960px) {
+}
+
+@media ( max-width: 959px) {
+    .bpRegWrap .legend {
+        font-size: 23px;
+    }
+}
+
+@media ( min-width: 600px) {
+}
+
+@media ( max-width: 599px) {
+    .bpRegWrap .legend {
+        font-size: 18px;
+    }
+}

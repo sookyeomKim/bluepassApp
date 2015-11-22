@@ -1,0 +1,16 @@
+<md-dialog class="" aria-label="companyItem reg" ng-cloak>
+    <md-dialog-content>
+        <div class="content-sm" layout="row">
+            <div flex="100" layout-padding>
+                <!-- 경우의 수 경고 문구 -->
+                <div class="weight_4">
+                    <div layout="row" layout-align="center center">예약을 취소하시겠습니까?</div>
+                </div>
+            </div>
+        </div>
+        <div layout="row" layout-align="center center">
+            <md-button class="md-raised" ng-click="vm.cancel()">닫기</md-button>
+            <md-button class="md-raised" ng-click="vm.getReservationCancel()">취소하기</md-button>
+        </div>
+    </md-dialog-content>
+</md-dialog>

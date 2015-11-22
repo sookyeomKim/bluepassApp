@@ -1,0 +1,216 @@
+<div class="actionDetailWrap">
+    <!-- <div class="actionListTypeBar panel panel-default">
+        <div class=" boxShadow-1" layout="row" layout-align="center center">
+            <a ui-sref="actionListImgtype" flex> <md-button
+                    class="noPaddingMargin buttonFullWidth" aria-label="view img">
+                <md-icon md-svg-src="images/icons/module.svg"></md-icon>
+                이미지형으로 보기 </md-button>
+            </a> <a ui-sref="actionListTabletype" flex> <md-button
+                    class="noPaddingMargin buttonFullWidth" aria-label="view table">
+                <md-icon md-svg-src="images/icons/list.svg"></md-icon> 스케줄형으로
+                보기 </md-button>
+            </a>
+        </div>
+    </div> -->
+
+    <div class="breadcrumbsWrap boxShadow-1" auto-height
+         outer-xs-number="1" outer-sm-number="1" outer-md-number="1"
+         outer-lg-number="1" no-max-width="true" no-margin="true"
+         outer-ratio="0.18">
+        <img auto-height outer-xs-number="1" outer-sm-number="1"
+             outer-md-number="1" outer-lg-number="1" no-max-width="true"
+             no-margin="true" outer-ratio="0.18" alt="breadcrumbs img"
+             ng-src="images/breadcrumbs/bc_{{selectImg}}.jpg">
+    </div>
+
+    <div class="actionDetail">
+        <!-- 클래스 정보 -->
+        <div class="actionDetailWrapPadding">
+            <div layout="row" layout-align="center" class="shop-product">
+                <div flex="70" flex-md="90" flex-sm="100"
+                     class="md-whiteframe-z1 section">
+                    <div layout="row" layout-wrap layout-padding>
+                        <div flex="55" flex-sm="100">
+                            <div class="ms-showcase2-template">
+                                <!-- Master Slider -->
+                                <div class="master-slider ms-skin-default" id="masterslider">
+                                    <div class="ms-slide" ng-repeat="classImg in classImgList">
+                                        <img class="ms-brd" src="/images/blank.gif"
+                                             data-ng-src="image/picture/{{classImg.image.id}}"
+                                             alt="{{actionDetail.title}} 이미지">
+                                        <!-- <img class="ms-thumb" ng-src="image/picture/{{classImg.image.id}}"
+                                        alt="thumb"> -->
+                                    </div>
+                                    <div class="ms-slide" ng-if="classImgList.length === 0">
+                                        <img class="ms-brd" src="/images/blank.gif"
+                                             data-src="images/action/empty.jpg" alt="empty img">
+                                        <!-- <img class="ms-thumb" src="images/action/empty.jpg"
+                                        alt="empty thumb"> -->
+                                    </div>
+                                    <!-- <div class="ms-slide"
+                                    ng-if="classImgList.length === 0 || classImgList.length === 1">
+                                    <img class="ms-brd" src="images/blank.gif"
+                                        data-src="images/action/empty.jpg" alt="empty img">
+                                    <img class="ms-thumb" src="images/action/empty.jpg"
+                                        alt="empty thumb">
+                                </div>
+                                <div class="ms-slide"
+                                    ng-if="classImgList.length === 0 ||classImgList.length === 1||classImgList.length === 2">
+                                    <img class="ms-brd" src="images/blank.gif"
+                                        data-src="images/action/empty.jpg" alt="empty img">
+                                    <img class="ms-thumb" src="images/action/empty.jpg"
+                                        alt="empty thumb">
+                                </div> -->
+                                </div>
+                                <!-- End Master Slider -->
+                            </div>
+                        </div>
+                        <div flex="45" flex-sm="100" layout-padding>
+                            <div layout="row" layout-align="space-between center" layout-wrap>
+                                <div flex="70" flex-sm="100">
+                                    <ul class="list-inline">
+                                        <li>
+                                            <div class="detailClassName">{{actionDetail.title}}</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div flex></div>
+                                <div flex-sm="100">
+                                    <div class="detailClubName">{{actionDetail.club.name}}</div>
+                                </div>
+                            </div>
+                            <md-divider class="margin-bottom-15"></md-divider>
+                            <div class="margin-bottom-60" lyaout="row" layout-wrap>
+                                <div class="detailSimpleAdress" layout="row"
+                                     layout-align="center" flex="100">
+                                    <div class="icon">
+                                        <i class="glyphicon glyphicon-map-marker"></i>
+                                    </div>
+                                    &nbsp;
+                                    <div class="text">{{actionDetail.club.addressSimple}}</div>
+                                    <div flex></div>
+                                    <div>
+                                        <img class="detailEventName"
+                                             src="/images/category/{{actionDetail.category.option1}}.png"/>
+                                    </div>
+                                </div>
+                                <div class="margin-bottom-10"></div>
+                                <div class="detailShortDescription margin-bottom-15" layout="row" flex="100">
+                                    {{actionDetail.shortDescription}}
+                                </div>
+                            </div>
+
+                            <div class="detailHomepage" lyaout="row" layout-wrap>
+                                <div layout="row" layout-align="center" flex="100">
+                                    <div class="icon">
+                                        <i class="glyphicon glyphicon-globe"></i>
+                                    </div>
+                                    &nbsp;
+                                    <div class="text">홈페이지</div>
+                                    <div flex></div>
+                                </div>
+                                <div layout="row" class="margin-bottom-15" flex="100">
+                                    <div class="context">{{actionDetail.club.homepage}}</div>
+                                </div>
+                            </div>
+
+                            <div class="detailAdress" lyaout="row" layout-wrap>
+                                <div layout="row" layout-align="start center" flex="100">
+                                    <div class="icon">
+                                        <i class="glyphicon glyphicon-home"></i>
+                                    </div>
+                                    &nbsp;
+                                    <div class="text">주소</div>
+                                </div>
+                                <div layout="row" class="margin-bottom-15" flex="100">
+                                    <div class="context">{{actionDetail.club.address1}}{{actionDetail.club.address2}}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detailPhone" lyaout="row" layout-wrap>
+                                <div layout="row" layout-align="start center" flex="100">
+                                    <div class="icon">
+                                        <i class="glyphicon glyphicon-earphone"></i>
+                                    </div>
+                                    &nbsp;
+                                    <div class="text">연락처</div>
+                                </div>
+                                <div layout="row" class="margin-bottom-15" flex="100">
+                                    <div class="context">{{actionDetail.club.phoneNumber}}</div>
+                                </div>
+                                <md-divider class="detailResponse"></md-divider>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 클래스 정보 끝-->
+
+        <!-- 상세설명 & 강사정보 -->
+        <div class="actionDetailWrapPadding">
+            <div layout="row" layout-align="center">
+                <div flex="70" flex-md="90" flex-sm="100"
+                     class="md-whiteframe-z1 section">
+                    <div layout="row" layout-wrap role="tablist">
+                        <md-button ng-class="tabSelected===1?'':'btn-material-light-blue'"
+                                   ng-click="tabSelected=1" role="tab" class="noPaddingMargin">상세설명
+                        </md-button>
+                        <md-button ng-class="tabSelected===2?'':'btn-material-light-blue'"
+                                   ng-click="tabSelected=2" role="tab" class="noPaddingMargin">강사소개
+                        </md-button>
+                    </div>
+
+                    <div class="detailIntro" role="tabpanel"
+                         ng-show="tabSelected === 1" layout-padding>
+                        <div flex>
+                            <div class="legend">{{actionDetail.shortDescription}}</div>
+                            <div class="intro" ng-bind-html="actionDetail.description| nl2br"></div>
+                            <div class="content-sm embed-responsive embed-responsive-16by9"
+                                 ng-if="actionDetail.movieIds!==null">
+                                <youtube-video video-id="actionDetail.movieIds"></youtube-video>
+                            </div>
+                        </div>
+                        <div class="features" layout="row" layout-wrap>
+                            <div layout="row" layout-align="center center" layout-padding
+                                 ng-repeat="feature in actionDetail.club.features">
+                                <img ng-src="images/feature/{{feature.parent.id}}.png"
+                                     alt="feature" width="24" height="24"> &nbsp;&nbsp;
+                                <div>{{feature.value}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" ng-show="tabSelected === 2">
+                        <div ui-view="instructor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 상세설명 & 강사정보 끝-->
+
+        <!-- 클래스 스케줄 -->
+        <div class="actionDetailWrapPadding">
+            <div layout="row" layout-align="center">
+                <div ui-view="schedule" flex="70" flex-md="90" flex-sm="100"
+                     class="md-whiteframe-z1 section"></div>
+            </div>
+        </div>
+        <!-- 클래스 스케줄 끝 -->
+
+        <!-- 업체의 또 다른 클래스 -->
+        <div class="actionDetailWrapPadding">
+            <div layout="row" layout-align="center" class="shop-product">
+                <div ui-view="otherClass" flex="100"></div>
+            </div>
+        </div>
+        <!-- 업체의 또 다른 클래스 끝 -->
+    </div>
+    <!-- 이전버튼 -->
+    <md-button id="previousButton"
+               class="md-fab md-mini no-margin btn-material-light-green-600"
+               aria-label="Previous button" ng-click="toPrevious()" ng-cloak>이전
+    </md-button>
+    <!-- 이전버튼 끝 -->
+</div>
+

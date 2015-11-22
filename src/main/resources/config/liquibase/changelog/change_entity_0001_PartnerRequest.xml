@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <!--
+        Change the entity PartnerRequest.
+    -->
+    <changeSet id="20150813003413" author="taehyun">
+    	
+    	<dropColumn tableName="PARTNER_REQUEST" columnName="address"/>
+    	
+        <addColumn tableName="PARTNER_REQUEST">
+	        <column name="zipcode" type="varchar(6)"/>
+            <column name="address1" type="varchar(255)"/>
+            <column name="address2" type="varchar(100)"/>
+	    </addColumn>
+	    
+    </changeSet>
+</databaseChangeLog>

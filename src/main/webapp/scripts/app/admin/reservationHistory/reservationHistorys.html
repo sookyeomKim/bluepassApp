@@ -1,0 +1,165 @@
+<div>
+    <h2>ReservationHistorys</h2>
+    <jh-alert></jh-alert>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <button class="btn btn-primary" ui-sref="reservationHistory.new">
+                    <span class="glyphicon glyphicon-flash"></span> <span>Create a new ReservationHistory</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="deleteReservationHistoryConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form name="deleteForm" ng-submit="confirmDelete(reservationHistory.id)">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                                ng-click="clear()">&times;</button>
+                        <h4 class="modal-title">Confirm delete operation</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you want to delete this ReservationHistory?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">
+                            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+                        </button>
+                        <button type="submit" ng-disabled="deleteForm.$invalid" class="btn btn-danger">
+                            <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span>Delete</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>ReservationId</th>
+                <th>ReservationMethod</th>
+                <th>ReservationTime</th>
+                <th>StartTime</th>
+                <th>EndTime</th>
+                <th>Used</th>
+                <th>UserId</th>
+                <th>UserEmail</th>
+                <th>UserName</th>
+                <th>UserPhoneNumber</th>
+                <th>UserGender</th>
+                <th>RegisterStatus</th>
+                <th>ActionScheduleId</th>
+                <th>ActionScheduleName</th>
+                <th>Day</th>
+                <th>ScheduleType</th>
+                <th>AttendeeLimit</th>
+                <th>ClassScheduleId</th>
+                <th>ClassScheduleEtc</th>
+                <th>ClubId</th>
+                <th>ClubName</th>
+                <th>ClubZipcode</th>
+                <th>ClubAddress1</th>
+                <th>ClubAddress2</th>
+                <th>ClubPhoneNumber</th>
+                <th>OnlyFemail</th>
+                <th>ClubManagerMobile</th>
+                <th>NotificationType</th>
+                <th>ReservationClose</th>
+                <th>ActionId</th>
+                <th>ActionTitle</th>
+                <th>ActionDescription</th>
+                <th>ActionUseLimitType</th>
+                <th>ActionUseLimitValue</th>
+                <th>InstructorId</th>
+                <th>InstructorName</th>
+                <th>CategoryId</th>
+                <th>CategoryName</th>
+                <th>TicketId</th>
+                <th>TicketName</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="reservationHistory in reservationHistorys">
+                <td><a ui-sref="reservationHistory.detail({id:reservationHistory.id})">{{reservationHistory.id}}</a>
+                </td>
+                <td>{{reservationHistory.reservationId}}</td>
+                <td>{{reservationHistory.reservationMethod}}</td>
+                <td>{{reservationHistory.reservationTime}}</td>
+                <td>{{reservationHistory.startTime}}</td>
+                <td>{{reservationHistory.endTime}}</td>
+                <td>{{reservationHistory.used}}</td>
+                <td>{{reservationHistory.userId}}</td>
+                <td>{{reservationHistory.userEmail}}</td>
+                <td>{{reservationHistory.userName}}</td>
+                <td>{{reservationHistory.userPhoneNumber}}</td>
+                <td>{{reservationHistory.userGender}}</td>
+                <td>{{reservationHistory.registerStatus}}</td>
+                <td>{{reservationHistory.actionScheduleId}}</td>
+                <td>{{reservationHistory.actionScheduleName}}</td>
+                <td>{{reservationHistory.day}}</td>
+                <td>{{reservationHistory.scheduleType}}</td>
+                <td>{{reservationHistory.attendeeLimit}}</td>
+                <td>{{reservationHistory.classScheduleId}}</td>
+                <td>{{reservationHistory.classScheduleEtc}}</td>
+                <td>{{reservationHistory.clubId}}</td>
+                <td>{{reservationHistory.clubName}}</td>
+                <td>{{reservationHistory.clubZipcode}}</td>
+                <td>{{reservationHistory.clubAddress1}}</td>
+                <td>{{reservationHistory.clubAddress2}}</td>
+                <td>{{reservationHistory.clubPhoneNumber}}</td>
+                <td>{{reservationHistory.onlyFemail}}</td>
+                <td>{{reservationHistory.clubManagerMobile}}</td>
+                <td>{{reservationHistory.notificationType}}</td>
+                <td>{{reservationHistory.reservationClose}}</td>
+                <td>{{reservationHistory.actionId}}</td>
+                <td>{{reservationHistory.actionTitle}}</td>
+                <td>{{reservationHistory.actionDescription}}</td>
+                <td>{{reservationHistory.actionUseLimitType}}</td>
+                <td>{{reservationHistory.actionUseLimitValue}}</td>
+                <td>{{reservationHistory.instructorId}}</td>
+                <td>{{reservationHistory.instructorName}}</td>
+                <td>{{reservationHistory.categoryId}}</td>
+                <td>{{reservationHistory.categoryName}}</td>
+                <td>{{reservationHistory.ticketId}}</td>
+                <td>{{reservationHistory.ticketName}}</td>
+                <td>
+                    <button type="submit"
+                            ui-sref="reservationHistory.detail({id:reservationHistory.id})"
+                            class="btn btn-info btn-sm">
+                        <span class="glyphicon glyphicon-eye-open"></span>&nbsp;<span> View</span>
+                    </button>
+                    <button type="submit"
+                            ui-sref="reservationHistory.edit({id:reservationHistory.id})"
+                            class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-pencil"></span>&nbsp;<span> Edit</span>
+                    </button>
+                    <button type="submit"
+                            ng-click="delete(reservationHistory.id)"
+                            class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove-circle"></span>&nbsp;<span> Delete</span>
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <nav>
+            <ul class="pagination">
+                <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                <li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a>&lt;</a></li>
+                <li ng-show="page > 2" ng-click="loadPage(page - 2)"><a>{{page - 2}}</a></li>
+                <li ng-show="page > 1" ng-click="loadPage(page - 1)"><a>{{page - 1}}</a></li>
+                <li class="active"><a>{{page}}</a></li>
+                <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page + 1}}</a></li>
+                <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page + 2}}</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

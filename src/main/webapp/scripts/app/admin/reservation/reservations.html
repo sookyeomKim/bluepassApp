@@ -1,0 +1,84 @@
+<div layout="row">
+    <div flex="100" layout-padding>
+        <table class="row-border hover" datatable="ng" dt-options="dtOptions">
+            <thead>
+            <tr>
+                <th>예약한시간</th>
+                <th>업체이름</th>
+                <th>관리자번호</th>
+                <th>클래스이름</th>
+                <th>유저이름</th>
+                <th>유저번호</th>
+                <th>수업시작시간</th>
+                <th>취소여부</th>
+                <th>출석여부</th>
+                <th>체크코드</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="reservation in reservations">
+                <td>{{reservation.reservationTime | date : 'yyyy-MM-dd HH:mm'
+                    : 'KST'}}
+                </td>
+                <td>{{reservation.club.name}}</td>
+                <td>{{reservation.club.managerMobile}}</td>
+                <td>{{reservation.action.title}}</td>
+                <td>{{reservation.user.name}}</td>
+                <td>{{reservation.user.phoneNumber}}</td>
+                <td>{{reservation.startTime | date : 'yyyy-MM-dd HH:mm' :
+                    'KST'}}
+                </td>
+                <td>
+                    <div ng-if="reservation.canceled">취소함</div>
+                    <div ng-if="!reservation.canceled">취소안함</div>
+                </td>
+                <td>
+                    <div ng-if="reservation.used">체크함</div>
+                    <div ng-if="!reservation.used">체크안함</div>
+                </td>
+                <td>
+                    <div layout="row" layout-align="center center">
+                        <div>{{reservation.checkCode}}</div>
+                        <div>
+                            <md-button
+                                ui-sref="adminUserManage.detail({id:reservation.club.id})">예약관리
+                            </md-button>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>예약한시간</th>
+                <th>업체이름</th>
+                <th>관리자번호</th>
+                <th>클래스이름</th>
+                <th>유저이름</th>
+                <th>유저번호</th>
+                <th>수업시작시간</th>
+                <th>취소여부</th>
+                <th>출석여부</th>
+                <th>체크코드</th>
+            </tr>
+            </tfoot>
+        </table>
+        <!-- <nav>
+            <ul class="pagination">
+                <li ng-show="links['first']" ng-click="loadPage(links['first'])"><a>&lt;&lt;</a></li>
+                <li ng-show="links['prev']" ng-click="loadPage(links['prev'])"><a>&lt;</a></li>
+                <li ng-show="page > 2" ng-click="loadPage(page - 2)"><a>{{page
+                        - 2}}</a></li>
+                <li ng-show="page > 1" ng-click="loadPage(page - 1)"><a>{{page
+                        - 1}}</a></li>
+                <li class="active"><a>{{page}}</a></li>
+                <li ng-show="page < links['last']" ng-click="loadPage(page + 1)"><a>{{page
+                        + 1}}</a></li>
+                <li ng-show="page < links['last'] - 1" ng-click="loadPage(page + 2)"><a>{{page
+                        + 2}}</a></li>
+                <li ng-show="links['next']" ng-click="loadPage(links['next'])"><a>&gt;</a></li>
+                <li ng-show="links['last']" ng-click="loadPage(links['last'])"><a>&gt;&gt;</a></li>
+            </ul>
+        </nav> -->
+    </div>
+</div>

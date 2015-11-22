@@ -1,0 +1,71 @@
+<!-- 스케줄 관리 -->
+<div class="margin-bottom-10"></div>
+<div layout="row">
+    <div flex ng-show="vm.actionScheduleList.length === 0">
+        <div layout="row" layout-align="center center">
+            <h2>첫 스케줄을 등록해보세요!</h2>
+            <md-button class="md-mini md-raised"
+                       ng-click="vm.registerSchedule($event)">등록하기
+            </md-button>
+        </div>
+    </div>
+    <div flex ng-show="vm.actionScheduleList.length > 0">
+        <div layout="row" layout-align="space-between center">
+            <h2>{{club.name}}의 {{action.title}}클래스의 스케줄 목록</h2>
+            <md-button class="md-raised"
+                       ng-click="vm.registerSchedule($event)">스케줄
+                추가
+            </md-button>
+        </div>
+        <div class="margin-bottom-10"></div>
+        <table class="table table-hover footable table-striped">
+            <thead>
+            <tr>
+                <th data-toggle="true" class="footable-first-column">요일</th>
+                <th data-hide="phone,tablet">시간</th>
+                <th data-hide="phone,tablet">정원</th>
+                <th>기간</th>
+                <th>강사</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="actionSchedule in vm.actionScheduleList">
+                <td>{{actionSchedule.day}}</td>
+                <td>{{actionSchedule.startTime | date:"HH : mm"}} ~
+                    {{actionSchedule.endTime | date:"HH : mm"}}
+                </td>
+                <td>{{actionSchedule.attendeeLimit}}</td>
+                <td>{{actionSchedule.scheduleType==='반복'?actionSchedule.scheduleType:''}}
+                    {{actionSchedule.scheduleType==='기간지정'?actionSchedule.startDate
+                    :''| date:"yyyy-MM-dd"}}
+                    {{actionSchedule.scheduleType==='기간지정'?'~' :''}}
+                    {{actionSchedule.scheduleType==='기간지정'?actionSchedule.endDate :''|
+                    date:"yyyy-MM-dd"}}
+                    {{actionSchedule.scheduleType==='하루만'?actionSchedule.startDate
+                    :''| date:"yyyy-MM-dd"}}
+                </td>
+                <td>{{actionSchedule.instructor.name}}</td>
+                <td>
+                    <div layout="row" layout-align="center center">
+                        <md-button class="md-raised noPaddingMargin"
+                                   ng-click="vm.registerSchedule($event,actionSchedule)"
+                                   enable-check enable="actionSchedule.enable" check="check"
+                                   ng-disabled="check">수정
+                        </md-button>
+                        <md-button class="md-raised noPaddingMargin"
+                                   ng-click="vm.deleteConfirm($event,actionSchedule.id)" enable-check
+                                   enable="actionSchedule.enable" check="check" ng-disabled="check">삭제
+                        </md-button>
+                        <enable-register schedule-id="{{actionSchedule.id}}"
+                                         enable="actionSchedule.enable"></enable-register>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<md-progress-circular class="md-hue-2 spinner" md-mode="indeterminate"
+                      ng-show="mpc"></md-progress-circular>

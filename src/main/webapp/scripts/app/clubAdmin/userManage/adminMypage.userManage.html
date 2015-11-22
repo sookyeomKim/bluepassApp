@@ -1,0 +1,54 @@
+<div class="panel-group" id="manage-tab" role="tablist"
+     aria-multiselectable="true">
+    <div class="panel panel-default" ng-repeat="club in clubList">
+        <div layout="row" role="tab" id="heading-{{club.id}}">
+            <div>
+                <md-button class="btn-material-pink-300 noPaddingMargin paddingSide-10" role="button"
+                           data-toggle="collapse" data-parent="#manage-tab"
+                           href="#collapse-{{club.id}}" aria-expanded="true"
+                           aria-controls="collapse-{{club.id}}" flex onclick="return false;">{{club.name}}
+                </md-button>
+            </div>
+            <div flex></div>
+            <div>
+                <md-button class="md-raised noPaddingMargin"
+                           ui-sref="adminUserManage.detail({id:club.id})">예약 관리
+                </md-button>
+            </div>
+        </div>
+        <div id="collapse-{{club.id}}" class="panel-collapse collapse in"
+             role="tabpanel" aria-labelledby="heading-{{club.id}}">
+            <div class="panel-body">
+                <div layout="row" layout-wrap>
+                    <div flex="50" flex-sm="100">
+                        <h3>개설된 클래스 수</h3>
+                        <ul class="list-inline margin-bottom-30">
+                            <li>{{club.name}}</li>
+                        </ul>
+
+                        <h3>등록된 강사 수</h3>
+                        <ul class="list-inline add-to-wishlist margin-bottom-30">
+                            <li ng-show="{{club.onlyFemale === true}}">여성전용</li>
+                            <li ng-show="{{club.onlyFemale === false}}">남여공용</li>
+                        </ul>
+                        <h3>등록된 스케줄 수</h3>
+                        <ul class="list-inline margin-bottom-30">
+                            <li><q ng-bind-html="club.description| nl2br | nl2br2"></q>
+                            </li>
+                        </ul>
+                    </div>
+                    <div flex="50" flex-sm="100">
+                        <h3>저번 달 전체 이용자 수</h3>
+                        <ul class="list-inline margin-bottom-30">
+                            <li>{{club.address1}} {{club.address2}}</li>
+                        </ul>
+                        <h3>이번 달 전체 이용사 수</h3>
+                        <ul class="list-inline margin-bottom-30">
+                            <li>{{club.addressSimple}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

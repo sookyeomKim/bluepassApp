@@ -1,0 +1,183 @@
+<div class="userManageWrap">
+    <div class="md-whiteframe-z1 clubInfoWrap" layout="row"
+         layout-align="space-around center">
+        <div>{{club.name}}의 예약관리</div>
+        <div>{{today}}</div>
+        <!-- <div>저번 달 총 이용 고객 : 123명</div> -->
+        <div>이번 달 총 이용 고객 : {{customerCount}}명</div>
+    </div>
+    <div class="content-lg" layout="row" layout-align="center"
+         ng-show="!mpc && actionList.length === 0">등록된 스케줄이 없습니다.
+    </div>
+    <div class="classWrap" layout="row" layout-wrap>
+        <div flex="25" flex-md="20" flex-sm="100" layout-padding>
+            <div class="leftSide md-whiteframe-z1">
+                <ul class="nav">
+                    <li
+                        ng-class="classSelected==={{action.id}}?'btn-material-indigo-A200':''"
+                        ng-repeat="action in actionList"
+                        ng-click="getScope().classSelected=action.id">
+                        <md-button
+                            class="noPaddingMargin" style="width:100%;"
+                            booked-schedule-count-by-date action-id="{{action.id}}"
+                            custom-date="dayArry[6]" count="scheduleCount" version="{{0}}">
+                            {{action.title}}(총 {{scheduleCount}}개의 스케줄 예약됨)
+                        </md-button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div flex="75" flex-md="80" flex-sm="100" layout-padding
+             ng-show="!mpc && actionList.length !== 0">
+            <div class="rightSide md-whiteframe-z1">
+                <div layout-padding>
+                    <div>이번 달 클래스 이용 고객 : {{customersByActionCount}}명</div>
+                </div>
+
+                <div layout="row">
+                    <div class="directButton prev" layout="row"
+                         layout-align="center center" flex role="button">
+                        <i class="glyphicon glyphicon-triangle-left"></i>
+                    </div>
+                    <div flex="95">
+                        <ul id="reservedTable" class="tableTab nav nav-tabs"
+                            style="border-bottom: 0;" role="tablist">
+                            <li ng-class="navigationState===-2?'selected':''" role="tab">
+                                <div
+                                    class="dateButton" ng-click="getScope().selected_day(-2)">
+                                    <div>출석 완료한</div>
+                                    <div>스케줄</div>
+                                </div>
+                            </li>
+                            <li ng-class="navigationState===-1?'selected':''" role="tab">
+                                <div
+                                    class="dateButton" ng-click="getScope().selected_day(-1)">
+                                    <div>지나간 예약</div>
+                                    <div class="status" booked-schedule-count-by-date
+                                         action-id="{{classSelected}}" custom-date="dayArry[0]"
+                                         count="scheduleCount" version="{{1}}">
+                                        <div>예약된 스케줄 : {{scheduleCount}}개</div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li ng-class="navigationState==={{$index}}?'selected':''"
+                                role="tab" ng-repeat="day in dayArry">
+                                <div
+                                    class="dateButton" ng-click="getScope().selected_day($index)">
+                                    <div>{{day.month}}/{{day.date}}/{{day.day}}</div>
+                                    <div class="status" booked-schedule-count-by-date
+                                         action-id="{{classSelected}}" custom-date="day"
+                                         count="scheduleCount" version="{{2}}">
+                                        <div>예약된 스케줄 : {{scheduleCount}}개</div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="directButton next" layout="row"
+                         layout-align="center center" flex role="button">
+                        <i class="glyphicon glyphicon-triangle-right"></i>
+                    </div>
+                </div>
+                <div layout-padding>
+                    <md-select placeholder="강사선택" ng-model="selectedIns"
+                               ng-show="reservedSchedules.length > 0">
+                        <md-option
+                            value="">모든 강사
+                        </md-option>
+                        <md-option
+                            ng-repeat="ins in uniqInstructorArry" value="{{ins.id}}">{{ins.name}}
+                        </md-option>
+                    </md-select>
+                    <v-accordion class="vAccordion--default"
+                                 ng-show="reservedSchedules.length > 0">
+                        <v-pane
+                            ng-repeat="reservedSchedule in reservedSchedules| filterBy : ['instructor.id'] : selectedIns"
+                            multiple>
+                            <v-pane-header
+                                ng-click="bookedUsers(reservedSchedule.id)"
+                                class="condition-header">
+                                <div layout="row" layout-sm="column" booked-user-count
+                                     schedule-id="{{reservedSchedule.id}}" count="bookedCount">
+                                    <div>{{reservedSchedule.startTime | date :
+                                        "yy-MM-dd"}}/{{reservedSchedule.startTime | date : "HH:mm"}} ~
+                                        {{reservedSchedule.endTime | date : "HH-mm"}}
+                                    </div>
+                                    <div>
+                                        (총 <strong>{{reservedSchedule.actionSchedule.attendeeLimit}}</strong>명
+                                        중 <strong>{{bookedCount}}</strong>명 예약)
+                                    </div>
+                                    <div>{{reservedSchedule.instructor.name}}</div>
+                                </div>
+                            </v-pane-header>
+                            <v-pane-content>
+                                <div layout="row" layout-align="space-between center">
+                                    <div class="weight_4">
+                                        <div>{{reservedSchedule.startTime | date :
+                                            "yy-MM-dd"}}/{{reservedSchedule.startTime | date : "HH:mm"}} ~
+                                            {{reservedSchedule.endTime | date : "HH:mm"}}
+                                        </div>
+                                        <div>
+                                            (총 <strong>{{reservedSchedule.actionSchedule.attendeeLimit}}</strong>명
+                                            중 <strong>{{bookedUserList.length}}</strong>명
+                                            예약/<strong>{{usedCount}}</strong>명
+                                            출석체크 완료/<strong>{{notUsedCount}}</strong>명 출석안함)
+                                        </div>
+                                        <div>{{reservedSchedule.instructor.name}}</div>
+                                    </div>
+                                    <div>
+                                        <finished-register finished="reservedSchedule.finished"
+                                                           schedule-id="{{reservedSchedule.id}}"></finished-register>
+                                        <!-- <md-button class="md-raised">예약마감하기</md-button> -->
+                                    </div>
+                                </div>
+                                <table class="footable">
+                                    <thead>
+                                    <tr>
+                                        <th data-toggle="true" class="footable-first-column">이름</th>
+                                        <th data-hide="phone">성별</th>
+                                        <th data-hide="phone">나이</th>
+                                        <th data-hide="phone">전화번호</th>
+                                        <th>출석체크</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr ng-show="bookedUserList.length > 0"
+                                        ng-repeat="bookedUser in bookedUserList">
+                                        <td>{{bookedUser.user.name}}</td>
+                                        <td>{{bookedUser.user.gender}}</td>
+                                        <td>{{bookedUser.user.age}}</td>
+                                        <td>{{bookedUser.user.phoneNumber}}</td>
+                                        <td>
+                                            <div layout="row">
+                                                <attendance-check reservation-id="{{bookedUser.id}}"
+                                                                  used="bookedUser.used"></attendance-check>
+                                                <absent-check reservation-id="{{bookedUser.id}}"
+                                                              used="bookedUser.used"></absent-check>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr ng-show="bookedUserList.length === 0">
+                                        <td colspan="5">
+                                            <div layout="row"
+                                                 layout-align="center center">예약된 인원이 없습니다.
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </v-pane-content>
+                        </v-pane>
+                    </v-accordion>
+                    <div ng-show="reservedSchedules.length === 0">
+                        <div layout="row" layout-align="center center">예약된 스케줄이
+                            없습니다.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<md-progress-circular class="md-hue-2 spinner" md-mode="indeterminate"
+                      ng-show="mpc"></md-progress-circular>

@@ -1,0 +1,95 @@
+<div class="actionListWrap" ng-if="foucPrevent===true">
+    <section ng-if="stateConfirm1" auto-height outer-xs-number="1"
+             outer-sm-number="1" outer-md-number="1" outer-lg-number="1"
+             no-max-width="true" no-margin="true" outer-ratio="0.18"
+             class="breadcrumbsWrap boxShadow-1">
+        <img auto-height outer-xs-number="1" outer-sm-number="1"
+             outer-md-number="1" outer-lg-number="1" no-max-width="true"
+             no-margin="true" outer-ratio="0.18" alt="breadcrumbs img"
+             ng-src="images/breadcrumbs/bc_{{selectImg}}.jpg">
+    </section>
+    <section ng-if="!stateConfirm1" class="breadcrumbs">
+        <div layout="row" layout-align="center center">
+            <div class="intro">
+                <div class="up">
+                    <div>블루패스 하나면</div>
+                    <div>이 모든걸 다 이용할 수 있어~</div>
+                </div>
+                <!-- <div class="down">고급 피트니스 프리패스, 블루패스</div> -->
+            </div>
+        </div>
+        <div layout="row" layout-align="center center">
+            <md-button class="logupButton" ui-sref="register">가입하기</md-button>
+        </div>
+    </section>
+    <div class="topMenu" layout="row" layout-wrap>
+        <aside layout="row" flex="100">
+            <div class="prev1" flex layout="row" layout-align="center center">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+            </div>
+            <div flex="90" id="owlExerciseType">
+                <div ng-click="exerciseType='all'">
+                    <md-button class="no-margin"
+                               ng-class="exerciseType==='all'?'selected':''">모두 보기
+                    </md-button>
+                </div>
+                <div ng-repeat="exercise in exerciseTypeList"
+                     ng-click="getScope().exerciseType=exercise.option1">
+                    <md-button class="no-margin"
+                               ng-class="exerciseType==='{{exercise.option1}}'?'selected':''">{{exercise.value}}
+                    </md-button>
+                </div>
+            </div>
+            <div class="next1" flex layout="row" layout-align="center center">
+                <i class="glyphicon glyphicon-triangle-right"></i>
+            </div>
+        </aside>
+        <!-- <div layout="row" flex="100">
+            <div class="prev2" flex layout="row" layout-align="center center">
+                <i class="glyphicon glyphicon-triangle-left"></i>
+            </div>
+            <div flex="95" id="owlSiteType">
+                <div ng-click="getScope().siteType='all'">
+                    <md-button class="no-margin"
+                        ng-class="siteType==='all'?'selected':''">모두 보기</md-button>
+                </div>
+                <div ng-repeat="site in siteList" ng-click="getScope().siteType=site.oldAddress">
+                    <md-button class="no-margin"
+                        ng-class="siteType===site.oldAddress?'selected':''">{{site.oldAddress}}</md-button>
+                </div>
+            </div>
+            <div class="next2" flex layout="row" layout-align="center center">
+                <i class="glyphicon glyphicon-triangle-right"></i>
+            </div>
+        </div> -->
+        <aside layout="row" flex="100">
+            <div flex="45" ng-show="timeTypeOn">
+                <md-select class="no-margin" ng-model="timeType.startTime"
+                           aria-label="startTime select">
+                    <md-option
+                        value="{{time.value}}" ng-repeat="time in startTimeArry"
+                        ng-click="getScope().startTimeSelected=time.index">{{time.title}}
+                    </md-option>
+                </md-select>
+            </div>
+			<span class="weight_5" flex="10" layout="row"
+                  layout-align="center center" ng-show="timeTypeOn">-</span>
+
+            <div flex="45" ng-show="timeTypeOn">
+                <md-select class="no-margin" ng-model="timeType.endTime"
+                           aria-label="endTime select">
+                    <md-option
+                        value="{{time.value}}" ng-repeat="time in endTimeArry"
+                        ng-click="getScope().endTimeSelected=time.index">{{time.title}}
+                    </md-option>
+                </md-select>
+            </div>
+        </aside>
+    </div>
+    <!-- 클래스&스케줄 리스트-->
+    <section class="actionList">
+        <div ui-view="imgtype"></div>
+        <div ui-view="tabletype"></div>
+    </section>
+    <!-- 클래스&스케줄 리스트 끝-->
+</div>

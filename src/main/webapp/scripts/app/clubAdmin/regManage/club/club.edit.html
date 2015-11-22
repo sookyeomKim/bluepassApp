@@ -1,0 +1,255 @@
+<div class="content-sm" layout="row" layout-align="center">
+    <div flex="40" flex-md="60" flex-sm="100">
+        <form name="editForm" role="form" ng-submit="save()">
+            <input type="hidden" name="id" ng-model="club.id">
+
+            <div layout="row" layout-align="center center">
+                <h4>필수사항</h4>
+            </div>
+
+            <!-- 업체명(name) -->
+            <md-input-container class="margin-bottom-30">
+                <label for="name">*업체/그룹명</label>
+                <input id="name" name="name" md-maxlength="100" required
+                       ng-model="club.name">
+
+                <div ng-messages="editForm.name.$error" role="alert">
+                    <div ng-message="required">빈칸은 용납하지 않습니다...!</div>
+                    <div ng-message="md-maxlength">100자 까지만 허용합니다!</div>
+                </div>
+            </md-input-container>
+
+            <!-- 전화번호(phoneNumber) -->
+            <md-input-container class="margin-bottom-30">
+                <label for="phoneNumber">*전화번호</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" ng-model="club.phoneNumber"
+                       pattern="^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$"
+                       required>
+
+                <div ng-messages="editForm.phoneNumber.$error" role="alert">
+                    <p>예)0211112222 혹은 01011112222</p>
+
+                    <div ng-message="required">빈칸은 용납하지 않습니다...!</div>
+                    <div ng-message="pattern">전화번호 형식에 맞지 않습니다!</div>
+                </div>
+            </md-input-container>
+
+            <!-- 주소() -->
+            <div class="margin-bottom-30" layout="row">
+                <div flex="100">
+                    <div layout="row">
+                        <div flex>
+                            <!-- 우편번호 -->
+                            <md-input-container>
+                                <label for="zipcode">우편번호</label>
+                                <input
+                                    type="text" id="zipcode" name="zipcode" ng-model="club.zipcode"
+                                    required readonly></md-input-container>
+                        </div>
+                        <md-button type="button" class="md-raised"
+                                   ng-click="addressFormOpen()">주소찾기
+                        </md-button>
+                    </div>
+                    <div>
+                        <md-content id="addrWrap"
+                                    style="display: none; border: 1px solid; width: 100%; height: 300px; margin: 5px 0; position: relative">
+                            <img
+                                src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+                                id="btnFoldWrap"
+                                style="cursor: pointer; position: absolute; right: 0px; top: -1px; z-index: 1"
+                                ng-click="addressFormClose()" alt="접기 버튼"></md-content>
+                    </div>
+                    <!-- 주소1 -->
+                    <div>
+                        <md-input-container>
+                            <label for="address1">시/군/구</label>
+                            <input
+                            type="text" id="address1" name="address1"
+                            ng-model="club.address1" readonly></md-input-container>
+                    </div>
+                    <!-- 주소2 -->
+                    <div>
+                        <md-input-container class="margin-bottom-30">
+                            <label for="address2">상세주소</label>
+                            <input type="text" id="address2"
+                                                       name="address2" ng-model="club.address2" required>
+
+                            <div ng-messages="editForm.address2.$error">
+                                <div ng-message="required">필수항목입니다!</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 간단주소(addressSimple) -->
+            <md-input-container class="margin-bottom-30">
+                <label for="addressSimple">*간단주소</label>
+                <input type="text"id="addressSimple" name="addressSimple" ng-model="club.addressSimple"
+                       required>
+
+                <div ng-messages="editForm.addressSimple.$error" role="alert">
+                    <p>예)노량진역 9호선 6번 출구 5분거리</p>
+
+                    <div ng-message="required">빈칸은 용납하지 않습니다...!</div>
+                </div>
+            </md-input-container>
+
+            <!-- 알림방법(notificationType) -->
+            <div class="margin-bottom-30" layout="row">
+                <div flex="100">
+                    <label>알림 방법 선택</label>
+                    <md-radio-group ng-model="club.notificationType" layout="row">
+                        <md-radio-button value="0">수업 시작 한 시간 전</md-radio-button>
+                        <md-radio-button
+                            value="1">예약할 때 마다
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+            </div>
+
+            <!-- 예약마감시간(reservationClose) -->
+            <div class="margin-bottom-30" layout="row">
+                <div flex="100">
+                    <label>예약 마감시간 선택</label>
+                    <md-radio-group ng-model="club.reservationClose" layout="row">
+                        <md-radio-button value="0">1시간 전</md-radio-button>
+                        <md-radio-button
+                            value="1">3시간 전
+                        </md-radio-button>
+                        <md-radio-button value="2">전
+                            날 자정
+                        </md-radio-button>
+                    </md-radio-group>
+                </div>
+            </div>
+
+            <div layout="row" layout-align="center center">
+                <h4>선택사항</h4>
+            </div>
+
+            <!-- 매니저번호(phoneNumber) -->
+            <md-input-container class="margin-bottom-30">
+                <label for="managerMobile">매니저번호</label>
+                <input type="text"id="managerMobile" name="managerMobile" ng-model="club.managerMobile"
+                       pattern="^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$">
+
+                <div ng-messages="editForm.phoneNumber.$error" role="alert">
+                    <p>예)01011112222</p>
+
+                    <p>이 번호는 알람을 받을 번호입니다.</p>
+
+                    <div ng-message="pattern">전화번호 형식에 맞지 않습니다!</div>
+                </div>
+            </md-input-container>
+
+            <!-- 업체소개(description) -->
+            <md-input-container class="margin-bottom-30">
+                <label for="description">소개</label>
+			<textarea id="description" name="description" ng-model="club.description" columns="1"
+                      md-maxlength="150"></textarea>
+
+                <div ng-messages="editForm.description.$error">
+                    <div ng-message="md-maxlength">너무 길어요! 150자까지만!</div>
+                </div>
+            </md-input-container>
+
+            <!-- 홈페이지주소(homepage) -->
+            <md-input-container class="margin-bottom-30">
+                <label for="homepage">홈페이지 주소</label>
+                <input type="text"id="homepage" name="homepage" ng-model="club.homepage">
+            </md-input-container>
+
+            <div class="margin-bottom-40">
+                <label>여성전용인가요?</label>
+                <md-checkbox name="onlyFemale" ng-model="club.onlyFemale"
+                             aria-label="Checkbox 1"></md-checkbox>
+            </div>
+
+            <!-- 업체유의사항(features) -->
+            <div class="margin-bottom-40">
+                <label>유의사항을 선택해주세요~</label>
+
+                <div class="margin-bottom-10"></div>
+                <p>주차관련</p>
+
+                <div ng-repeat="item in feature1">
+                    <md-checkbox ng-checked="exists(item.id, features)"
+                                 ng-click="toggle(item.id, features)"> {{ item.value
+                        }} <span ng-if="exists(item.id, features)">선택됨</span></md-checkbox>
+                </div>
+                <md-divider></md-divider>
+                <p>운동복관련</p>
+
+                <div ng-repeat="item in feature2">
+                    <md-checkbox ng-checked="exists(item.id, features)"
+                                 ng-click="toggle(item.id, features)"> {{ item.value
+                        }} <span ng-if="exists(item.id, features)">선택됨</span></md-checkbox>
+                </div>
+                <md-divider></md-divider>
+                <p>세면관련</p>
+
+                <div ng-repeat="item in feature3">
+                    <md-checkbox ng-checked="exists(item.id, features)"
+                                 ng-click="toggle(item.id, features)"> {{ item.value
+                        }} <span ng-if="exists(item.id, features)">선택됨</span></md-checkbox>
+                </div>
+                <md-divider></md-divider>
+                <p>신발관련</p>
+
+                <div ng-repeat="item in feature4">
+                    <md-checkbox ng-checked="exists(item.id, features)"
+                                 ng-click="toggle(item.id, features)"> {{ item.value
+                        }} <span ng-if="exists(item.id, features)">선택됨</span></md-checkbox>
+                </div>
+                <input type="hidden" name="features"
+                       ng-bind="club.features=features">
+            </div>
+
+            <!-- 업체대표종목(category.id) -->
+            <div class="form-group">
+                <label for="category">대표 클래스 종목</label>
+                <select class="form-control"id="category"
+                                                 name="category" ng-model="club.category.id"
+                                                 ng-options="commonCode.id as commonCode.value for commonCode in commonCodesList">
+                <option value="">대표종목없음</option>
+            </select>
+            </div>
+
+            <!-- 사업자번호(licenseNumbe) -->
+            <md-input-container class="margin-bottom-30">
+                <label for="licenseNumber">사업자 번호</label>
+                <input type="text"id="licenseNumber" name="licenseNumber"
+                                  ng-model="club.licenseNumber" pattern="^([0-9]{10})$">
+
+                <div ng-messages="editForm.licenseNumber.$error" role="alert">
+                    <p>예)1234567890</p>
+
+                    <div ng-message="pattern">총 10자리의 숫자만 허용합니다!</div>
+                </div>
+            </md-input-container>
+            <div flex layout="row" layout-align="center">
+                <md-button class="md-raised" data-dismiss="modal"
+                           ui-sref="adminRegManage"><span>뒤로</span></md-button>
+                <md-button ng-disabled="deleteForm.$invalid"
+                           class="md-primary md-raised"><span>등록하기</span></md-button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 에러 확인 모달 -->
+<div class="modal fade" id="confirmationModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <h3>{{alert}}</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 에러 확인 모달 끝-->
