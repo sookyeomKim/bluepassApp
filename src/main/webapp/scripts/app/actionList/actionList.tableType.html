@@ -11,10 +11,10 @@
                 <ul id="tableTypeLegend" class="tableTab"
                     style="border-bottom: 0;" role="tablist">
 
-                    <li ng-class="navigationState==={{$index}}?'selected':''"
-                        role="tab" ng-repeat="day in dayArry">
+                    <li ng-class="vm.navigationState==={{$index}}?'selected':''"
+                        role="tab" ng-repeat="day in vm.dayArry">
                         <div class="dateButton"
-                             ng-click="selected_day($index)">
+                             ng-click="vm.selected_day($index)">
                             <span>{{day.month}}/{{day.date}}/{{day.day}}</span>
                         </div>
                     </li>
@@ -38,8 +38,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="actionSchedule in actionScheduleList"
-                ng-show="actionScheduleList.length>0 || error === false">
+            <tr ng-repeat="actionSchedule in vm.actionScheduleList"
+                ng-show="vm.actionScheduleList.length>0 || vm.error === false">
                 <td><a class="weight_4"
                        ui-sref="actionListDetail({id:actionSchedule.action.id})">{{actionSchedule.action.title}}</a>
                 </td>
@@ -54,18 +54,18 @@
                 <td>{{actionSchedule.club.addressSimple}}</td>
                 <td>
                     <reservation-register
-                        schedule-id="{{actionSchedule.id}}" user-id="{{account.id}}"
-                        user-status="{{account.registerStatus}}" user-roles="{{account.roles}}"
-                        year="{{dayArry[navigationState].year}}"
-                        month="{{dayArry[navigationState].month}}"
-                        date="{{dayArry[navigationState].date}}"
+                        schedule-id="{{actionSchedule.id}}" user-id="{{vm.account.id}}"
+                        user-status="{{vm.account.registerStatus}}" user-roles="{{vm.account.roles}}"
+                        year="{{vm.dayArry[vm.navigationState].year}}"
+                        month="{{vm.dayArry[vm.navigationState].month}}"
+                        date="{{vm.dayArry[vm.navigationState].date}}"
                         hour="{{actionSchedule.startTime | date:'HH'}}"
                         minute="{{actionSchedule.startTime | date:'mm'}}"
                         reservation-close="{{actionSchedule.club.reservationClose}}">
                     </reservation-register>
                 </td>
             </tr>
-            <tr ng-show="actionScheduleList.length===0 || error ===true">
+            <tr ng-show="vm.actionScheduleList.length===0 || vm.error ===true">
                 <td colspan="6">
                     <div ng-show="mpc" layout="row" layout-align="center center">
                         <md-progress-circular class="md-hue-2" md-mode="indeterminate"></md-progress-circular>
@@ -79,41 +79,41 @@
         </table>
     </div>
 </div>
-<nav ng-if="actionScheduleList.length>0" layout="row"
+<nav ng-if="vm.actionScheduleList.length>0" layout="row"
      layout-align="center">
     <ul class="pagination md-whiteframe-z1">
-        <li ng-show="links['first']"
-            ng-click="loadPage(links['first'],navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+        <li ng-show="vm.links['first']"
+            ng-click="vm.loadPage(vm.links['first'],vm.navigationState,vm.queryPrams)">
             <a> <i class="glyphicon glyphicon-backward"></i>
             </a>
         </li>
-        <li ng-show="links['prev']"
-            ng-click="loadPage(links['prev'],navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+        <li ng-show="vm.links['prev']"
+            ng-click="vm.loadPage(vm.links['prev'],vm.navigationState,vm.queryPrams)">
             <a>
                 <i class="glyphicon glyphicon-triangle-left"></i>
             </a></li>
-        <li ng-show="page > 2"
-            ng-click="loadPage(page - 2,navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)"><a>{{page
+        <li ng-show="vm.page > 2"
+            ng-click="vm.loadPage(vm.page - 2,vm.navigationState,vm.queryPrams)"><a>{{vm.page
             - 2}}</a></li>
-        <li ng-show="page > 1"
-            ng-click="loadPage(page - 1,navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)"><a>{{page
+        <li ng-show="vm.page > 1"
+            ng-click="vm.loadPage(vm.page - 1,vm.navigationState,vm.queryPrams)"><a>{{vm.page
             - 1}}</a></li>
-        <li class="active"><a>{{page}}</a></li>
-        <li ng-show="page < links['last']"
-            ng-click="loadPage(page + 1,navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
-            <a>{{page + 1}}</a>
+        <li class="active"><a>{{vm.page}}</a></li>
+        <li ng-show="vm.page < vm.links['last']"
+            ng-click="vm.loadPage(vm.page + 1,vm.navigationState,vm.queryPrams)">
+            <a>{{vm.page + 1}}</a>
         </li>
-        <li ng-show="page < links['last'] - 1"
-            ng-click="loadPage(page + 2,navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
-            <a>{{page + 2}}</a>
+        <li ng-show="vm.page < vm.links['last'] - 1"
+            ng-click="vm.loadPage(vm.page + 2,vm.navigationState,vm.queryPrams)">
+            <a>{{vm.page + 2}}</a>
         </li>
-        <li ng-show="links['next']"
-            ng-click="loadPage(links['next'],navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+        <li ng-show="vm.links['next']"
+            ng-click="vm.loadPage(vm.links['next'],vm.navigationState,vm.queryPrams)">
             <a>
                 <i class="glyphicon glyphicon-triangle-right"></i>
             </a></li>
-        <li ng-show="links['last']"
-            ng-click="loadPage(links['last'],navigationState,exerciseType,siteType,timeType.startTime,timeType.endTime)">
+        <li ng-show="vm.links['last']"
+            ng-click="vm.loadPage(vm.links['last'],vm.navigationState,vm.queryPrams)">
             <a>
                 <i class="glyphicon glyphicon-forward"></i>
             </a></li>

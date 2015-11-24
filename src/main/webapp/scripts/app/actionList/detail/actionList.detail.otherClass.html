@@ -6,7 +6,7 @@
         <div class="card-innercontainer-inner">
             <!-- 또 다른 클래스 카드 -->
             <div class="class-card md-whiteframe-z1"
-                 ng-repeat="otherAction in otherActionList">
+                 ng-repeat="otherAction in vm.otherActionList">
                 <div class="card-wrap">
                     <div class="img-wrap" auto-height md-number="{{2}}"
                          lg-number="{{2}}">
@@ -30,44 +30,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="card-wrap">
-                    <div class="topWrap weight_5" layout="row"
-                        layout-align="space-between center" layout-padding>
-                        <div>{{otherAction.club.name}}</div>
-                        <div>{{otherAction.club.addressSimple}}</div>
-                    </div>
-                    <div class="img-wrap" auto-height>
-                        <banner-Text class="banner" out-text="{{otherAction.category.value}}"
-                            out-name="{{otherAction.category.name}}"></banner-Text>
-                        <a ui-sref="actionListDetail({id:otherAction.id})"> <img
-                            auto-height ng-src="image/picture/{{otherAction.images[0].id}}" />
-                        </a>
-                    </div>
-                    <div class="bottomWrap">
-                        <div layout="row">
-                            <div flex="100">
-                                <div layout="row" layout-align="space-between center" flex="100">
-                                    <div>
-                                        <h4 class="weight_6">{{otherAction.title}}</h4>
-                                    </div>
-                                    <div ng-show="otherAction.club.onlyFemale === true">여성전용!</div>
-                                    <div ng-show="otherAction.club.onlyFemale === false">남여공용!</div>
-                                </div>
-                                <div class="shortDescription" layout="row"
-                                    layout-align="start center" flex="100">
-                                    {{otherAction.shortDescription}}</div>
-                                <div class="scheduleCount">
-                                    <div class="weight_5" ng-show="otherAction.useLimitType==='무제한'">무제한
-                                        이용</div>
-                                    <div class="weight_5" ng-show="otherAction.useLimitType==='월'">월&nbsp;{{otherAction.useLimitValue}}회
-                                        제한</div>
-                                    <div class="weight_5" ng-show="otherAction.useLimitType==='총'">총&nbsp;{{otherAction.useLimitValue}}회
-                                        제한</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
             </div>
             <!-- 또 다른 클래스 카드 끝-->
         </div>

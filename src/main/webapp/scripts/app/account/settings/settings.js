@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider) {
+angular.module('bluepassApp').config(settingsConfig);
+
+settingsConfig.$inejct = ['$stateProvider'];
+
+function settingsConfig($stateProvider) {
     $stateProvider.state('settings', {
         parent: 'account',
         url: '/mypage=settings',
@@ -13,19 +17,23 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/account/settings/settings.html',
-                controller: 'settingsController'
-            },
+                controller: 'settingsController',
+                controllerAs: 'vm'
+            },/*
             'profile@settings': {
                 templateUrl: 'scripts/app/account/settings/settings.profile.html',
-                controller: 'settingsProfileController'
-            },
+                controller: 'settingsProfileController',
+                controllerAs: 'vm'
+            },*/
             'password@settings': {
                 templateUrl: 'scripts/app/account/settings/settings.password.html',
-                controller: 'settingsPasswordController'
+                controller: 'settingsPasswordController',
+                controllerAs: 'vm'
             },
             'detailInfo@settings': {
                 templateUrl: 'scripts/app/account/settings/settings.detailInfo.html',
-                controller: 'settingsDetailInfoController'
+                controller: 'settingsDetailInfoController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -34,4 +42,4 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
             }
         }
     });
-}]);
+}

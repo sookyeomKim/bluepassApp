@@ -3,42 +3,48 @@
  */
 'use strict';
 
-angular.module('bluepassApp').controller('actionListImgTypeController',
-    ['$scope', '$log', 'Action', 'ParseLinks', function ($scope, $log, Action, ParseLinks) {
-        /* 스피너초기화 */
-        $scope.mpc = true;
+angular.module('bluepassApp').controller('actionListImgTypeController', actionListImgTypeController);
 
-        /* 클래스리퀘스트 */
-        $scope.loadAll = function (exerciseType, siteType) {
-            var actions = Action.query({
-                page: $scope.page,
-                per_page: 6,
-                category: exerciseType,
-                address: siteType
-            }, function (result, headers) {
-                $scope.links = ParseLinks.parse(headers('link'));
-            });
-            actions.$promise.then(function (success) {
-                /*console.log(success)*/
-                for (var i = 0; i < success.length; i++) {
-                    $scope.actionList.push(success[i]);
+actionListImgTypeController.$inject = ['$scope', 'Action', 'ParseLinks'];
+
+function actionListImgTypeController($scope, Action, ParseLinks) {
+    var vm = this;
+
+    vm.mpc = true;
+    vm.queryPrams = {};
+    vm.loadPage = loadPage;
+
+    getQueryPrams();
+
+    function getQueryPrams() {
+        return $scope.$on('QueryPrams', function (event, response) {
+            vm.page = 1;
+            vm.actionList = [];
+            vm.queryPrams = response;
+            return getAction(vm.queryPrams);
+        })
+    }
+
+    /*인피니티스크롤 로드*/
+    function loadPage(page, queryPrams) {
+        vm.mpc = true;
+        vm.page = page;
+        return getAction(queryPrams)
+    }
+
+    function getAction(queryPrams) {
+        return Action.query({
+            page: vm.page,
+            per_page: 6,
+            category: queryPrams.exerciseType,
+            address: queryPrams.siteType
+        }, function (result, headers) {
+            vm.links = ParseLinks.parse(headers('link'));
+        }).$promise.then(function (response) {
+                for (var i = 0; i < response.length; i++) {
+                    vm.actionList.push(response[i]);
                 }
-                $scope.mpc = false;
-                /* console.log($scope.actionList) */
-            });
-        };
-
-        /* 인피니티스크롤 로드 */
-        $scope.loadPage = function (page, exerciseType, siteType) {
-            $scope.mpc = true;
-            $scope.page = page;
-            $scope.loadAll(exerciseType, siteType);
-        };
-
-        /* 검색와처 */
-        $scope.$watchGroup(['exerciseType', 'siteType'], function (newVal) {
-            $scope.page = 1;
-            $scope.actionList = [];
-            $scope.loadAll(newVal[0], newVal[1]);
-        });
-    }]);
+                vm.mpc = false;
+            })
+    }
+}

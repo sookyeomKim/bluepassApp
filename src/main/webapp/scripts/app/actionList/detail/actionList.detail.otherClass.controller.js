@@ -3,26 +3,26 @@
  */
 'use strict';
 
-angular.module('bluepassApp').controller(
-    'actionListDetailOtherClassController',
-    ['$scope', '$log', '$stateParams', '$filter', 'ActionByClub', 'DataShare',
-        function ($scope, $log, $stateParams, $filter, ActionByClub, DataShare) {
-            $scope.currentId = $stateParams.id;
-            $scope.$on('data_shared', function () {
-                /* 클럽ID */
-                var idBelongToClub = DataShare.getData();
-                /* 클래스 CRUD */
-                $scope.loadAll = function () {
-                    var otherActions = ActionByClub.query({
-                        id: idBelongToClub
-                    });
-                    otherActions.$promise.then(function (success) {
-                        $scope.otherActionList = $filter('removeWith')(success, {
-                            id: $scope.currentId
-                        });
-                        /*$log.debug($scope.otherActionList);*/
-                    });
-                };
-                $scope.loadAll();
+angular.module('bluepassApp').controller('actionListDetailOtherClassController', actionListDetailOtherClassController);
+
+actionListDetailOtherClassController.$inject = [
+    '$scope', '$stateParams', '$filter', 'ActionByClub', 'DataShare'
+];
+
+function actionListDetailOtherClassController($scope, $stateParams, $filter, ActionByClub, DataShare) {
+    var vm = this;
+    var currentActionId = $stateParams.id;
+
+    getActionByClub();
+
+    function getActionByClub() {
+        return $scope.$on('data_shared', function () {
+            /* 클럽ID */
+            var idBelongToClub = DataShare.getData();
+
+            return ActionByClub.query({id: idBelongToClub}).$promise.then(function (response) {
+                vm.otherActionList = $filter('removeWith')(response, {id: currentActionId});
             });
-        }]);
+        })
+    }
+}

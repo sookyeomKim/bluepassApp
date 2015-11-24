@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider) {
+angular.module('bluepassApp').config(actionListDetailConfig);
+
+actionListDetailConfig.$inject = ['$stateProvider'];
+
+function actionListDetailConfig($stateProvider) {
     $stateProvider.state('actionListDetail', {
         parent: 'site',
         url: '/actionList/:id',
@@ -13,19 +17,23 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/actionList/detail/actionList.detail.html',
-                controller: 'actionListDetailController'
+                controller: 'actionListDetailController',
+                controllerAs: 'vm'
             },
             'schedule@actionListDetail': {
                 templateUrl: 'scripts/app/actionList/detail/actionList.detail.schedule.html',
-                controller: 'actionListDetailScheduleController'
+                controller: 'actionListDetailScheduleController',
+                controllerAs: 'vm'
             },
             'instructor@actionListDetail': {
                 templateUrl: 'scripts/app/actionList/detail/actionList.detail.instructor.html',
-                controller: 'actionListDetailInstructorController'
+                controller: 'actionListDetailInstructorController',
+                controllerAs: 'vm'
             },
             'otherClass@actionListDetail': {
                 templateUrl: 'scripts/app/actionList/detail/actionList.detail.otherClass.html',
-                controller: 'actionListDetailOtherClassController'
+                controller: 'actionListDetailOtherClassController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -38,4 +46,4 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
             }]
         }
     });
-}]);
+}

@@ -1,197 +1,203 @@
-<div layout-padding>
-    <div layout="row" layout-align="center">
-        <h3>{{settingsAccount.name}}님의 정보 수정</h3>
-    </div>
-
-    <form name="updateForm" role="form" ng-submit="update()">
-        <h3>필수 입력 사항</h3>
-        <input type="hidden" ng-bind="settingsAccount.id=settingsAccount.id">
-
-        <!-- 성별() -->
-        <div class="margin-bottom-30" layout="row">
-            <div flex="100">
-                <md-radio-group ng-model="settingsAccount.gender" layout="row">
-                    <md-radio-button value="M" class="md-primary">남자</md-radio-button>
-                    <md-radio-button
-                        value="F"> 여자
-                    </md-radio-button>
-                </md-radio-group>
+<div class="mypageWrapPadding" layout="row" layout-align="center" ng-if="vm.stateConfirmRegister > 0 && vm.stateConfirmVendor <= 0">
+    <div flex="40" flex-sm="100" flex-md="60"
+         class="md-whiteframe-z1">
+        <div layout-padding>
+            <div layout="row" layout-align="center">
+                <h2>{{vm.settingsAccount.name}}님의 정보 수정</h2>
             </div>
-        </div>
 
+            <form name="updateForm" role="form" ng-submit="vm.getUpdateAccount()">
+                <h3>필수 입력 사항</h3>
+                <input type="hidden" ng-bind="vm.settingsAccount.id=vm.settingsAccount.id">
 
-        <!-- 이름() -->
-        <div class="margin-bottom-30" layout="row">
-            <div flex="100">
-                <md-input-container class="margin-bottom-30">
-                    <labe for="name">이름(본명)</label>
-                    <input required id="name" name="name" ng-model="settingsAccount.name">
-
-                    <div ng-messages="updateForm.name.$error">
-                        <p ng-message="required">필수항목입니다!</p>
+                <!-- 성별() -->
+                <div class="margin-bottom-30" layout="row">
+                    <div flex="100">
+                        <md-radio-group ng-model="vm.settingsAccount.gender" layout="row">
+                            <md-radio-button value="M" class="md-primary">남자</md-radio-button>
+                            <md-radio-button
+                                value="F"> 여자
+                            </md-radio-button>
+                        </md-radio-group>
                     </div>
-                </md-input-container>
-            </div>
-        </div>
+                </div>
 
-        <!-- 주소() -->
-        <div class="margin-bottom-30" layout="row">
-            <div flex="100">
-                <div layout="row">
-                    <div flex>
-                        <!-- 우편번호 -->
-                        <md-input-container>
-                            <label for="zipcode">우편번호</label>
-                            <input
-                            type="text" id="zipcode" name="zipcode"
-                            ng-model="settingsAccount.zipcode" required readonly></md-input-container>
+
+                <!-- 이름() -->
+                <div class="margin-bottom-30" layout="row">
+                    <div flex="100">
+                        <md-input-container class="margin-bottom-30">
+                            <label for="name">이름(본명)</label>
+                            <input required id="name" name="name" ng-model="vm.settingsAccount.name">
+
+                            <div ng-messages="updateForm.name.$error">
+                                <p ng-message="required">필수항목입니다!</p>
+                            </div>
+                        </md-input-container>
                     </div>
-                    <md-button type="button" class="md-raised"
-                               ng-click="addressFormOpen()">주소찾기
-                    </md-button>
                 </div>
-                <div>
-                    <md-content id="addrWrap"
-                                style="display: none; border: 1px solid; width: 100%; height: 300px; margin: 5px 0; position: relative">
-                        <img
-                            src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
-                            id="btnFoldWrap"
-                            style="cursor: pointer; position: absolute; right: 0; top: -1px; z-index: 1"
-                            ng-click="addressFormClose()" alt="접기 버튼"></md-content>
-                </div>
-                <!-- 주소1 -->
-                <div>
-                    <md-input-container>
-                        <label for="address1">시/군/구</label>
-                        <input
-                        type="text" id="address1" name="address1"
-                        ng-model="settingsAccount.address1" readonly></md-input-container>
-                </div>
-                <!-- 주소2 -->
-                <div>
-                    <md-input-container class="margin-bottom-30">
-                        <label for="address2">상세주소</label>
-                        <input type="text" id="address2"
-                                                   name="address2" ng-model="settingsAccount.address2" required>
 
-                        <div ng-messages="updateForm.address2.$error">
-                            <div ng-message="required">필수항목입니다!</div>
+                <!-- 주소() -->
+                <div class="margin-bottom-30" layout="row">
+                    <div flex="100">
+                        <div layout="row">
+                            <div flex>
+                                <!-- 우편번호 -->
+                                <md-input-container>
+                                    <label for="zipcode">우편번호</label>
+                                    <input
+                                        type="text" id="zipcode" name="zipcode"
+                                        ng-model="vm.settingsAccount.zipcode" required readonly></md-input-container>
+                            </div>
+                            <md-button type="button" class="md-raised"
+                                       ng-click="addressFormOpen()">주소찾기
+                            </md-button>
                         </div>
-                    </md-input-container>
-                </div>
-            </div>
-        </div>
+                        <div>
+                            <md-content id="addrWrap"
+                                        style="display: none; border: 1px solid; width: 100%; height: 300px; margin: 5px 0; position: relative">
+                                <img
+                                    src="//i1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+                                    id="btnFoldWrap"
+                                    style="cursor: pointer; position: absolute; right: 0; top: -1px; z-index: 1"
+                                    ng-click="addressFormClose()" alt="접기 버튼"></md-content>
+                        </div>
+                        <!-- 주소1 -->
+                        <div>
+                            <md-input-container>
+                                <label for="address1">시/군/구</label>
+                                <input
+                                    type="text" id="address1" name="address1"
+                                    ng-model="vm.settingsAccount.address1" readonly></md-input-container>
+                        </div>
+                        <!-- 주소2 -->
+                        <div>
+                            <md-input-container class="margin-bottom-30">
+                                <label for="address2">상세주소</label>
+                                <input type="text" id="address2"
+                                       name="address2" ng-model="vm.settingsAccount.address2" required>
 
-        <!-- 연락처() -->
-        <div class="margin-bottom-30" layout="row">
-            <div flex="100">
-                <md-input-container class="margin-bottom-30">
-                    <label for="phoneNumber">연락처</label>
-                    <input type="text" id="phoneNumber" name="phoneNumber"
-                           ng-model="settingsAccount.phoneNumber"
-                           pattern="^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$"
-                           required>
-
-                    <div ng-messages="updateForm.phoneNumber.$error">
-                        <p>예)0212345678 혹은 01012345678</p>
-
-                        <div ng-message="required">필수항목입니다!</div>
-                        <div ng-message="pattern">아직 전화번호 형식에 맞지 않습니다!</div>
-                    </div>
-                </md-input-container>
-            </div>
-        </div>
-
-        <!-- 나이() -->
-        <div class="margin-bottom-30" layout="row">
-            <div flex="100">
-                <md-input-container class="margin-bottom-30">
-                    <label for="age">나이</label>
-                    <input type="text" id="age"name="age" ng-model="settingsAccount.age"
-                           ng-pattern="/^\d+$/" required>
-
-                    <div ng-messages="updateForm.age.$error" role="alert">
-                        <div ng-message="required">필수항목입니다!</div>
-                        <div ng-message="pattern">숫자만 허용합니다!</div>
-                    </div>
-                </md-input-container>
-            </div>
-        </div>
-
-
-        <md-subheader class="md-no-sticky">
-            <h3>선택 입력 사항</h3>
-        </md-subheader>
-
-        <div class="margin-bottom-20"></div>
-        <!-- 선호지역() -->
-        <div class="margin-bottom-30" layout="row">
-            <div flex="100">
-                <md-autocomplete flex required md-input-name="favorSite"
-                                 md-no-cache="noCache" md-selected-item="selectedItem"
-                                 md-search-text="searchText"
-                                 md-search-text-change="searchTextChange"
-                                 md-items="item in querySearch(searchText)" md-item-text="item.dong"
-                                 md-selected-item-change="selectedItemChange(item)"
-                                 md-floating-label="선호지역">
-                    <md-item-template
-                        ng-bind="settingsAccount.favorSiteId=item.id"> <span
-                        md-highlight-text="searchText">{{item.sido}}</span> <span
-                        md-highlight-text="searchText">{{item.dong}}</span></md-item-template>
-                    <div ng-messages="updateForm.favorSite.$error"
-                         ng-if="updateForm.favorSite.$touched">
-                        <p>예)노량진동</p>
-
-                        <div ng-message="required">
-                            <b>반드시</b> 선호지역을 선택해주세요!
+                                <div ng-messages="updateForm.address2.$error">
+                                    <div ng-message="required">필수항목입니다!</div>
+                                </div>
+                            </md-input-container>
                         </div>
                     </div>
-                </md-autocomplete>
-            </div>
-        </div>
+                </div>
 
-        <!-- 선호운동() -->
-        <input type="hidden" ng-bind="selected=settingsAccount.favorCategoryId">
+                <!-- 연락처() -->
+                <div class="margin-bottom-30" layout="row">
+                    <div flex="100">
+                        <md-input-container class="margin-bottom-30">
+                            <label for="phoneNumber">연락처</label>
+                            <input type="text" id="phoneNumber" name="phoneNumber"
+                                   ng-model="vm.settingsAccount.phoneNumber"
+                                   pattern="^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$"
+                                   required>
 
-        <div class="margin-bottom-30" layout="row">
-            <div flex="100">
-                <label>선호하시는 운동을 선택해주세요!</label>
+                            <div ng-messages="updateForm.phoneNumber.$error">
+                                <p>예)0212345678 혹은 01012345678</p>
+
+                                <div ng-message="required">필수항목입니다!</div>
+                                <div ng-message="pattern">아직 전화번호 형식에 맞지 않습니다!</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+                <!-- 나이() -->
+                <div class="margin-bottom-30" layout="row">
+                    <div flex="100">
+                        <md-input-container class="margin-bottom-30">
+                            <label for="age">나이</label>
+                            <input type="text" id="age" name="age" ng-model="vm.settingsAccount.age"
+                                   ng-pattern="/^\d+$/" required>
+
+                            <div ng-messages="updateForm.age.$error" role="alert">
+                                <div ng-message="required">필수항목입니다!</div>
+                                <div ng-message="pattern">숫자만 허용합니다!</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+
+
+                <md-subheader class="md-no-sticky">
+                    <h3>선택 입력 사항</h3>
+                </md-subheader>
 
                 <div class="margin-bottom-20"></div>
-                <div ng-repeat="item in commonCodesList">
-                    <md-checkbox ng-checked="exists(item.id, selected)"
-                                 ng-click="toggle(item.id, selected)"> {{ item.value
-                        }} <span ng-if="exists(item.id, selected)">선택됨</span></md-checkbox>
-                </div>
-                <input type="hidden"
-                       ng-bind="settingsAccount.favorCategoryId=selected">
-            </div>
-        </div>
+                <!-- 선호지역() -->
+                <!-- <div class="margin-bottom-30" layout="row">
+                     <div flex="100">
+                         <md-autocomplete flex required md-input-name="favorSite"
+                                          md-no-cache="noCache" md-selected-item="selectedItem"
+                                          md-search-text="searchText"
+                                          md-search-text-change="searchTextChange"
+                                          md-items="item in querySearch(searchText)" md-item-text="item.dong"
+                                          md-selected-item-change="selectedItemChange(item)"
+                                          md-floating-label="선호지역">
+                             <md-item-template
+                                 ng-bind="vm.settingsAccount.favorSiteId=item.id"> <span
+                                 md-highlight-text="searchText">{{item.sido}}</span> <span
+                                 md-highlight-text="searchText">{{item.dong}}</span></md-item-template>
+                             <div ng-messages="updateForm.favorSite.$error"
+                                  ng-if="updateForm.favorSite.$touched">
+                                 <p>예)노량진동</p>
 
-        <!-- 운동횟수() -->
-        <div class="margin-bottom-30" layout="row">
-            <div flex="100">
-                <md-input-container>
-                    <label for="exersizeCount">일주일간 운동 횟수가
-                    어떻게 되시나요?</label> <input type="text" id="exersizeCount"name="exersizeCount"
-                                             ng-model="settingsAccount.exersizeCount" ng-pattern="/^\d+$/">
+                                 <div ng-message="required">
+                                     <b>반드시</b> 선호지역을 선택해주세요!
+                                 </div>
+                             </div>
+                         </md-autocomplete>
+                     </div>
+                 </div>-->
 
-                    <div ng-messages="updateForm.exersizeCount.$error">
-                        <div ng-message="pattern">숫자만 허용합니다!</div>
+                <!-- 선호운동() -->
+                <input type="hidden" ng-bind="selected=vm.settingsAccount.favorCategoryId">
+
+                <div class="margin-bottom-30" layout="row">
+                    <div flex="100">
+                        <label>선호하시는 운동을 선택해주세요!</label>
+
+                        <div class="margin-bottom-20"></div>
+                        <div ng-repeat="item in vm.commonCodesList">
+                            <md-checkbox ng-checked="vm.exists(item.id, vm.selected)"
+                                         ng-click="vm.toggle(item.id, vm.selected)"> {{ item.value
+                                }} <span ng-if="vm.exists(item.id, vm.selected)">선택됨</span></md-checkbox>
+                        </div>
+                        <input type="hidden"
+                               ng-bind="vm.settingsAccount.favorCategoryId=selected">
                     </div>
-                </md-input-container>
+                </div>
+
+                <!-- 운동횟수() -->
+                <div class="margin-bottom-30" layout="row">
+                    <div flex="100">
+                        <md-input-container>
+                            <label for="exersizeCount">일주일간 운동 횟수가
+                                어떻게 되시나요?</label> <input type="text" id="exersizeCount" name="exersizeCount"
+                                                         ng-model="vm.settingsAccount.exersizeCount"
+                                                         ng-pattern="/^\d+$/">
+
+                            <div ng-messages="updateForm.exersizeCount.$error">
+                                <div ng-message="pattern">숫자만 허용합니다!</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                </div>
+                <!-- <div>{{vm.settingsAccount}}</div> -->
+                <div layout="row" layout-align="center">
+                    <md-button class="md-raised" ng-disabled="form.$invalid">변경</md-button>
+                </div>
+            </form>
+            <div class="alert alert-success" ng-show="success">
+                <strong>정보가 변경되었습니다!</strong>
+            </div>
+
+            <div class="alert alert-danger" ng-show="error">에러가 발생하여 변경되지
+                않았습니다.
             </div>
         </div>
-        <!-- <div>{{settingsAccount}}</div> -->
-        <div layout="row" layout-align="center">
-            <md-button class="md-raised" ng-disabled="form.$invalid">변경</md-button>
-        </div>
-    </form>
-    <div class="alert alert-success" ng-show="success">
-        <strong>정보가 변경되었습니다!</strong>
-    </div>
-
-    <div class="alert alert-danger" ng-show="error">에러가 발생하여 변경되지
-        않았습니다.
     </div>
 </div>

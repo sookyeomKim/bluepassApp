@@ -1,14 +1,14 @@
-<div class="actionListWrap" ng-if="foucPrevent===true">
-    <section ng-if="stateConfirm1" auto-height outer-xs-number="1"
+<div class="actionListWrap">
+    <section ng-if="vm.stateConfirmRegister" auto-height outer-xs-number="1"
              outer-sm-number="1" outer-md-number="1" outer-lg-number="1"
              no-max-width="true" no-margin="true" outer-ratio="0.18"
              class="breadcrumbsWrap boxShadow-1">
         <img auto-height outer-xs-number="1" outer-sm-number="1"
              outer-md-number="1" outer-lg-number="1" no-max-width="true"
              no-margin="true" outer-ratio="0.18" alt="breadcrumbs img"
-             ng-src="images/breadcrumbs/bc_{{selectImg}}.jpg">
+             ng-src="images/breadcrumbs/bc_{{vm.selectImg}}.jpg">
     </section>
-    <section ng-if="!stateConfirm1" class="breadcrumbs">
+    <section ng-if="!vm.stateConfirmRegister" class="breadcrumbs">
         <div layout="row" layout-align="center center">
             <div class="intro">
                 <div class="up">
@@ -23,20 +23,22 @@
         </div>
     </section>
     <div class="topMenu" layout="row" layout-wrap>
+        <!--운동종목-->
         <aside layout="row" flex="100">
             <div class="prev1" flex layout="row" layout-align="center center">
                 <i class="glyphicon glyphicon-triangle-left"></i>
             </div>
             <div flex="90" id="owlExerciseType">
-                <div ng-click="exerciseType='all'">
+                <div ng-click="vm.queryPrams.exerciseType='all'">
                     <md-button class="no-margin"
-                               ng-class="exerciseType==='all'?'selected':''">모두 보기
+                               ng-class="vm.queryPrams.exerciseType==='all'?'selected':''">모두 보기
                     </md-button>
                 </div>
-                <div ng-repeat="exercise in exerciseTypeList"
-                     ng-click="getScope().exerciseType=exercise.option1">
+                <div ng-repeat="exercise in vm.exerciseTypeList"
+                     ng-click="vm.queryPrams.exerciseType=exercise.option1">
                     <md-button class="no-margin"
-                               ng-class="exerciseType==='{{exercise.option1}}'?'selected':''">{{exercise.value}}
+                               ng-class="vm.queryPrams.exerciseType==='{{exercise.option1}}'?'selected':''">
+                        {{exercise.value}}
                     </md-button>
                 </div>
             </div>
@@ -44,43 +46,26 @@
                 <i class="glyphicon glyphicon-triangle-right"></i>
             </div>
         </aside>
-        <!-- <div layout="row" flex="100">
-            <div class="prev2" flex layout="row" layout-align="center center">
-                <i class="glyphicon glyphicon-triangle-left"></i>
-            </div>
-            <div flex="95" id="owlSiteType">
-                <div ng-click="getScope().siteType='all'">
-                    <md-button class="no-margin"
-                        ng-class="siteType==='all'?'selected':''">모두 보기</md-button>
-                </div>
-                <div ng-repeat="site in siteList" ng-click="getScope().siteType=site.oldAddress">
-                    <md-button class="no-margin"
-                        ng-class="siteType===site.oldAddress?'selected':''">{{site.oldAddress}}</md-button>
-                </div>
-            </div>
-            <div class="next2" flex layout="row" layout-align="center center">
-                <i class="glyphicon glyphicon-triangle-right"></i>
-            </div>
-        </div> -->
+        <!--시간-->
         <aside layout="row" flex="100">
-            <div flex="45" ng-show="timeTypeOn">
-                <md-select class="no-margin" ng-model="timeType.startTime"
+            <div flex="45" ng-show="vm.queryPrams.timeTypeOn">
+                <md-select class="no-margin" ng-model="vm.queryPrams.timeType.startTime"
                            aria-label="startTime select">
                     <md-option
-                        value="{{time.value}}" ng-repeat="time in startTimeArry"
-                        ng-click="getScope().startTimeSelected=time.index">{{time.title}}
+                        value="{{time.value}}" ng-repeat="time in vm.startTimeArry"
+                        ng-click="vm.startTimeSelected=time.index">{{time.title}}
                     </md-option>
                 </md-select>
             </div>
 			<span class="weight_5" flex="10" layout="row"
-                  layout-align="center center" ng-show="timeTypeOn">-</span>
+                  layout-align="center center" ng-show="vm.queryPrams.timeTypeOn">-</span>
 
-            <div flex="45" ng-show="timeTypeOn">
-                <md-select class="no-margin" ng-model="timeType.endTime"
+            <div flex="45" ng-show="vm.queryPrams.timeTypeOn">
+                <md-select class="no-margin" ng-model="vm.queryPrams.timeType.endTime"
                            aria-label="endTime select">
                     <md-option
-                        value="{{time.value}}" ng-repeat="time in endTimeArry"
-                        ng-click="getScope().endTimeSelected=time.index">{{time.title}}
+                        value="{{time.value}}" ng-repeat="time in vm.endTimeArry"
+                        ng-click="vm.endTimeSelected=time.index">{{time.title}}
                     </md-option>
                 </md-select>
             </div>

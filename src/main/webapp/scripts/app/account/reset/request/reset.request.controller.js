@@ -4,34 +4,41 @@
 'use strict';
 
 angular.module('bluepassApp')
-    .controller('RequestResetController', function ($rootScope, $scope, $state, $timeout, Auth) {
-        $scope.$on('$stateChangeSuccess', function () {
-            jQuery("body").addClass("loginBackground").addClass("imgBackgroundOn");
-        });
-        $scope.$on('$stateChangeStart', function () {
-            jQuery("body").removeClass("loginBackground").removeClass("imgBackgroundOn");
-        });
+    .controller('requestResetController', requestResetController);
 
-        $scope.success = null;
-        $scope.error = null;
-        $scope.errorEmailNotExists = null;
-        $scope.resetAccount = {};
-        $timeout(function () {
-            angular.element('[ng-model="resetAccount.email"]').focus();
-        });
+requestResetController.$inject = ['$scope', '$timeout', 'Auth'];
 
-        $scope.requestReset = function () {
-            $scope.error = null;
-            $scope.errorEmailNotExists = null;
-            Auth.resetPasswordInit($scope.resetAccount.email).then(function () {
-                $scope.success = 'OK';
-            }).catch(function (response) {
-                $scope.success = null;
-                if (response.status === 400 && response.data === 'e-mail address not registered') {
-                    $scope.errorEmailNotExists = 'ERROR';
-                } else {
-                    $scope.error = 'ERROR';
-                }
-            });
-        };
+function requestResetController($scope, $timeout, Auth) {
+    $timeout(function () {
+        angular.element('[ng-model="resetAccount.email"]').focus();
     });
+    var vm = this;
+
+    vm.success = null;
+    vm.error = null;
+    vm.errorEmailNotExists = null;
+    vm.resetAccount = {};
+
+
+    vm.requestReset = function () {
+        vm.error = null;
+        vm.errorEmailNotExists = null;
+        Auth.resetPasswordInit(vm.resetAccount.email).then(function () {
+            vm.success = 'OK';
+        }).catch(function (response) {
+            vm.success = null;
+            if (response.status === 400 && response.data === 'e-mail address not registered') {
+                vm.errorEmailNotExists = 'ERROR';
+            } else {
+                vm.error = 'ERROR';
+            }
+        });
+    };
+
+    $scope.$on('$stateChangeSuccess', function () {
+        jQuery("body").addClass("loginBackground").addClass("imgBackgroundOn");
+    });
+    $scope.$on('$stateChangeStart', function () {
+        jQuery("body").removeClass("loginBackground").removeClass("imgBackgroundOn");
+    });
+}

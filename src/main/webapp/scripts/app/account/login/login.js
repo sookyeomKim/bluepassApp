@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider) {
+angular.module('bluepassApp').config(loginConfig);
+
+loginConfig.$inject = ['$stateProvider'];
+
+function loginConfig($stateProvider) {
     $stateProvider.state('login', {
         parent: 'account',
         url: '/login',
@@ -23,4 +27,4 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
             }
         }
     });
-}]);
+}

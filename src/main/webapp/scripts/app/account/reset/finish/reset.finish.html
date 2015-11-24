@@ -4,12 +4,12 @@
 		<div layout="row" layout-align="center" layout-padding>
 			<div class="logregPanel" flex="30" flex-sm="100" flex-md="60">
 				<div class="alertText" layout="row"
-					layout-align="center center" ng-show="doNotMatch">
+					layout-align="center center" ng-show="vm.doNotMatch">
 					<div>비밀번호가 일치하지 않습니다.</div>
 				</div>
 
 				<div class="alertText" layout="row"
-					layout-align="center center" ng-show="error">
+					layout-align="center center" ng-show="vm.error">
 					<div>변경되지 않았습니다. 다시 시도해주세요.</div>
 					<div>
 						<a ui-sref="requestReset">다시 시도</a>
@@ -17,19 +17,19 @@
 				</div>
 
 				<div class="alertText" layout="row"
-					layout-align="center center" ng-show="success">
+					layout-align="center center" ng-show="vm.success">
 					<div>변경이 완료되었습니다.</div>
 					<div>
 						<a ui-sref="login">로그인 하기</a>
 					</div>
 				</div>
 
-				<form name="form" ng-show="!success" class="form margin-bottom-15"
-					role="form" ng-submit="finishReset()">
+				<form name="form" ng-show="!vm.success" class="form margin-bottom-15"
+					role="form" ng-submit="vm.finishReset()">
 					<md-input-container class="logreg">
                         <label for="password">비밀번호</label>
-					<input type="password"id="password" name="password"
-						ng-model="resetAccount.password" ng-minlength=5 ng-maxlength=50
+					<input type="password" id="password" name="password"
+						ng-model="vm.resetAccount.password" ng-minlength=5 ng-maxlength=50
 						required>
 					<div ng-messages="form.password.$error" role="alert"
 						ng-show="form.password.$dirty && form.password.$invalid">
@@ -41,7 +41,7 @@
 					<md-input-container>
                         <label for="confirmPassword">비밀번호 확인</label>
                         <input
-						type="password"id="confirmPassword" name="confirmPassword" ng-model="confirmPassword"
+						type="password" id="confirmPassword" name="confirmPassword" ng-model="vm.confirmPassword"
 						ng-minlength=5 ng-maxlength=50 required>
 					<div ng-messages="form.confirmPassword.$error"
 						ng-show="form.confirmPassword.$dirty && form.confirmPassword.$invalid">

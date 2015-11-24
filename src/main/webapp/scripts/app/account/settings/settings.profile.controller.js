@@ -3,6 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').controller('settingsProfileController', [ '$scope', function($scope) {
+angular.module('bluepassApp').controller('settingsProfileController', settingsProfileController);
 
-} ]);
+settingsProfileController.$inject = ['$scope'];
+
+function settingsProfileController($scope) {
+
+}
+

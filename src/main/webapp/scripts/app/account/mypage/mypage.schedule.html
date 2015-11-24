@@ -1,5 +1,5 @@
 <div class="mypageWrapPadding" layout="row" layout-align="center"
-     layout-wrap ng-if="vm.account.registerStatus==='미등록'">
+     layout-wrap ng-if="vm.account.registerStatus==='미등록' && vm.stateConfirmVendor <= 0">
     <div class="md-whiteframe-z1 mypage-section" flex="80" flex-md="100"
          flex-sm="100">
         <div class="margin-bottom-40"></div>
@@ -15,7 +15,7 @@
 </div>
 
 <div class="mypageWrapPadding" layout="row" layout-align="center"
-     layout-wrap layout-padding ng-if="vm.account.registerStatus==='등록요청'">
+     layout-wrap layout-padding ng-if="vm.account.registerStatus==='등록요청' && vm.stateConfirmVendor <= 0">
     <div class="md-whiteframe-z1 mypage-section breakWord" flex="80"
          flex-md="100" flex-sm="100">
         <div class="weight_5" layout="column" layout-align="center center">
@@ -35,7 +35,7 @@
 </div>
 
 <div class="mypageWrapPadding" layout="row" layout-align="center"
-     layout-wrap ng-if="vm.account.registerStatus==='등록'">
+     layout-wrap ng-if="vm.account.registerStatus==='등록' && vm.stateConfirmVendor <= 0">
     <div class="
 	md-whiteframe-z1 mypage-section" flex="80" flex-md="100"
          flex-sm="100">

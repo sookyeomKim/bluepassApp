@@ -2,7 +2,7 @@
     <div class="card-innercontainer-outer">
         <div class="card-innercontainer-inner">
             <div class="instructorCard panel panel-default"
-                 ng-repeat="instructor in insList">
+                 ng-repeat="instructor in vm.insList">
                 <div class="introduceImgWrap" auto-height margin="0.002"
                      outer-ratio="1.1667" outer-lg-number="4" outer-md-number="4"
                      outer-sm-number="3" outer-xs-number="2" custom-max-width="1366"
@@ -17,7 +17,7 @@
                     <div layout="row" layout-align="end center">
                         <md-button class="md-fab md-mini btn-material-indigo-700"
                                    style="margin-top:-3.5rem; margin-right:-1.25rem"
-                                   ng-click="showIntroduce(instructor.id)" aria-label="edit button">소개
+                                   ng-click="vm.showIntroduce(instructor.id)" aria-label="edit button">소개
                         </md-button>
                     </div>
                     <div layout="row" layout-align="center center">{{instructor.name}}</div>

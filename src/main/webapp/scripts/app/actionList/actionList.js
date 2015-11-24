@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider) {
+angular.module('bluepassApp').config(actionListConfig);
+
+actionListConfig.$inject = ['$stateProvider'];
+
+function actionListConfig($stateProvider) {
     $stateProvider.state('actionListImgtype', {
         parent: 'site',
         url: '/findClass',
@@ -13,11 +17,13 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/actionList/actionList.html',
-                controller: 'actionListController'
+                controller: 'actionListController',
+                controllerAs: 'vm'
             },
             'imgtype@actionListImgtype': {
                 templateUrl: 'scripts/app/actionList/actionList.imgType.html',
-                controller: 'actionListImgTypeController'
+                controller: 'actionListImgTypeController',
+                controllerAs: 'vm'
             }
         },
         params: {
@@ -37,11 +43,13 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/actionList/actionList.html',
-                controller: 'actionListController'
+                controller: 'actionListController',
+                controllerAs: 'vm'
             },
             'tabletype@actionListTabletype': {
                 templateUrl: 'scripts/app/actionList/actionList.tableType.html',
-                controller: 'actionListTableTypeController'
+                controller: 'actionListTableTypeController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -50,4 +58,4 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
             }
         }
     })
-}]);
+}

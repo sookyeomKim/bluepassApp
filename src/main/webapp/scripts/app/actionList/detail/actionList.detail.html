@@ -1,18 +1,4 @@
 <div class="actionDetailWrap">
-    <!-- <div class="actionListTypeBar panel panel-default">
-        <div class=" boxShadow-1" layout="row" layout-align="center center">
-            <a ui-sref="actionListImgtype" flex> <md-button
-                    class="noPaddingMargin buttonFullWidth" aria-label="view img">
-                <md-icon md-svg-src="images/icons/module.svg"></md-icon>
-                이미지형으로 보기 </md-button>
-            </a> <a ui-sref="actionListTabletype" flex> <md-button
-                    class="noPaddingMargin buttonFullWidth" aria-label="view table">
-                <md-icon md-svg-src="images/icons/list.svg"></md-icon> 스케줄형으로
-                보기 </md-button>
-            </a>
-        </div>
-    </div> -->
-
     <div class="breadcrumbsWrap boxShadow-1" auto-height
          outer-xs-number="1" outer-sm-number="1" outer-md-number="1"
          outer-lg-number="1" no-max-width="true" no-margin="true"
@@ -20,7 +6,7 @@
         <img auto-height outer-xs-number="1" outer-sm-number="1"
              outer-md-number="1" outer-lg-number="1" no-max-width="true"
              no-margin="true" outer-ratio="0.18" alt="breadcrumbs img"
-             ng-src="images/breadcrumbs/bc_{{selectImg}}.jpg">
+             ng-src="images/breadcrumbs/bc_{{vm.selectImg}}.jpg">
     </div>
 
     <div class="actionDetail">
@@ -32,37 +18,19 @@
                     <div layout="row" layout-wrap layout-padding>
                         <div flex="55" flex-sm="100">
                             <div class="ms-showcase2-template">
-                                <!-- Master Slider -->
+                                <!-- 마스터슬라이더 -->
                                 <div class="master-slider ms-skin-default" id="masterslider">
-                                    <div class="ms-slide" ng-repeat="classImg in classImgList">
+                                    <div class="ms-slide" ng-repeat="classImg in vm.classImgList">
                                         <img class="ms-brd" src="/images/blank.gif"
                                              data-ng-src="image/picture/{{classImg.image.id}}"
-                                             alt="{{actionDetail.title}} 이미지">
-                                        <!-- <img class="ms-thumb" ng-src="image/picture/{{classImg.image.id}}"
-                                        alt="thumb"> -->
+                                             alt="{{vm.actionDetail.title}} 이미지">
                                     </div>
-                                    <div class="ms-slide" ng-if="classImgList.length === 0">
+                                    <div class="ms-slide" ng-if="vm.classImgList.length === 0">
                                         <img class="ms-brd" src="/images/blank.gif"
                                              data-src="images/action/empty.jpg" alt="empty img">
-                                        <!-- <img class="ms-thumb" src="images/action/empty.jpg"
-                                        alt="empty thumb"> -->
                                     </div>
-                                    <!-- <div class="ms-slide"
-                                    ng-if="classImgList.length === 0 || classImgList.length === 1">
-                                    <img class="ms-brd" src="images/blank.gif"
-                                        data-src="images/action/empty.jpg" alt="empty img">
-                                    <img class="ms-thumb" src="images/action/empty.jpg"
-                                        alt="empty thumb">
                                 </div>
-                                <div class="ms-slide"
-                                    ng-if="classImgList.length === 0 ||classImgList.length === 1||classImgList.length === 2">
-                                    <img class="ms-brd" src="images/blank.gif"
-                                        data-src="images/action/empty.jpg" alt="empty img">
-                                    <img class="ms-thumb" src="images/action/empty.jpg"
-                                        alt="empty thumb">
-                                </div> -->
-                                </div>
-                                <!-- End Master Slider -->
+                                <!-- 마스터슬라이더 끝 -->
                             </div>
                         </div>
                         <div flex="45" flex-sm="100" layout-padding>
@@ -70,13 +38,13 @@
                                 <div flex="70" flex-sm="100">
                                     <ul class="list-inline">
                                         <li>
-                                            <div class="detailClassName">{{actionDetail.title}}</div>
+                                            <div class="detailClassName">{{vm.actionDetail.title}}</div>
                                         </li>
                                     </ul>
                                 </div>
                                 <div flex></div>
                                 <div flex-sm="100">
-                                    <div class="detailClubName">{{actionDetail.club.name}}</div>
+                                    <div class="detailClubName">{{vm.actionDetail.club.name}}</div>
                                 </div>
                             </div>
                             <md-divider class="margin-bottom-15"></md-divider>
@@ -87,16 +55,16 @@
                                         <i class="glyphicon glyphicon-map-marker"></i>
                                     </div>
                                     &nbsp;
-                                    <div class="text">{{actionDetail.club.addressSimple}}</div>
+                                    <div class="text">{{vm.actionDetail.club.addressSimple}}</div>
                                     <div flex></div>
                                     <div>
                                         <img class="detailEventName"
-                                             src="/images/category/{{actionDetail.category.option1}}.png"/>
+                                             src="/images/category/{{vm.actionDetail.category.option1}}.png"/>
                                     </div>
                                 </div>
                                 <div class="margin-bottom-10"></div>
                                 <div class="detailShortDescription margin-bottom-15" layout="row" flex="100">
-                                    {{actionDetail.shortDescription}}
+                                    {{vm.actionDetail.shortDescription}}
                                 </div>
                             </div>
 
@@ -110,7 +78,7 @@
                                     <div flex></div>
                                 </div>
                                 <div layout="row" class="margin-bottom-15" flex="100">
-                                    <div class="context">{{actionDetail.club.homepage}}</div>
+                                    <div class="context">{{vm.actionDetail.club.homepage}}</div>
                                 </div>
                             </div>
 
@@ -123,7 +91,8 @@
                                     <div class="text">주소</div>
                                 </div>
                                 <div layout="row" class="margin-bottom-15" flex="100">
-                                    <div class="context">{{actionDetail.club.address1}}{{actionDetail.club.address2}}
+                                    <div class="context">
+                                        {{vm.actionDetail.club.address1}}{{vm.actionDetail.club.address2}}
                                     </div>
                                 </div>
                             </div>
@@ -154,34 +123,34 @@
                 <div flex="70" flex-md="90" flex-sm="100"
                      class="md-whiteframe-z1 section">
                     <div layout="row" layout-wrap role="tablist">
-                        <md-button ng-class="tabSelected===1?'':'btn-material-light-blue'"
-                                   ng-click="tabSelected=1" role="tab" class="noPaddingMargin">상세설명
+                        <md-button ng-class="vm.tabSelected===1?'':'btn-material-light-blue'"
+                                   ng-click="vm.tabSelected=1" role="tab" class="noPaddingMargin">상세설명
                         </md-button>
-                        <md-button ng-class="tabSelected===2?'':'btn-material-light-blue'"
-                                   ng-click="tabSelected=2" role="tab" class="noPaddingMargin">강사소개
+                        <md-button ng-class="vm.tabSelected===2?'':'btn-material-light-blue'"
+                                   ng-click="vm.tabSelected=2" role="tab" class="noPaddingMargin">강사소개
                         </md-button>
                     </div>
 
                     <div class="detailIntro" role="tabpanel"
-                         ng-show="tabSelected === 1" layout-padding>
+                         ng-show="vm.tabSelected === 1" layout-padding>
                         <div flex>
-                            <div class="legend">{{actionDetail.shortDescription}}</div>
-                            <div class="intro" ng-bind-html="actionDetail.description| nl2br"></div>
+                            <div class="legend">{{vm.actionDetail.shortDescription}}</div>
+                            <div class="intro" ng-bind-html="vm.actionDetail.description| nl2br"></div>
                             <div class="content-sm embed-responsive embed-responsive-16by9"
-                                 ng-if="actionDetail.movieIds!==null">
-                                <youtube-video video-id="actionDetail.movieIds"></youtube-video>
+                                 ng-if="vm.actionDetail.movieIds!==null">
+                                <youtube-video video-id="vm.actionDetail.movieIds"></youtube-video>
                             </div>
                         </div>
                         <div class="features" layout="row" layout-wrap>
                             <div layout="row" layout-align="center center" layout-padding
-                                 ng-repeat="feature in actionDetail.club.features">
+                                 ng-repeat="feature in vm.actionDetail.club.features">
                                 <img ng-src="images/feature/{{feature.parent.id}}.png"
                                      alt="feature" width="24" height="24"> &nbsp;&nbsp;
                                 <div>{{feature.value}}</div>
                             </div>
                         </div>
                     </div>
-                    <div role="tabpanel" ng-show="tabSelected === 2">
+                    <div role="tabpanel" ng-show="vm.tabSelected === 2">
                         <div ui-view="instructor"></div>
                     </div>
                 </div>
