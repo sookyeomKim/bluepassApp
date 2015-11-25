@@ -30,7 +30,8 @@ function scheduleEditController($state, $filter, $mdDialog, ActionSchedule,
         startDate: new Date(),
         endDate: new Date(),
         scheduleType: '기간지정',
-        actionId: idBelongToAction
+        actionId: idBelongToAction,
+        instructorId: null
     };
     vm.days = [];
     vm.dayArry = ['일', '월', '화', '수', '목', '금', '토'];
@@ -133,22 +134,22 @@ function scheduleEditController($state, $filter, $mdDialog, ActionSchedule,
         } else {
             getActionScheduleSave().then(getSuccess).catch(getError);
         }
-    }
 
-    function getActionScheduleUpdate() {
-        return ActionSchedule.update(vm.actionSchedule).$promise
-    }
+        function getActionScheduleUpdate() {
+            return ActionSchedule.update(vm.actionSchedule).$promise
+        }
 
-    function getActionScheduleSave() {
-        return ActionSchedule.save(vm.actionSchedule).$promise
-    }
+        function getActionScheduleSave() {
+            return ActionSchedule.save(vm.actionSchedule).$promise
+        }
 
-    function getSuccess() {
-        cancel();
-        $state.go($state.current, {}, {reload: true});
-    }
+        function getSuccess() {
+            cancel();
+            $state.go($state.current, {}, {reload: true});
+        }
 
-    function getError() {
-        Alert.alert1('등록에 실패하였습니다. 입력한 정보를 다시 확인해주세요.');
+        function getError() {
+            Alert.alert1('등록에 실패하였습니다. 입력한 정보를 다시 확인해주세요.');
+        }
     }
 }

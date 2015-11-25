@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider) {
+angular.module('bluepassApp').config(errorConfig);
+
+errorConfig.$inject = ['$stateProvider'];
+
+function errorConfig($stateProvider) {
     $stateProvider.state('error', {
         parent: 'site',
         url: '/error',
@@ -50,4 +54,4 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
             }
         }
     });
-}]);
+}

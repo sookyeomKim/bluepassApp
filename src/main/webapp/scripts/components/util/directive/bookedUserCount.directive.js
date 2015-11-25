@@ -3,7 +3,7 @@
  */
 "use strict";
 
-angular.module("bluepassApp").directive("bookedUserCount", ['bookedClassSchedule', function (bookedClassSchedule) {
+angular.module("bluepassApp").directive("bookedUserCount", ['BookedClassSchedule', function (BookedClassSchedule) {
     return {
         restrict: "A",
         scope: {
@@ -12,7 +12,7 @@ angular.module("bluepassApp").directive("bookedUserCount", ['bookedClassSchedule
         },
         link: function (sco) {
             if (sco.scheduleId) {
-                var bookedUserCall = bookedClassSchedule.query({
+                var bookedUserCall = BookedClassSchedule.query({
                     id: sco.scheduleId
                 });
                 bookedUserCall.$promise.then(function (success) {

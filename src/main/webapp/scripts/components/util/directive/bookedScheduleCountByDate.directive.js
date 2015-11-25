@@ -3,84 +3,86 @@
  */
 "use strict";
 
-angular.module("bluepassApp").directive(
-	"bookedScheduleCountByDate",
-	[
-		'$filter',
-		'ClassSchedule',
-		function($filter, ClassSchedule) {
-		    return {
-			restrict : "A",
-			scope : {
-			    actionId : "@",
-			    customDate : "=",
-			    count : "=",
-			    version : "@"
-			},
-			link : function(sco) {
-			    sco.load = function() {
-				var params = {};
-				var modiCustomDate;
+angular.module("bluepassApp").directive("bookedScheduleCountByDate", bookedScheduleCountByDate);
 
-				switch (sco.version) {
-				    case '0'://클래스의 예약 되어있는 (출석체크 안 함) 모든 스케줄
-					params = {
-					    page : -1,
-					    actionId : sco.actionId,
-					    reservated : true,
-					    enable : true,
-					    used:false
-					};
-					break;
-				    case '1'://클래스의 기간이 지난 예약 되어있는 (출석체크 안 한) 모든 스케줄
-					var yesterday = new Date(sco.customDate.year, sco.customDate.month-1,sco.customDate.date);
-					modiCustomDate = $filter("date")(yesterday.setDate(yesterday.getDate() - 1), "yyMMdd", "KST");
-					params = {
-					    actionId : sco.actionId,
-					    startDate : 150801,
-					    endDate : modiCustomDate,
-					    reservated : true,
-					    finished : true,
-					    enable : true,
-					    used:false
-					};
-					break;
-				    case '2'://클래스의 해당날짜의 예약 되어 있는 (출석체크 안 함) 모든 스케줄
-					modiCustomDate = $filter("date")(
-						new Date(sco.customDate.year, sco.customDate.month-1, sco.customDate.date),
-						"yyMMdd", "KST");
-					params = {
-					    actionId : sco.actionId,
-					    startDate : modiCustomDate,
-					    endDate : modiCustomDate,
-					    reservated : true,
-					    enable : true,
-					    used:false
-					};
-					break;
+bookedScheduleCountByDate.$inject = [
+    '$filter',
+    'ClassSchedule'
+];
 
-				    default:
-					params = {
-					    page : -1,
-					    reservated : true,
-					    enable : true,
-					    actionId : sco.actionId,
-					    used:false
-					};
-					break;
-				}
+function bookedScheduleCountByDate($filter, ClassSchedule) {
+    var directive = {
+        restrict: "A",
+        scope: {
+            actionId: "@",
+            customDate: "=",
+            count: "=",
+            version: "@"
+        },
+        link: link
+    };
+    return directive;
 
-				ClassSchedule.query(params).$promise.then(function(success) {
-				    if(sco.version==='0'){
-				    }
+    function link(sco) {
+        sco.getClassScheduleQuery = function () {
+            var params = {};
+            var modiCustomDate;
 
-				    sco.count = success.length;
-				});
-			    };
+            switch (sco.version) {
+                case '0'://클래스의 예약 되어있는 (출석체크 안 함) 모든 스케줄
+                    params = {
+                        page: -1,
+                        actionId: sco.actionId,
+                        reservated: true,
+                        enable: true,
+                        used: false
+                    };
+                    break;
+                case '1'://클래스의 기간이 지난 예약 되어있는 (출석체크 안 한) 모든 스케줄
+                    var yesterday = new Date(sco.customDate.year, sco.customDate.month - 1, sco.customDate.date);
+                    modiCustomDate = $filter("date")(yesterday.setDate(yesterday.getDate() - 1), "yyMMdd", "KST");
+                    params = {
+                        actionId: sco.actionId,
+                        startDate: 150801,
+                        endDate: modiCustomDate,
+                        reservated: true,
+                        finished: true,
+                        enable: true,
+                        used: false
+                    };
+                    break;
+                case '2'://클래스의 해당날짜의 예약 되어 있는 (출석체크 안 함) 모든 스케줄
+                    modiCustomDate = $filter("date")(
+                        new Date(sco.customDate.year, sco.customDate.month - 1, sco.customDate.date),
+                        "yyMMdd", "KST");
+                    params = {
+                        actionId: sco.actionId,
+                        startDate: modiCustomDate,
+                        endDate: modiCustomDate,
+                        reservated: true,
+                        enable: true,
+                        used: false
+                    };
+                    break;
 
-			    sco.$watch("actionId", function(newVal) {
-				sco.load(newVal);
-			    })
-			}
-		    }
-		} ]);
+                default:
+                    params = {
+                        page: -1,
+                        reservated: true,
+                        enable: true,
+                        actionId: sco.actionId,
+                        used: false
+                    };
+                    break;
+            }
+
+            return ClassSchedule.query(params).$promise.then(function (success) {
+                return sco.count = success.length;
+            });
+        };
+
+        sco.$watch("actionId", function (newVal) {
+            sco.getClassScheduleQuery(newVal);
+        })
+    }
+}

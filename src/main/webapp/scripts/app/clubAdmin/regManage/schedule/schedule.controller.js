@@ -5,9 +5,9 @@
 
 angular.module('bluepassApp').controller('adminMypageRegManageScheduleController', adminMypageRegManageScheduleController);
 
-adminMypageRegManageScheduleController.$inject = ['$stateParams', '$mdDialog', 'Action', 'ActionSchedule', 'ActionScheduleByaAction', 'Alert', 'lodash'];
+adminMypageRegManageScheduleController.$inject = ['$stateParams', '$mdDialog', 'Action', 'ActionSchedule', 'ActionScheduleByAction', 'Alert', 'lodash'];
 
-function adminMypageRegManageScheduleController( $stateParams, $mdDialog, Action, ActionSchedule, ActionScheduleByaAction, Alert, lodash) {
+function adminMypageRegManageScheduleController( $stateParams, $mdDialog, Action, ActionSchedule, ActionScheduleByAction, Alert, lodash) {
     var vm = this;
 
     /*초기화*/
@@ -36,7 +36,7 @@ function adminMypageRegManageScheduleController( $stateParams, $mdDialog, Action
 
 
     function getScheduleQuery(id) {
-        return ActionScheduleByaAction.query({
+        return ActionScheduleByAction.query({
             id: id
         }).$promise.then(function (success) {
                 vm.actionScheduleList = success;

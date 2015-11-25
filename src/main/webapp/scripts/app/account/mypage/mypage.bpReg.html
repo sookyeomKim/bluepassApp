@@ -36,7 +36,7 @@
                         class="md-no-sticky">
                         <h3>필수 입력 사항</h3>
                     </md-subheader>
-                    <!-- 성별() -->
+                    <!-- 성별(gender) -->
                     <div class="margin-bottom-40" layout="row">
                         <div flex="100">
                             <md-radio-group ng-model="vm.user.gender" layout="row">
@@ -47,7 +47,7 @@
                     </div>
 
 
-                    <!-- 이름() -->
+                    <!-- 이름(name) -->
                     <div class="margin-bottom-40" layout="row">
                         <div flex="100">
                             <md-input-container class="margin-bottom-40">
@@ -68,7 +68,7 @@
                         <div flex="100">
                             <div layout="row">
                                 <div flex>
-                                    <!-- 우편번호 -->
+                                    <!-- 우편번호(zipcode) -->
                                     <md-input-container>
                                         <label for="zipcode">우편번호</label>
                                         <input type="text" id="zipcode" name="zipcode" ng-model="vm.user.zipcode"
@@ -92,7 +92,7 @@
                                         style="cursor: pointer; position: absolute; right: 0; top: -1px; z-index: 1"
                                         ng-click="vm.addressFormClose()" alt="접기 버튼"></md-content>
                             </div>
-                            <!-- 주소1 -->
+                            <!-- 주소(address1) -->
                             <div>
                                 <md-input-container>
                                     <label for="address1">시/군/구</label>
@@ -104,7 +104,7 @@
                                     </div>
                                 </md-input-container>
                             </div>
-                            <!-- 주소2 -->
+                            <!-- 상세주소(address2) -->
                             <div>
                                 <md-input-container class="margin-bottom-40">
                                     <label for="address2">상세주소</label>
@@ -119,7 +119,7 @@
                         </div>
                     </div>
 
-                    <!-- 연락처() -->
+                    <!-- 연락처(phoneNumber) -->
                     <div class="margin-bottom-40" layout="row">
                         <div flex="100">
                             <md-input-container class="margin-bottom-40">
@@ -141,7 +141,7 @@
                         </div>
                     </div>
 
-                    <!-- 나이() -->
+                    <!-- 나이(age) -->
                     <div class="margin-bottom-40" layout="row">
                         <div flex="100">
                             <md-input-container class="margin-bottom-40">
@@ -198,7 +198,7 @@
 						value="{{size.id}}" ng-repeat="size in sizeList">{{size.value}}</md-radio-button>
 					</md-radio-group> </md-radio-group>
 				</div>
-			</div> --> <!-- 선호운동() -->
+			</div> --> <!-- 선호운동(favorCategoryId) -->
                     <div class="margin-bottom-40" layout="row">
                         <div flex="100">
                             <label>선호하시는 운동을 선택해주세요!</label>
@@ -213,7 +213,7 @@
                         </div>
                     </div>
 
-                    <!-- 운동횟수() -->
+                    <!-- 운동횟수(exersizeCount) -->
                     <div class="margin-bottom-40" layout="row">
                         <div flex="100">
                             <md-input-container>

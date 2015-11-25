@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('User', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('User', User);
+
+User.$inject = ['$resource'];
+
+function User($resource) {
     return $resource('api/users/:login', {}, {
         'query': {
             method: 'GET',
@@ -17,17 +21,4 @@ angular.module('bluepassApp').factory('User', ['$resource', function ($resource)
             }
         }
     });
-}]).factory('UserTicketInfo', ['$resource', function ($resource) {
-    return $resource('api/users/:id/ticket', {
-        id: "@id"
-    }, {
-
-        'get': {
-            method: 'GET',
-            transformResponse: function (data) {
-                data = angular.fromJson(data);
-                return data;
-            }
-        }
-    });
-}]);
+}

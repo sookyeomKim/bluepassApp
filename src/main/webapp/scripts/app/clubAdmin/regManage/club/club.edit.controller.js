@@ -13,12 +13,12 @@ adminMypageRegManageEditController.$inject = [
     '$stateParams',
     '$element',
     'Club',
-    'codeNameCommonCode',
+    'CodeNameCommonCode',
     'angularLoad',
     'Alert'
 ];
 
-function adminMypageRegManageEditController($timeout, $state, $stateParams, $element, Club, codeNameCommonCode,
+function adminMypageRegManageEditController($timeout, $state, $stateParams, $element, Club, CodeNameCommonCode,
                                             angularLoad, Alert) {
     var vm = this;
     /* 주소입력창을 위한 dom초기화 */
@@ -52,16 +52,16 @@ function adminMypageRegManageEditController($timeout, $state, $stateParams, $ele
         }
     };
     /* 유의사항 */
-    vm.feature1 = codeNameCommonCode.query({
+    vm.feature1 = CodeNameCommonCode.query({
         codeName: 'FEATURE_001'
     });
-    vm.feature2 = codeNameCommonCode.query({
+    vm.feature2 = CodeNameCommonCode.query({
         codeName: 'FEATURE_002'
     });
-    vm.feature3 = codeNameCommonCode.query({
+    vm.feature3 = CodeNameCommonCode.query({
         codeName: 'FEATURE_003'
     });
-    vm.feature4 = codeNameCommonCode.query({
+    vm.feature4 = CodeNameCommonCode.query({
         codeName: 'FEATURE_004'
     });
     /*유의사항 갱신*/
@@ -176,23 +176,23 @@ function adminMypageRegManageEditController($timeout, $state, $stateParams, $ele
         } else {
             return getClubSave().then(getSuccess).catch(getError)
         }
-    }
 
-    function getClubSave() {
-        return Club.save(vm.clun).$promise
-    }
+        function getClubSave() {
+            return Club.save(vm.club).$promise
+        }
 
-    function getClubUpdate() {
-        return Club.update(vm.clun).$promise
-    }
+        function getClubUpdate() {
+            return Club.update(vm.club).$promise
+        }
 
-    function getSuccess() {
-        return $state.go("adminRegManage", {
-            id: vm.idBelongToClub
-        })
-    }
+        function getSuccess() {
+            return $state.go("adminRegManage", {
+                id: vm.idBelongToClub
+            })
+        }
 
-    function getError() {
-        return Alert.alert1('에러발생')
+        function getError() {
+            return Alert.alert1('에러발생')
+        }
     }
 }

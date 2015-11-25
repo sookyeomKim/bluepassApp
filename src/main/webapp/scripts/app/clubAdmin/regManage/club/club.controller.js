@@ -12,8 +12,10 @@ adminMypageRegManageController.$inject = [
 function adminMypageRegManageController(PartnerClubs, Club, Alert, lodash) {
     var vm = this;
 
+    /*초기화*/
     vm.mpc = true;
     vm.clubList = [];
+    /*업체/그룹 삭제*/
     vm.deleteConfirm = deleteConfirm;
 
     /* 업체/그룹 불러오기 */

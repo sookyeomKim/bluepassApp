@@ -3,7 +3,25 @@
  */
 'use strict';
 
-angular.module("bluepassApp").directive("autoWidth", [function () {
+angular.module("bluepassApp").directive("autoWidth", autoWidth);
+
+autoWidth.$inject = [];
+
+function autoWidth() {
+    var directiva = {
+        restrict: "A",
+        scope: true,
+        link: link
+    };
+    return directiva;
+
+    function link(scope, element) {
+        element.css("width", calculateWidth() + "px");
+        $(window).resize(function () {
+            element.css("width", calculateWidth() + "px");
+        });
+    }
+
     function calculateWidth() {
         var currentWidth = window.innerWidth;
         if (currentWidth < 600) {
@@ -15,15 +33,4 @@ angular.module("bluepassApp").directive("autoWidth", [function () {
         }
         return currentWidth;
     }
-
-    return {
-        restrict: "A",
-        scope: true,
-        link: function (scope, element) {
-            element.css("width", calculateWidth() + "px");
-            $(window).resize(function () {
-                element.css("width", calculateWidth() + "px");
-            });
-        }
-    }
-}]);
+}

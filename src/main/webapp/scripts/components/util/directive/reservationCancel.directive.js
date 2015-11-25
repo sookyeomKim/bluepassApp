@@ -22,14 +22,14 @@ function reservationCancel() {
             canceled: "=",
             used: "="
         },
-        link: reservationCancelLink,
+        link: link,
         controller: reservationCancelController,
         controllerAs: "vm",
         bindToController: true
     };
     return directive;
 
-    function reservationCancelLink(sco, el) {
+    function link(sco, el) {
         sco.vm.buttonShow = false;
         sco.vm.scheduleAlert = false;
 

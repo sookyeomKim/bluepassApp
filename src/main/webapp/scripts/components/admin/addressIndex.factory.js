@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('AddressIndex', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('AddressIndex', AddressIndex);
+
+AddressIndex.$inject = ['$resource'];
+
+function AddressIndex($resource) {
     return $resource('api/addressIndexs/:id', {}, {
         'query': {
             method: 'GET',
@@ -20,4 +24,4 @@ angular.module('bluepassApp').factory('AddressIndex', ['$resource', function ($r
             method: 'PUT'
         }
     });
-}]);
+}

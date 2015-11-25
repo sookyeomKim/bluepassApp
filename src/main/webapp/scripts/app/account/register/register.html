@@ -15,6 +15,7 @@
             <form ng-show="!vm.success" name="form" role="form"
                   ng-submit="vm.getRegister()" class="margin-bottom-15">
 
+                <!--이메일(email)-->
                 <md-input-container>
                     <label for="email">이메일</label>
                     <input
@@ -30,6 +31,7 @@
                     </div>
                 </md-input-container>
 
+                <!--비밀번호(password)-->
                 <md-input-container>
                     <label for="password">비밀번호</label>
                     <input
@@ -46,6 +48,7 @@
                     </div>
                 </md-input-container>
 
+                <!--비밀번호확인(confirmPassword)-->
                 <md-input-container>
                     <label for="confirmPassword">비밀번호 확인</label>
                     <input
@@ -62,6 +65,7 @@
                     </div>
                 </md-input-container>
 
+                <!--약관동의(clauseCheck)-->
                 <div class="regCause" layout="row" layout-align="center center">
                     <md-checkbox ng-model="clauseCheck" aria-label="Checkbox 1">
                     </md-checkbox>

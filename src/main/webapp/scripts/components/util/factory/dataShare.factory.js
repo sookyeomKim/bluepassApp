@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('DataShare', ['$rootScope', function ($rootScope) {
+angular.module('bluepassApp').factory('DataShare', DataShare);
+
+DataShare.$inject = ['$rootScope'];
+
+function DataShare($rootScope) {
     var service = {};
     service.data = false;
     service.sendData = function (data) {
@@ -14,4 +18,4 @@ angular.module('bluepassApp').factory('DataShare', ['$rootScope', function ($roo
         return this.data;
     };
     return service;
-}]);
+}

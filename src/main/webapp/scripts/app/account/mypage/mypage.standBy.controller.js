@@ -5,9 +5,9 @@
 
 angular.module("bluepassApp").controller("bpStandByController", bpStandByController);
 
-bpStandByController.$inject = ['$scope', '$stateParams', '$window', 'Principal', 'lodash', 'codeNameCommonCode'];
+bpStandByController.$inject = ['$scope', '$stateParams', '$window', 'Principal', 'lodash', 'CodeNameCommonCode'];
 
-function bpStandByController($scope, $stateParams, $window, Principal, lodash, codeNameCommonCode) {
+function bpStandByController($scope, $stateParams, $window, Principal, lodash, CodeNameCommonCode) {
     var vm = this;
     vm.paymentState = Number($stateParams.paymentWay);
     vm.ticketId = null;
@@ -22,7 +22,7 @@ function bpStandByController($scope, $stateParams, $window, Principal, lodash, c
     }
 
     function getTickets(id) {
-        return codeNameCommonCode.query({codeName: 'CATEGORY_TICKET'}).$promise.then(function (response) {
+        return CodeNameCommonCode.query({codeName: 'CATEGORY_TICKET'}).$promise.then(function (response) {
             return vm.ticket = lodash.find(response, 'id', id);
         });
     }

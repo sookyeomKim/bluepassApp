@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('PartnerRequest', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('PartnerRequest', PartnerRequest);
+
+PartnerRequest.$inject = ['$resource'];
+
+function PartnerRequest($resource) {
     return $resource('api/partnerRequests/:id', {}, {
         'query': {
             method: 'GET',
@@ -20,4 +24,4 @@ angular.module('bluepassApp').factory('PartnerRequest', ['$resource', function (
             method: 'PUT'
         }
     });
-}]);
+}

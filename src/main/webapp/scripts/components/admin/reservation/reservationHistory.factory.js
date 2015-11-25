@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('ReservationHistory', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('ReservationHistory', ReservationHistory);
+
+ReservationHistory.$inject = ['$resource'];
+
+function ReservationHistory($resource) {
     return $resource('api/reservationHistorys/:id', {}, {
         'query': {
             method: 'GET',
@@ -20,11 +24,4 @@ angular.module('bluepassApp').factory('ReservationHistory', ['$resource', functi
             method: 'PUT'
         }
     });
-}]).factory('myReservationHistory', ['$resource', function ($resource) {
-    return $resource('api/myReservationHistorys', {}, {
-        'query': {
-            method: 'GET',
-            isArray: true
-        }
-    });
-}]);
+}

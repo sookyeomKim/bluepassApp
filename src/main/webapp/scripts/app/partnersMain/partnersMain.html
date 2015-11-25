@@ -79,6 +79,7 @@
         <div class="content-sm" layout="row" layout-align="center">
             <div flex="50" flex-sm="90">
                 <form name="editForm" role="form" ng-submit="vm.getPartnerRequest()">
+                    <!--업체/그룹 이름(clubName)-->
                     <div class="margin-bottom-40">
                         <label for="clubName">업체/그룹 이름</label>
                         <input type="text" class="form-control" id="clubName"
@@ -90,6 +91,8 @@
                                 입력해주세요.</p>
                         </div>
                     </div>
+
+                    <!--보내는 이(userName)-->
                     <div class="margin-bottom-40">
                         <label for="userName">보내는 이</label>
                         <input type="text" id="userName" class="form-control"
@@ -105,7 +108,7 @@
                         <div flex="100">
                             <div class="margin-bottom-20" layout="row">
                                 <div flex>
-                                    <!-- 우편번호 -->
+                                    <!-- 우편번호(zipcode) -->
                                     <label label="zipcode">우편번호</label>
                                     <input type="text" id="zipcode"
                                            class="form-control" name="zipcode"
@@ -125,7 +128,7 @@
                                         style="cursor: pointer; position: absolute; right: 0; top: -1px; z-index: 1"
                                         ng-click="vm.addressFormClose()" alt="접기 버튼"></md-content>
                             </div>
-                            <!-- 주소1 -->
+                            <!-- 주소(address1) -->
                             <div class="margin-bottom-20">
                                 <label label="address1">시/군/구</label>
                                 <input type="text" id="address1"
@@ -133,7 +136,7 @@
                                        ng-model="vm.partnerRequestPrams.address1"
                                        required readonly>
                             </div>
-                            <!-- 주소2 -->
+                            <!-- 상세주소(address2) -->
                             <div class="margin-bottom-20">
                                 <label label="address2">상세주소</label>
                                 <input type="text" id="address2"
@@ -147,6 +150,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--전화번호(phoneNumber)-->
                     <div class="margin-bottom-40">
                         <label label="phoneNumber">전화번호</label>
                         <input type="text" id="phoneNumber" class="form-control"
@@ -162,6 +166,7 @@
                                ng-show="editForm.phoneNumber.$error.pattern">전화번호가 옳지 않습니다.</p>
                         </div>
                     </div>
+                    <!--문의내용(message)-->
                     <div class="margin-bottom-40">
                         <label label="message">문의 내용</label>
 						<textarea id="message" class="form-control" name="message"
@@ -179,8 +184,6 @@
                         </button>
                     </div>
                 </form>
-                <!-- <div><youtube-video video-id="theBestVideo[0]"></youtube-video></div>
-                <div><youtube-video video-id="theBestVideo[1]"></youtube-video></div> -->
             </div>
         </div>
     </div>

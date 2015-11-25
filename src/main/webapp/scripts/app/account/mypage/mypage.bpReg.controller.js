@@ -11,14 +11,14 @@ mypageBpRegController.$inject = [
     '$state',
     '$element',
     'WizardHandler',
-    'codeNameCommonCode',
+    'CodeNameCommonCode',
     'Auth',
     'Principal',
     'angularLoad'
 ];
 
 function mypageBpRegController($scope, $timeout, $state, $element, WizardHandler,
-                               codeNameCommonCode, Auth, Principal, angularLoad) {
+                               CodeNameCommonCode, Auth, Principal, angularLoad) {
     var vm = this;
     var $element_wrap;
     $timeout(function () {
@@ -191,13 +191,13 @@ function mypageBpRegController($scope, $timeout, $state, $element, WizardHandler
      };*/
 
     function getTickets() {
-        return codeNameCommonCode.query({codeName: 'CATEGORY_TICKET'}).$promise.then(function (success) {
+        return CodeNameCommonCode.query({codeName: 'CATEGORY_TICKET'}).$promise.then(function (success) {
             return vm.ticketList = success;
         });
     }
 
     function getExsercise() {
-        return codeNameCommonCode.query({codeName: 'CATEGORY_SPORTART'}).$promise.then(function (success) {
+        return CodeNameCommonCode.query({codeName: 'CATEGORY_SPORTART'}).$promise.then(function (success) {
             return vm.exerciseList = success;
         });
     }

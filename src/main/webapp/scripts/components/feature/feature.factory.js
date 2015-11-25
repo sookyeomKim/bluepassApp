@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('Feature', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('Feature', Feature);
+
+Feature.$inject = ['$resource'];
+
+function Feature($resource) {
     return $resource('api/features/:id', {}, {
         'query': {
             method: 'GET',
@@ -20,4 +24,4 @@ angular.module('bluepassApp').factory('Feature', ['$resource', function ($resour
             method: 'PUT'
         }
     });
-}]);
+}

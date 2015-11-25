@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('CommonCode', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('CommonCode', CommonCode);
+
+CommonCode.$inject = ['$resource'];
+
+function CommonCode($resource) {
     return $resource('api/commonCodes/:id', {}, {
         'query': {
             method: 'GET',
@@ -20,13 +24,4 @@ angular.module('bluepassApp').factory('CommonCode', ['$resource', function ($res
             method: 'PUT'
         }
     });
-}]).factory('codeNameCommonCode', ['$resource', function ($resource) {
-    return $resource('api/commonCodes/:codeName/children', {
-        codeName: '@codeName'
-    }, {
-        'query': {
-            method: 'GET',
-            isArray: true
-        }
-    });
-}]);
+}

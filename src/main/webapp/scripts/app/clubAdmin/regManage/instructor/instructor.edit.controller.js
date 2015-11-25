@@ -73,23 +73,23 @@ function adminMypageRegManageInstructorEditController($stateParams, $state, Inst
         } else {
             return getInstructorSave().then(getSuccess).catch(getError)
         }
-    }
 
-    function getInstructorSave() {
-        return Instructor.save(vm.instructor).$promise
-    }
+        function getInstructorSave() {
+            return Instructor.save(vm.instructor).$promise
+        }
 
-    function getInstructorUpdate() {
-        return Instructor.update(vm.instructor).$promise
-    }
+        function getInstructorUpdate() {
+            return Instructor.update(vm.instructor).$promise
+        }
 
-    function getSuccess() {
-        return $state.go("adminRegManage.Instructor", {
-            id: vm.idBelongToClub
-        })
-    }
+        function getSuccess() {
+            return $state.go("adminRegManage.Instructor", {
+                id: vm.idBelongToClub
+            })
+        }
 
-    function getError() {
-        return Alert.alert1('에러발생')
+        function getError() {
+            return Alert.alert1('에러발생')
+        }
     }
 }

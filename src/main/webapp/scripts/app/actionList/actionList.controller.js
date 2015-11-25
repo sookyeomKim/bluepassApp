@@ -11,12 +11,12 @@ actionListController.$inject = [
     '$timeout',
     '$stateParams',
     'RandomValue',
-    'codeNameCommonCode',
+    'CodeNameCommonCode',
     'lodash',
     'authorize'
 ];
 
-function actionListController($rootScope, $scope, $timeout, $stateParams, RandomValue, codeNameCommonCode, lodash, authorize) {
+function actionListController($rootScope, $scope, $timeout, $stateParams, RandomValue, CodeNameCommonCode, lodash, authorize) {
     var vm = this;
 
     vm.getScope = getScope;
@@ -75,7 +75,7 @@ function actionListController($rootScope, $scope, $timeout, $stateParams, Random
     }
 
     function getExerciseType() {
-        return codeNameCommonCode.query({
+        return CodeNameCommonCode.query({
             codeName: 'CATEGORY_SPORTART'
         }).$promise.then(function (success) {
                 vm.exerciseTypeList = success;

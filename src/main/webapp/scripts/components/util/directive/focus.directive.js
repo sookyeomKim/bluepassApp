@@ -3,21 +3,28 @@
  */
 "use strict";
 
-angular.module("bluepassApp").directive('focusMe', ['$timeout', function ($timeout) {
-    return {
+angular.module("bluepassApp").directive('focusMe', focusMe);
+
+focusMe.$inject = ['$timeout'];
+
+function focusMe($timeout) {
+    var directive = {
         scope: {
             trigger: '=focusMe'
         },
-        link: function (scope, element) {
-            scope.$watch('trigger', function (value) {
-                if (value === true) {
-                    // console.log('trigger',value);
-                    $timeout(function () {
-                        element[0].focus();
-                        scope.trigger = false;
-                    });
-                }
-            });
-        }
+        link: link
     };
-}]);
+    return directive;
+
+    function link(scope, element) {
+        scope.$watch('trigger', function (value) {
+            if (value === true) {
+                // console.log('trigger',value);
+                $timeout(function () {
+                    element[0].focus();
+                    scope.trigger = false;
+                });
+            }
+        });
+    }
+}

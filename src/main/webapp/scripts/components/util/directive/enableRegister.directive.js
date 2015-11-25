@@ -3,56 +3,62 @@
  */
 "use strict";
 
-angular.module("bluepassApp").directive(
-    "enableRegister",
-    [
-        'ActionScheduleEnable',
-        function (ActionScheduleEnable) {
-            return {
-                restrict: "E",
-                templateUrl: "scripts/components/util/directive/template/enableRegister.tpl.html",
-                scope: {
-                    scheduleId: "@",
-                    enable: "="
-                },
-                link: function (sco, el) {
-                    /* 활성화버튼의 상태를 불러온다 */
-                    var registerPrams = {};
-                    sco.registerFn = function () {
-                        if (sco.enable === false) {
-                            registerPrams = {
-                                id: sco.scheduleId,
-                                enable: true
-                            };
-                            var scheduleEnable = ActionScheduleEnable.enable(registerPrams);
-                            scheduleEnable.$promise.then(function () {
-                                sco.enable = true;
-                            }, function () {
-                                alert("에러발생");
-                            });
-                        } else {
-                            registerPrams = {
-                                id: sco.scheduleId,
-                                enable: false
-                            };
-                            var scheduleNotEnable = ActionScheduleEnable.enable(registerPrams);
-                            scheduleNotEnable.$promise.then(function () {
-                                sco.enable = false;
-                            }, function (error) {
-                                if (error.data.message) {
-                                    alert(error.data.message);
-                                } else {
-                                    alert("에러발생");
-                                }
-                            });
-                        }
-                    };
+angular.module("bluepassApp").directive("enableRegister", enableRegister);
 
-                    sco.$watch("enable", function (newVal) {
-                        sco.buttonText = newVal ? "종료" : "시작";
-                        newVal ? el.find(".enableButton").addClass('btn-material-blue-A200') : el.find(
-                            ".enableButton").removeClass('btn-material-blue-A200')
-                    });
-                }
+enableRegister.$inject = ['Alert'];
+
+function enableRegister(Alert) {
+    var directive = {
+        restrict: "E",
+        templateUrl: "scripts/components/util/directive/template/enableRegister.tpl.html",
+        scope: {
+            scheduleId: "@",
+            enable: "="
+        },
+        link: link,
+        controller: enableRegisterController,
+        controllerAs: 'vm',
+        bindToController: true
+    };
+    return directive;
+
+    function link(sco, el) {
+        sco.vm.registerFn = function () {
+            if (sco.vm.enable === false) {
+                sco.vm.getActionScheduleEnable().$promise.then(function () {
+                    sco.vm.enable = true;
+                }).catch(function () {
+                    return Alert.alert1('에러발생')
+                })
+            } else {
+                sco.vm.getActionScheduleEnable().$promise.then(function () {
+                    sco.vm.enable = false;
+                }).catch(function () {
+                    return Alert.alert1('에러발생')
+                })
             }
-        }]);
+        };
+
+        sco.$watch("vm.enable", function (newVal) {
+            sco.vm.buttonText = newVal ? "종료" : "시작";
+            newVal ? el.find(".enableButton").addClass('btn-material-blue-A200') : el.find(
+                ".enableButton").removeClass('btn-material-blue-A200')
+        });
+    }
+}
+
+enableRegisterController.$inject = ['ActionScheduleEnable'];
+
+function enableRegisterController() {
+    var vm = this;
+    var registerPrams = {};
+
+    vm.getActionScheduleEnable = getActionScheduleEnable;
+
+    function getActionScheduleEnable() {
+        registerPrams.id = vm.scheduleId;
+        registerPrams.enable = vm.enable === false;
+
+        return ActionScheduleEnable.enable(registerPrams).$promise
+    }
+}

@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('ClassSchedule', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('ClassSchedule', ClassSchedule);
+
+ClassSchedule.$inject = ['$resource'];
+
+function ClassSchedule($resource) {
     return $resource('api/classSchedules/:id', {}, {
         'query': {
             method: 'GET',
@@ -24,20 +28,4 @@ angular.module('bluepassApp').factory('ClassSchedule', ['$resource', function ($
             method: 'PUT'
         }
     });
-}]).factory('bookedClassSchedule', ['$resource', function ($resource) {
-    return $resource('api/classSchedules/:id/reservations', {
-        id: "@id"
-    }, {
-        'query': {
-            method: 'GET',
-            isArray: true
-        }
-    });
-}]).factory('ClassScheduleCount', ['$resource', function ($resource) {
-    return $resource('api/classSchedules/count', {}, {
-        'query': {
-            method: 'GET',
-            isArray: false
-        }
-    });
-}]);
+}

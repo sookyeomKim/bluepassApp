@@ -3,11 +3,15 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('Users', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('Users', Users);
+
+Users.$inject = ['$resource'];
+
+function Users($resource) {
     return $resource('api/users/', {}, {
         'query': {
             method: 'GET',
             isArray: true
         }
     });
-}]);
+}

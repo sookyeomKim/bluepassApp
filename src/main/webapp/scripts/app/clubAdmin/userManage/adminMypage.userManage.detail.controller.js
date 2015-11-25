@@ -6,24 +6,21 @@
 angular.module('bluepassApp').controller('adminMypageUserManageDetailController', adminMypageUserManageDetailController);
 
 adminMypageUserManageDetailController.$inject = [
-    '$log',
     '$scope',
-    '$timeout',
     '$stateParams',
     'TodayDate',
-    'legendInit',
+    'LegendInit',
     'ActionByClub',
-    'Club',
     'ClassSchedule',
-    'bookedClassSchedule',
+    'BookedClassSchedule',
     '$filter',
     'lodash',
     'CustomerByClub',
     'CustomersByAction'
 ];
 
-function adminMypageUserManageDetailController($log, $scope, $timeout, $stateParams, TodayDate, legendInit, ActionByClub, Club,
-                                               ClassSchedule, bookedClassSchedule, $filter, lodash, CustomerByClub, CustomersByAction) {
+function adminMypageUserManageDetailController($scope, $stateParams, TodayDate, LegendInit, ActionByClub,
+                                               ClassSchedule, BookedClassSchedule, $filter, lodash, CustomerByClub, CustomersByAction) {
     var vm = this;
 
     vm.mpc = true;
@@ -33,7 +30,7 @@ function adminMypageUserManageDetailController($log, $scope, $timeout, $statePar
     vm.today = "오늘은 \"" + TodayDate.t_year() + "/" + TodayDate.t_month() + "/" + TodayDate.t_date()
         + "/" + TodayDate.t_daylabel(TodayDate.t_day()) + "\" 입니다.";
     /* 요일 탭 */
-    vm.dayArry = legendInit.legendinit(7);
+    vm.dayArry = LegendInit.date(7);
     vm.navigationState = 0;
     vm.selected_day = selected_day;
     /* 예약인원목록 */
@@ -171,7 +168,7 @@ function adminMypageUserManageDetailController($log, $scope, $timeout, $statePar
 
     function bookedUsers(id) {
         vm.bookedUserList = [];
-        return bookedClassSchedule.query({id: id}).$promise.then(function (reponse) {
+        return BookedClassSchedule.query({id: id}).$promise.then(function (reponse) {
             vm.bookedUserList = reponse;
             vm.usedCount = lodash.size(lodash.filter(reponse, 'used', true));
             vm.notUsedCount = lodash.size(lodash.filter(reponse, 'used', false));

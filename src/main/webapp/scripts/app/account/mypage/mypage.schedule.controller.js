@@ -5,9 +5,9 @@
 
 angular.module('bluepassApp').controller('mypageScheduleController', mypageScheduleController);
 
-mypageScheduleController.$inject = ['$scope', '$timeout', 'lodash', 'ReservationOfUser', 'myReservationHistory', 'codeNameCommonCode'];
+mypageScheduleController.$inject = ['$scope', '$timeout', 'lodash', 'ReservationOfUser', 'ReservationHistoryByUser', 'CodeNameCommonCode'];
 
-function mypageScheduleController($scope, $timeout, lodash, ReservationOfUser, myReservationHistory, codeNameCommonCode) {
+function mypageScheduleController($scope, $timeout, lodash, ReservationOfUser, ReservationHistoryByUser, CodeNameCommonCode) {
     var vm = this;
 
     vm.account = {};
@@ -30,7 +30,7 @@ function mypageScheduleController($scope, $timeout, lodash, ReservationOfUser, m
     }
 
     function getTickets() {
-        return codeNameCommonCode.query({codeName: 'CATEGORY_TICKET'}).$promise.then(function (success) {
+        return CodeNameCommonCode.query({codeName: 'CATEGORY_TICKET'}).$promise.then(function (success) {
             return vm.ticket = lodash.find(success, 'id', vm.ticketId);
         });
     }
@@ -39,11 +39,11 @@ function mypageScheduleController($scope, $timeout, lodash, ReservationOfUser, m
         if (n === 0) {// 현재예약목록
             getReservationOfUser();
         } else if (n === 1) {// 취소한목록
-            getMyReservationHistory({canceled: true})
+            getReservationHistoryByUser({canceled: true})
         } else if (n === 2) {// 출석체크된목록
-            getMyReservationHistory({used: true})
+            getReservationHistoryByUser({used: true})
         } else if (n === 3) {// 결석한목록
-            getMyReservationHistory({used: false})
+            getReservationHistoryByUser({used: false})
         }
     }
 
@@ -62,8 +62,8 @@ function mypageScheduleController($scope, $timeout, lodash, ReservationOfUser, m
         })
     }
 
-    function getMyReservationHistory(prams) {
-        return myReservationHistory.query(prams).$promise.then(function (success) {
+    function getReservationHistoryByUser(prams) {
+        return ReservationHistoryByUser.query(prams).$promise.then(function (success) {
             vm.myScheduleList = success;
         }).then(function () {
             $timeout(function () {

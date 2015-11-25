@@ -10,19 +10,19 @@ actionListTableTypeController.$inject = [
     '$timeout',
     '$filter',
     'ClassSchedule',
-    'legendInit',
+    'LegendInit',
     'ParseLinks',
     'authorize'
 ];
 
-function actionListTableTypeController($scope, $timeout, $filter, ClassSchedule, legendInit, ParseLinks, authorize) {
+function actionListTableTypeController($scope, $timeout, $filter, ClassSchedule, LegendInit, ParseLinks, authorize) {
     var vm = this;
 
     /* 유저정보 불러오기 */
     vm.account = authorize;
     /* 레전드 세팅 */
     vm.navigationState = 0;
-    vm.dayArry = legendInit.legendinit(7);
+    vm.dayArry = LegendInit.date(7);
     vm.selected_day = selected_day;
     vm.mpc = true;
     vm.error = false;

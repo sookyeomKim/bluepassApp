@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('Action', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('Action', Action);
+
+Action.$inject = ['$resource'];
+
+function Action($resource) {
     return $resource('api/actions/:id', {}, {
         'query': {
             method: 'GET',
@@ -23,33 +27,4 @@ angular.module('bluepassApp').factory('Action', ['$resource', function ($resourc
             method: 'DELETE'
         }
     });
-}]).factory('ActionByClub', ['$resource', function ($resource) {
-    return $resource('/api/clubs/:id/actions', {
-        id: '@id'
-    }, {
-        'query': {
-            method: 'GET',
-            isArray: true
-        }
-    });
-}]).factory('DeleteImgByAction', ['$resource', function ($resource) {
-    return $resource('/api/actions/:id/image/:imageId', {
-        id: '@id'
-    }, {
-        'imgDelete': {
-            method: 'delete',
-            params: {
-                imageId: '@imageId'
-            }
-        }
-    });
-}]).factory('CustomersByAction', function ($resource) {
-    return $resource('/api/actions/:id/customers', {
-        id: "@id"
-    }, {
-        'query': {
-            method: 'GET',
-            isArray: true
-        }
-    });
-});
+}

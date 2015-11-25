@@ -25,7 +25,7 @@ function reservationRegister(lodash) {
             minute: "@",
             reservationClose: "@"
         },
-        link: reservationRegisterLink,
+        link: link,
         controller: reservationRegisterController,
         controllerAs: "vm",
         bindToController: true
@@ -33,7 +33,7 @@ function reservationRegister(lodash) {
 
     return directive;
 
-    function reservationRegisterLink(sco, el) {
+    function link(sco, el) {
         sco.vm.buttonShow = false;
         sco.vm.registerStatus = false;
 

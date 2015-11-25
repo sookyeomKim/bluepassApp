@@ -5,9 +5,9 @@
 
 angular.module('bluepassApp').controller('settingsDetailInfoController', settingsDetailInfoController);
 
-settingsDetailInfoController.$inject = ['$scope', '$timeout', '$element', 'Alert', 'Auth', 'Principal', 'codeNameCommonCode', 'angularLoad', 'lodash'];
+settingsDetailInfoController.$inject = ['$scope', '$timeout', '$element', 'Alert', 'Auth', 'Principal', 'CodeNameCommonCode', 'angularLoad', 'lodash'];
 
-function settingsDetailInfoController($scope, $timeout, $element, Alert, Auth, Principal, codeNameCommonCode, angularLoad, lodash) {
+function settingsDetailInfoController($scope, $timeout, $element, Alert, Auth, Principal, CodeNameCommonCode, angularLoad, lodash) {
     /* 주소입력창을 위한 dom초기화 */
     var $element_wrap;
     $timeout(function () {
@@ -40,7 +40,7 @@ function settingsDetailInfoController($scope, $timeout, $element, Alert, Auth, P
 
     /* 선호운동 */
     function getExerciseType() {
-        return codeNameCommonCode.query({
+        return CodeNameCommonCode.query({
             codeName: 'CATEGORY_SPORTART'
         }).$promise.then(function (response) {
                 vm.commonCodesList = response;

@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('TicketHistory', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('TicketHistory', TicketHistory);
+
+TicketHistory.$inject = ['$resource'];
+
+function TicketHistory($resource) {
     return $resource('api/ticketHistory/:id', {}, {
         'query': {
             method: 'GET',
@@ -26,4 +30,4 @@ angular.module('bluepassApp').factory('TicketHistory', ['$resource', function ($
             method: 'PUT'
         }
     });
-}]);
+}

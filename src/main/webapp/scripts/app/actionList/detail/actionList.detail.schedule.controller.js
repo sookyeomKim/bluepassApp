@@ -9,19 +9,19 @@ actionListDetailScheduleController.$inject = [
     '$scope',
     '$stateParams',
     '$timeout',
-    'legendInit',
+    'LegendInit',
     'ClassSchedule',
     '$filter',
     'authorize'
 ];
 
-function actionListDetailScheduleController($scope, $stateParams, $timeout, legendInit, ClassSchedule, $filter, authorize) {
+function actionListDetailScheduleController($scope, $stateParams, $timeout, LegendInit, ClassSchedule, $filter, authorize) {
     var vm = this;
 
     /*계정정보*/
     vm.account = authorize;
     /*요일 초기화 */
-    vm.dayArry = legendInit.legendinit(7);
+    vm.dayArry = LegendInit.date(7);
     vm.navigationState = 0;
     vm.selected_day = selected_day;
 

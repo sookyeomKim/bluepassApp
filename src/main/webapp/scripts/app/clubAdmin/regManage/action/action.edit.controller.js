@@ -6,21 +6,17 @@
 angular.module('bluepassApp').controller('adminMypageRegManageActionEditController', adminMypageRegManageActionEditController);
 
 adminMypageRegManageActionEditController.$inject = [
-    '$scope',
-    '$log',
     '$timeout',
     '$stateParams',
     '$state',
     'Action',
-    'ActionByClub',
     'FileUploader',
-    'codeNameCommonCode',
-    'DeleteImgByAction',
+    'CodeNameCommonCode',
     'Alert'
 ];
 
-function adminMypageRegManageActionEditController($scope, $log, $timeout, $stateParams, $state, Action, ActionByClub, FileUploader,
-                                                  codeNameCommonCode, DeleteImgByAction, Alert) {
+function adminMypageRegManageActionEditController($timeout, $stateParams, $state, Action, FileUploader,
+                                                  CodeNameCommonCode, Alert) {
     var vm = this;
     /* 클럽ID */
     vm.idBelongToClub = $stateParams.id;
@@ -81,7 +77,7 @@ function adminMypageRegManageActionEditController($scope, $log, $timeout, $state
     }
 
     function getExserciseType() {
-        return codeNameCommonCode.query({codeName: 'CATEGORY_SPORTART'}).$promise.then(function (reponse) {
+        return CodeNameCommonCode.query({codeName: 'CATEGORY_SPORTART'}).$promise.then(function (reponse) {
             vm.exserciseTypeList = reponse;
         });
     }
@@ -124,25 +120,26 @@ function adminMypageRegManageActionEditController($scope, $log, $timeout, $state
         } else {
             return getActionSave().then(getSuccess).catch(getError)
         }
+
+        function getActionSave() {
+            return Action.save(vm.action).$promise
+        }
+
+        function getActionUpdate() {
+            return Action.update(vm.action).$promise
+        }
+
+        function getSuccess() {
+            return $state.go("adminRegManage.Action", {
+                id: vm.idBelongToClub
+            })
+        }
+
+        function getError() {
+            return Alert.alert1('에러발생')
+        }
     }
 
-    function getActionSave() {
-        return Action.save(vm.action).$promise
-    }
-
-    function getActionUpdate() {
-        return Action.update(vm.action).$promise
-    }
-
-    function getSuccess() {
-        return $state.go("adminRegManage.Action", {
-            id: vm.idBelongToClub
-        })
-    }
-
-    function getError() {
-        return Alert.alert1('에러발생')
-    }
 
     $timeout(function () {
         jQuery('#saveActionModal').on('hide.bs.modal', function () {

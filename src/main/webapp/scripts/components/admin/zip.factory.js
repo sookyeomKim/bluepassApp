@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('Zip', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('Zip', Zip);
+
+Zip.$inject = ['$resource'];
+
+function Zip($resource) {
     return $resource('api/zips/:id', {}, {
         'query': {
             method: 'GET',
@@ -20,4 +24,4 @@ angular.module('bluepassApp').factory('Zip', ['$resource', function ($resource) 
             method: 'PUT'
         }
     });
-}]);
+}

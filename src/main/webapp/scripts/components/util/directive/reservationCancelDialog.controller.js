@@ -25,6 +25,4 @@ function reservationCancelDialogController($mdDialog, ReservationCancel, reserva
                 alert("에러발생")
             })
     }
-
-
 }

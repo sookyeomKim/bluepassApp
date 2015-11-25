@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('Instructor', ['$resource', function ($resource) {
+angular.module('bluepassApp').factory('Instructor',Instructor);
+
+Instructor.$inject=['$resource'];
+
+function Instructor($resource) {
     return $resource('api/instructors/:id', {}, {
         'query': {
             method: 'GET',
@@ -23,22 +27,4 @@ angular.module('bluepassApp').factory('Instructor', ['$resource', function ($res
             method: 'DELETE'
         }
     });
-}]).factory('InstructorByClub', ['$resource', function ($resource) {
-    return $resource('/api/clubs/:id/instructors', {
-        id: '@id'
-    }, {
-        'query': {
-            method: 'GET',
-            isArray: true
-        }
-    });
-}]).factory('InstructorsByAction', ['$resource', function ($resource) {
-    return $resource('/api/actions/:id/instructors', {
-        id: '@id'
-    }, {
-        'query': {
-            method: 'GET',
-            isArray: true
-        }
-    });
-}]);
+}

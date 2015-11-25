@@ -3,37 +3,43 @@
  */
 "use strict";
 
-angular.module("bluepassApp").directive("attendanceCheck", ["ReservationAttend", function (ReservationAttend) {
-    return {
+angular.module("bluepassApp").directive("attendanceCheck", attendanceCheck);
+
+attendanceCheck.$inject = ["ReservationAttend", "Alert"];
+
+function attendanceCheck(ReservationAttend, Alert) {
+    var directive = {
         restrict: "E",
         templateUrl: "scripts/components/util/directive/template/attendanceCheck.tpl.html",
         scope: {
             reservationId: "@",
             used: "="
         },
-        link: function (sco) {
-            /* console.log(sco.usedCount) */
-            sco.attendancePrams = {
-                id: sco.reservationId,
-                checkCode: null
-            };
-            sco.attendanceFn = function () {
-                if (sco.attendancePrams.checkCode) {
-                    var attendanceSave = ReservationAttend.check(sco.attendancePrams);
-                    attendanceSave.$promise.then(function () {
-                        alert("출첵완료");
-                        sco.used = true;
-                    }, function () {
-                        alert("에러발생");
-                    })
-                } else {
-                    alert("체크코드를 입력해주세요.");
-                }
-            };
+        link: link
+    };
+    return directive;
 
-            sco.$watch("used", function (newVal) {
-                sco.checkButton = newVal
-            })
-        }
+    function link(sco) {
+        /* console.log(sco.usedCount) */
+        sco.attendancePrams = {
+            id: sco.reservationId,
+            checkCode: null
+        };
+        sco.attendanceFn = function () {
+            if (sco.attendancePrams.checkCode) {
+                return ReservationAttend.check(sco.attendancePrams).$promise.then(function () {
+                    sco.used = true;
+                    return Alert.alert1('출석체크 완료');
+                }).catch(function () {
+                    return Alert.alert1('에러발생');
+                })
+            } else {
+                return Alert.alert1('체크코드를 입력해주세요.');
+            }
+        };
+
+        sco.$watch("used", function (newVal) {
+            sco.checkButton = newVal
+        })
     }
-}]);
+}
