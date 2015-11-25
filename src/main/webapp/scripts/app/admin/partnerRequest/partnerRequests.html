@@ -18,7 +18,7 @@
                 <td>{{partnerRequest.phoneNumber}}</td>
                 <td>
                     <div layout="row" layout-align="center">
-                        <change-type change-type="VENDOR" model="{{partnerRequest}}"></change-type>
+                        <vendor-register model="{{partnerRequest}}"></vendor-register>
                         <md-button type="button" ng-click="vm.deleteConfirm($event,partnerRequest.id)"
                                    class="btn-danger">삭제
                         </md-button>

@@ -18,14 +18,14 @@ function userRegister() {
             ticketId: "@",
             activated: "="
         },
-        link: userRegisterLink,
+        link: link,
         controller: userRegisterController,
         controllerAs: 'vm',
         bindToController: true
     };
     return directive;
 
-    function userRegisterLink(sco) {
+    function link(sco) {
         sco.$watch('vm.activated', function (newVal) {
             sco.vm.userStateText = newVal ? '회원취소' : '회원등록';
         });

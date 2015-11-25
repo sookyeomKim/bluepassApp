@@ -34,6 +34,7 @@ function reservationRegister(lodash) {
     return directive;
 
     function link(sco, el) {
+        sco.vm.messages = [];
         sco.vm.buttonShow = false;
         sco.vm.registerStatus = false;
 
@@ -45,7 +46,6 @@ function reservationRegister(lodash) {
                 return chr === 'ROLE_REGISTER' || chr === 'ROLE_ADMIN';
             });
 
-            sco.vm.messages = [];
             if (stateConfirm === -1) {
                 if (sco.vm.userStatus === "등록요청") {
                     sco.vm.registerStatus = true
@@ -72,13 +72,8 @@ function reservationRegister(lodash) {
             jQuery(this).css("background-color", "inherit");
         });
 
-        if (sco.vm.timeRemaining <= 0) {
-            sco.vm.buttonLock = true;
-            sco.vm.buttonText = true;
-        } else {
-            sco.vm.buttonLock = false;
-            sco.vm.buttonText = false;
-        }
+        sco.vm.buttonLock = sco.vm.timeRemaining <= 0;
+        sco.vm.buttonText = sco.vm.timeRemaining <= 0;
 
         sco.vm.callback = function () {
             sco.vm.buttonLock = true;
@@ -110,6 +105,7 @@ function reservationRegisterController($scope, ReservationStatus, $timeout, $sta
 
     /* 남은 시간 계산 */
     getTimeRemaining();
+
     function getTimeRemaining() {
         var date1 = new Date(vm.year, vm.month - 1, vm.date, vm.hour,
             vm.minute, 0).getTime();
@@ -130,14 +126,12 @@ function reservationRegisterController($scope, ReservationStatus, $timeout, $sta
                 vm.timeRemaining = ((date1 - date2) / 1000) - toMidnight;
                 break;
         }
-
         if (vm.timeRemaining <= 0) {
             vm.timeRemaining = 0;
             $timeout(function () {
                 $scope.$broadcast('timer-stop');
             }, 0)
         }
-
     }
 
     function getReservationStatus() {

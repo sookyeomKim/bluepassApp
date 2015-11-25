@@ -3,21 +3,20 @@
  */
 'use strict';
 
-angular.module("bluepassApp").directive("changeType", changeType);
+angular.module("bluepassApp").directive("vendorRegister", vendorRegister);
 
-changeType.$inject = ['Alert'];
+vendorRegister.$inject = ['Alert'];
 
-function changeType(Alert) {
+function vendorRegister(Alert) {
     var directive = {
         restrict: "E",
         scope: {
-            changeType: "@",
             model: "@"
         },
         replace: false,
-        templateUrl: "scripts/components/util/directive/template/changeType.html",
+        templateUrl: "scripts/components/util/directive/template/vendorRegister.html",
         link: link,
-        controller: changeTypeController,
+        controller: vendorRegisterController,
         controllerAs: 'vm',
         bindToController: true
     };
@@ -32,7 +31,7 @@ function changeType(Alert) {
             sco.vm.buttonText = sco.vm.initialValue.afterChangeBtText;
         }
 
-        sco.vm.changeTypeFn = function () {
+        sco.vm.vendorRegisterFn = function () {
             if (sco.vm.stateConfirm === -1) {
                 sco.vm.getAccountChangeType().then(function () {
                     el.find("button").addClass(sco.vm.initialValue.clazz);
@@ -54,11 +53,11 @@ function changeType(Alert) {
     }
 }
 
-changeTypeController.$inject = ['AccountChangeType', 'lodash'];
+vendorRegisterController.$inject = ['AccountChangeType', 'lodash'];
 
-function changeTypeController(AccountChangeType, lodash) {
+function vendorRegisterController(AccountChangeType, lodash) {
     var vm = this;
-    var changeTypeParams = {};
+    var params = {};
     var parseModel;
     var userId;
     var authoritiesArry;
@@ -67,25 +66,14 @@ function changeTypeController(AccountChangeType, lodash) {
     userId = parseModel.user.id;
     authoritiesArry = parseModel.user.authorities;
 
-    vm.initialValue = {};
+    vm.initialValue = {
+        beforeChangeBtText: "제휴사회원전환",
+        afterChangeBtText: "제휴사회원취소",
+        type: "ROLE_VENDOR",
+        clazz: "btn-material-blue-A200"
+    };
     vm.stateConfirm = stateConfirm();
     vm.getAccountChangeType = getAccountChangeType;
-
-    if (vm.changeType === "VENDOR") {
-        vm.initialValue = {
-            beforeChangeBtText: "제휴사회원전환",
-            afterChangeBtText: "제휴사회원취소",
-            type: "ROLE_VENDOR",
-            clazz: "btn-material-blue-A200"
-        }
-    } else if (vm.changeType === "REGISTER") {
-        vm.initialValue = {
-            beforeChangeBtText: "회원전환",
-            afterChangeBtText: "회원취소",
-            type: "ROLE_REGISTER",
-            clazz: "btn-material-blue-A200"
-        }
-    }
 
     function stateConfirm() {
         return lodash.findIndex(authoritiesArry, function (chr) {
@@ -95,17 +83,17 @@ function changeTypeController(AccountChangeType, lodash) {
 
     function getAccountChangeType() {
         if (vm.stateConfirm === -1) {
-            changeTypeParams = {
+            params = {
                 userId: userId,
                 requestType: vm.initialValue.type
             };
         } else {
-            changeTypeParams = {
+            params = {
                 userId: userId,
                 requestType: vm.initialValue.type,
                 remove: true
             };
         }
-        return AccountChangeType.change(changeTypeParams).$promise
+        return AccountChangeType.change(params).$promise
     }
 }
