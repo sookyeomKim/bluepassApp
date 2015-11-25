@@ -3,18 +3,22 @@
  */
 'use strict';
 
-angular.module('bluepassApp').controller('adminMypageRegManageDetailController',
-    ['$scope', '$stateParams', 'Club', function ($scope, $stateParams, Club) {
-        /* 클럽 정보 콜 */
-        $scope.load = function (id) {
-            Club.get({
-                id: id
-            }, function (result) {
-                $scope.club = result;
-            });
-        };
-        $scope.load($stateParams.id);
+angular.module('bluepassApp').controller('adminMypageRegManageDetailController', adminMypageRegManageDetailController);
 
-        /* 탭 */
-        $scope.tabSelected = 1;
-    }]);
+adminMypageRegManageDetailController.$inject = ['$stateParams', 'Club'];
+
+function adminMypageRegManageDetailController($stateParams, Club) {
+    var vm = this;
+
+    /* 탭 */
+    vm.tabSelected = 1;
+
+    /* 클럽 정보 불러오기 */
+    getClubGet($stateParams.id);
+
+    function getClubGet(id) {
+        return Club.get({id: id}).$promise.then(function (response) {
+            return vm.club = response;
+        })
+    }
+}

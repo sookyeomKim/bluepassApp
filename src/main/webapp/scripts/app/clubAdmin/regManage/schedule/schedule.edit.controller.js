@@ -51,14 +51,16 @@ function scheduleEditController($state, $filter, $mdDialog, ActionSchedule,
     };
     vm.openCalendar = openCalendar;
     vm.cancel = cancel;
-    vm.register = register;
+    vm.getActionSchedule = getActionSchedule;
 
-    getInstructor();
+    /*강사정보불러오기*/
+    getInstructorQuery();
+    /*스케줄정보불러오기*/
     if (schedule) {
         getSchedule(schedule.id);
     }
 
-    function getInstructor() {
+    function getInstructorQuery() {
         return InstructorByClub.query({id: idBelongToClub}).$promise.then(function (response) {
             vm.instructors = response;
         })
@@ -116,7 +118,7 @@ function scheduleEditController($state, $filter, $mdDialog, ActionSchedule,
         $mdDialog.cancel();
     }
 
-    function register() {
+    function getActionSchedule() {
         vm.actionSchedule.day = lodash(vm.days).toString();
         vm.actionSchedule.startTime = $filter("date")(vm.actionSchedule.startTime,
             "yyyy-MM-ddTHH:mm:00.000Z", "KST");
@@ -127,18 +129,18 @@ function scheduleEditController($state, $filter, $mdDialog, ActionSchedule,
         vm.actionSchedule.endDate = $filter("date")(vm.actionSchedule.endDate,
             "yyyy-MM-ddT00:00:00.000Z", "KST");
         if (schedule) {
-            updateRegister();
+            getActionScheduleUpdate().then(getSuccess).catch(getError);
         } else {
-            saveRegister();
+            getActionScheduleSave().then(getSuccess).catch(getError);
         }
     }
 
-    function updateRegister() {
-        return ActionSchedule.update(vm.actionSchedule).$promise.then(getSuccess).catch(getError);
+    function getActionScheduleUpdate() {
+        return ActionSchedule.update(vm.actionSchedule).$promise
     }
 
-    function saveRegister() {
-        return ActionSchedule.save(vm.actionSchedule).$promise.then(getSuccess).catch(getError);
+    function getActionScheduleSave() {
+        return ActionSchedule.save(vm.actionSchedule).$promise
     }
 
     function getSuccess() {

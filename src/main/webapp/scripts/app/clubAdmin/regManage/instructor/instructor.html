@@ -1,20 +1,20 @@
 <!-- 강사 -->
 <div class="margin-bottom-10"></div>
 <div layout="row">
-    <div flex ng-show="instructorList.length === 0">
+    <div flex ng-show="vm.instructorList.length === 0">
         <div layout="row" layout-align="center center">
             <h2>강사를 등록하세요.</h2>
             <md-button class="md-mini md-raised"
-                       ui-sref="adminRegManage.Instructor.edit({id:idBelongToClub})">등록하기
+                       ui-sref="adminRegManage.Instructor.edit({id:vm.idBelongToClub})">등록하기
             </md-button>
         </div>
     </div>
 
-    <div flex ng-show="instructorList.length > 0">
+    <div flex ng-show="vm.instructorList.length > 0">
         <div layout="row" layout-align="space-between center">
-            <h2>{{club.name}}의 강사 목록</h2>
+            <h2>강사 목록</h2>
             <md-button class="md-mini md-raised"
-                       ui-sref="adminRegManage.Instructor.edit({id:idBelongToClub})">추가등록
+                       ui-sref="adminRegManage.Instructor.edit({id:vm.idBelongToClub})">추가등록
             </md-button>
         </div>
         <div class="margin-bottom-10"></div>
@@ -22,7 +22,7 @@
             <div class="card-innercontainer-outer">
                 <div class="card-innercontainer-inner">
                     <div class="instructorCard panel panel-default"
-                         ng-repeat="instructor in instructorList">
+                         ng-repeat="instructor in vm.instructorList">
                         <div class="introduceImgWrap">
                             <img ng-src="/image/picture/{{instructor.photo.id}}"
                                  alt="instructor img">
@@ -31,7 +31,7 @@
                             <div layout="row" layout-align="end center">
                                 <md-button class="md-fab md-mini btn-material-indigo-700"
                                            style="margin-top:-3.5rem; margin-right:-1.25rem"
-                                           ng-click="showIntroduce($event,instructor.id)"
+                                           ng-click="vm.showIntroduce(instructor.id)"
                                            aria-label="edit button">소개
                                 </md-button>
                             </div>
@@ -40,12 +40,12 @@
                         <div class="panel-footer">
                             <div layout="row" layout-align="space-around center">
                                 <md-button class="md-icon-button"
-                                           ui-sref="adminRegManage.Instructor.edit({id:idBelongToClub,insId:instructor.id})"
+                                           ui-sref="adminRegManage.Instructor.edit({id:vm.idBelongToClub,insId:instructor.id})"
                                            aria-label="edit button">
                                     수정
                                 </md-button>
                                 <md-button class="md-icon-button"
-                                           ng-click="deleteConfirm($event,instructor.id)" aria-label="delete button">
+                                           ng-click="vm.deleteConfirm($event,instructor.id)" aria-label="delete button">
                                     삭제
                                 </md-button>
                             </div>

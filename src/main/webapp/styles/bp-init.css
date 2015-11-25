@@ -3467,6 +3467,10 @@ a, a:FOCUS, a:HOVER {
     cursor: pointer;
 }
 
+ul{
+    padding-left: 0;
+}
+
 ul li {
     list-style: none;
 }

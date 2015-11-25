@@ -20,8 +20,6 @@ function actionListController($rootScope, $scope, $timeout, $stateParams, Random
     var vm = this;
 
     vm.getScope = getScope;
-    /* 유저정보 불러오기 */
-    vm.account = authorize;
     vm.stateConfirmRegister = lodash.findIndex(authorize.roles, function (chr) {
         return chr === 'ROLE_REGISTER'
     });

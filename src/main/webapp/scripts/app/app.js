@@ -42,7 +42,7 @@ appRun.$inject = [
     'DTDefaultOptions'
 ];
 
-function appRun($rootScope, $location, $window,  $state, Auth, Principal,
+function appRun($rootScope, $location, $window, $state, Auth, Principal,
                 $mdBottomSheet, AuthServerProvider, DTDefaultOptions) {
     /* 데이터테이블 세팅 */
     DTDefaultOptions.setLanguage({
@@ -93,6 +93,7 @@ function appRun($rootScope, $location, $window,  $state, Auth, Principal,
             }
         }
 
+        /*푸터 닫기*/
         $mdBottomSheet.cancel();
     });
 
@@ -100,9 +101,7 @@ function appRun($rootScope, $location, $window,  $state, Auth, Principal,
         $rootScope.previousStateName = fromState.name;
         $rootScope.previousStateParams = fromParams;
         /* 구글 애널리틱스 */
-        if (!$window.ga) {
-
-        } else {
+        if ($window.ga) {
             $window.ga('send', 'pageview', {
                 page: $location.path()
             });
@@ -115,22 +114,22 @@ function appRun($rootScope, $location, $window,  $state, Auth, Principal,
             reload: true
         });
         /*if ($rootScope.previousStateName === 'activate'
-            || $state.get($rootScope.previousStateName) === null) {
-            $state.go('actionListImgtype', {}, {
-                reload: true
-            });
-        } else {
-            if ($rootScope.previousStateName === "finishReset"
-                || $rootScope.previousStateName === "requestReset") {
-                $state.go("actionListImgtype", {}, {
-                    reload: true
-                });
-            } else {
-                $state.go($rootScope.previousStateName, $rootScope.previousStateParams, {
-                    reload: true
-                });
-            }
-        }*/
+         || $state.get($rootScope.previousStateName) === null) {
+         $state.go('actionListImgtype', {}, {
+         reload: true
+         });
+         } else {
+         if ($rootScope.previousStateName === "finishReset"
+         || $rootScope.previousStateName === "requestReset") {
+         $state.go("actionListImgtype", {}, {
+         reload: true
+         });
+         } else {
+         $state.go($rootScope.previousStateName, $rootScope.previousStateParams, {
+         reload: true
+         });
+         }
+         }*/
     };
 }
 
@@ -142,7 +141,7 @@ globalController.$inject = [
     'tmhDynamicLocale'
 ];
 
-function globalController( $document, $mdBottomSheet, tmhDynamicLocale) {
+function globalController($document, $mdBottomSheet, tmhDynamicLocale) {
     var vm = this;
 
     /* 팝업창 */
@@ -171,6 +170,6 @@ function globalController( $document, $mdBottomSheet, tmhDynamicLocale) {
         })
     };
 
-    /*지역화*/
+    /*지역화 세팅*/
     tmhDynamicLocale.set("ko-kr")
 }

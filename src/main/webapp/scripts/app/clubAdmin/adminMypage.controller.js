@@ -3,15 +3,15 @@
  */
 'use strict';
 
-angular.module('bluepassApp').controller('adminMypageController',
-    ['$scope', 'Principal', 'lodash', function ($scope, Principal, lodash) {
-        $scope.isAuthenticated = Principal.isAuthenticated;
+angular.module('bluepassApp').controller('adminMypageController', adminMypageController);
 
-        /* 현재 유저 정보 */
-        Principal.identity().then(function (success) {
-            $scope.account = success;
-            $scope.stateConfirm = lodash.findIndex($scope.account.roles, function (chr) {
-                return chr === 'ROLE_ADMIN';
-            });
-        });
-    }]);
+adminMypageController.$inject = ['lodash', 'authorize'];
+
+function adminMypageController(lodash, authorize) {
+    var vm = this;
+
+    vm.account = authorize;
+    vm.stateConfirmAdmin = lodash.findIndex(vm.account.roles, function (chr) {
+        return chr === 'ROLE_ADMIN';
+    });
+}

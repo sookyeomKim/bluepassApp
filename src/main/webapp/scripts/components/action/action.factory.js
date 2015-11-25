@@ -43,7 +43,7 @@ angular.module('bluepassApp').factory('Action', ['$resource', function ($resourc
             }
         }
     });
-}]).factory('customersByAction', function ($resource) {
+}]).factory('CustomersByAction', function ($resource) {
     return $resource('/api/actions/:id/customers', {
         id: "@id"
     }, {

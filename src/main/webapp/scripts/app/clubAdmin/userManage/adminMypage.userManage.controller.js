@@ -3,24 +3,24 @@
  */
 'use strict';
 
-angular.module('bluepassApp').controller('adminMypageUserManageController',
-    ['$scope', '$log', 'ParseLinks', 'partnerClubs', function ($scope, $log, ParseLinks, partnerClubs) {
-        /* 업체/그룹 CRUD */
-        $scope.page = 1;
+angular.module('bluepassApp').controller('adminMypageUserManageController', adminMypageUserManageController);
 
-        $scope.loadAll = function () {
-            $scope.clubs = partnerClubs.query({
-                page: -1
-            });
-            $scope.clubs.$promise.then(function (success) {
-                $scope.clubList = success;
-                $scope.mpc = false;
-            }).then(function () {
-                jQuery('#club-accordion .panel-heading a').click(function (e) {
-                    e.preventDefault();
-                });
-            });
-        };
+adminMypageUserManageController.$inject = ['PartnerClubs'];
 
-        $scope.loadAll();
-    }]);
+function adminMypageUserManageController(PartnerClubs) {
+    var vm = this;
+
+    /*초기화*/
+    vm.mpc = true;
+    vm.clubList = [];
+
+    /*클럽목록불러오기*/
+    getpartnerClubsQuery();
+
+    function getpartnerClubsQuery() {
+        return PartnerClubs.query({page: -1}).$promise.then(function (success) {
+            vm.clubList = success;
+            vm.mpc = false;
+        })
+    }
+}

@@ -3,156 +3,150 @@
  */
 'use strict';
 
-angular.module('bluepassApp').controller(
-    'adminMypageRegManageActionEditController',
-    [
-        '$scope',
-        '$log',
-        '$timeout',
-        '$stateParams',
-        '$state',
-        'Action',
-        'ActionByClub',
-        'FileUploader',
-        'codeNameCommonCode',
-        'DeleteImgByAction',
-        function ($scope, $log, $timeout, $stateParams, $state, Action, ActionByClub, FileUploader,
-                  codeNameCommonCode, DeleteImgByAction) {
-            /* 클럽ID */
-            var idBelongToClub = $scope.idBelongToClub = $stateParams.id;
+angular.module('bluepassApp').controller('adminMypageRegManageActionEditController', adminMypageRegManageActionEditController);
 
-            /* 초기화 */
-            $scope.clear = function () {
-                $scope.count = 0;
-                $scope.photosId = [];
-                $scope.action = {
-                    id: null,
-                    title: null,
-                    description: null,
-                    shortDescription: null,
-                    useLimitType: '무제한',
-                    useLimitValue: null,
-                    category: null,
-                    movieIds: null,
-                    images: [],
-                    imagesIds: []
-                };
-            };
-            $scope.clear();
+adminMypageRegManageActionEditController.$inject = [
+    '$scope',
+    '$log',
+    '$timeout',
+    '$stateParams',
+    '$state',
+    'Action',
+    'ActionByClub',
+    'FileUploader',
+    'codeNameCommonCode',
+    'DeleteImgByAction',
+    'Alert'
+];
 
-            /* 수정정보 불러오기 */
-            $scope.actionInfoUpdate = function (id) {
-                Action.get({
-                    id: id
-                }, function (result) {
-                    $scope.action = result;
-                });
+function adminMypageRegManageActionEditController($scope, $log, $timeout, $stateParams, $state, Action, ActionByClub, FileUploader,
+                                                  codeNameCommonCode, DeleteImgByAction, Alert) {
+    var vm = this;
+    /* 클럽ID */
+    vm.idBelongToClub = $stateParams.id;
+    /* 초기화 */
+    vm.count = 0;
+    vm.photosId = [];
+    vm.action = {
+        id: null,
+        title: null,
+        description: null,
+        shortDescription: null,
+        useLimitType: '무제한',
+        useLimitValue: null,
+        category: null,
+        movieIds: null,
+        imageIds: [],
+        clubId: vm.idBelongToClub
+    };
+    /* 파일업로더 */
+    vm.actionUploader = new FileUploader({
+        url: '/image/upload',
+        queueLimit: 30,
+        autoUpload: true
+    });
+    vm.actionUploader.onSuccessItem = onSuccessItem;
+    vm.actionUploader.onErrorItem = onErrorItem;
+    vm.imgUpload = imgUpload;
+    vm.imgRemove = imgRemove;
+    /*클래스등록*/
+    vm.getAction = getAction;
+
+    /* 클래스 불러오기 */
+    if ($stateParams.actionId) {
+        getActionGet($stateParams.actionId);
+    }
+    /*운동종목불러오기*/
+    getExserciseType();
+
+    function getActionGet(id) {
+        return Action.get({id: id}).$promise.then(function (response) {
+            vm.action = {
+                id: response.id,
+                title: response.title,
+                description: response.description,
+                shortDescription: response.shortDescription,
+                useLimitType: response.useLimitType,
+                useLimitValue: response.useLimitValue,
+                category: response.category,
+                movieIds: response.movieIds,
+                imageIds: [],
+                clubId: vm.idBelongToClub
             };
-            if ($stateParams.actionId) {
-                $scope.actionInfoUpdate($stateParams.actionId)
+            for (var i = 0; i < response.images.length; i++) {
+                vm.action.imageIds.push(response.images[i].image.id)
             }
+            return
+        })
+    }
 
-            /* 카테고리 */
-            var commonCodes = codeNameCommonCode.query({
-                codeName: 'CATEGORY_SPORTART'
-            });
-            commonCodes.$promise.then(function (success) {
-                $scope.commonCodesList = success;
-            });
+    function getExserciseType() {
+        return codeNameCommonCode.query({codeName: 'CATEGORY_SPORTART'}).$promise.then(function (reponse) {
+            vm.exserciseTypeList = reponse;
+        });
+    }
 
-            /* 저장 */
-            $scope.save = function () {
-                if ($scope.action.id != null) {
-                    var actionUpdate = Action.update($scope.action);
-                    actionUpdate.$promise.then(function (success) {
-                        if (success) {
-                            $state.go("adminRegManage.Action", {
-                                id: idBelongToClub
-                            })
-                        } else {
-                            $scope.alert = "에러발생";
-                            $("#confirmationModal").modal("show");
-                        }
-                    });
-                } else {
-                    var actionSave = Action.save($scope.action);
-                    actionSave.$promise.then(function (success) {
-                        if (success) {
-                            $state.go("adminRegManage.Action", {
-                                id: idBelongToClub
-                            })
-                        } else {
-                            $scope.alert = "에러발생";
-                            $("#confirmationModal").modal("show");
-                        }
-                    });
-                }
-            };
+    function onSuccessItem(fileItem, response, status, headers) {
+        vm.photoId = response.files[0].id;
+        if (!vm.actionUploader.queue[vm.count].isError) {
+            vm.actionUploader.queue[vm.count].index = response.files[0].id;
+        }
+        vm.count++;
+        vm.photosId.push(response.files[0].id);
+    }
 
-            /* 파일업로더 */
-            var actionUploader = $scope.actionUploader = new FileUploader({
-                url: '/image/upload',
-                queueLimit: 30,
-                autoUpload: true
-            });
+    function onErrorItem(item, response, status, headers) {
+        vm.count++;
+    }
 
-            actionUploader.onSuccessItem = function (fileItem, response, status, headers) {
-                $scope.photoId = response.files[0].id;
-                if (!actionUploader.queue[$scope.count].isError) {
-                    actionUploader.queue[$scope.count].index = response.files[0].id;
-                }
-                $scope.count++;
-                $scope.photosId.push(response.files[0].id);
-            };
+    function imgUpload(index) {
+        vm.actionUploader.queue[index].upload();
+        vm.actionUploader.queue[index].onSuccess = function (response, status, headers) {
+            vm.photoId = response.files[0].id;
+            vm.count++;
+            vm.actionUploader.queue[index].index = response.files[0].id;
+        };
+    }
 
-            actionUploader.onErrorItem = function (item, response, status, headers) {
-                $scope.count++;
-            };
+    function imgRemove(index) {
+        if (!vm.actionUploader.queue[index].isError) {
+            var idx = vm.photosId.indexOf(vm.actionUploader.queue[index].index);
+            vm.photosId.splice(idx, 1);
+        }
+        vm.count--;
+        vm.actionUploader.queue[index].remove();
+    }
 
-            $scope.imgUpload = function (index) {
-                actionUploader.queue[index].upload();
-                actionUploader.queue[index].onSuccess = function (response, status, headers) {
-                    $scope.photoId = response.files[0].id;
-                    $scope.count++;
-                    actionUploader.queue[index].index = response.files[0].id;
-                };
-            };
+    function getAction() {
+        vm.action.imageIds = vm.photosId;
+        if (vm.action.id != null) {
+            return getActionUpdate().then(getSuccess).catch(getError)
+        } else {
+            return getActionSave().then(getSuccess).catch(getError)
+        }
+    }
 
-            $scope.imgRemove = function (index) {
-                if (!actionUploader.queue[index].isError) {
-                    var idx = $scope.photosId.indexOf(actionUploader.queue[index].index);
-                    $scope.photosId.splice(idx, 1);
-                }
-                $scope.count--;
-                actionUploader.queue[index].remove();
-            };
+    function getActionSave() {
+        return Action.save(vm.action).$promise
+    }
 
-            /* 이미지삭제 */
-            $scope.imgDeleteForm = function (id, imageId) {
-                $scope.imageId = imageId;
-                Action.get({
-                    id: id
-                }, function (result) {
-                    $scope.action = result;
-                    $log.debug($scope.imageId + "zz" + $scope.action.id);
-                    $('#deleteImgConfirmation').modal('show');
-                });
-            };
+    function getActionUpdate() {
+        return Action.update(vm.action).$promise
+    }
 
-            $scope.confirmImgDelete = function (id, imageId) {
-                DeleteImgByAction.imgDelete({
-                    id: id,
-                    imageId: imageId
-                }, function () {
-                    $scope.reset();
-                    $('#deleteImgConfirmation').modal('hide');
-                    $scope.clear();
-                });
-            };
+    function getSuccess() {
+        return $state.go("adminRegManage.Action", {
+            id: vm.idBelongToClub
+        })
+    }
 
-            $timeout(function () {
-                $('#saveActionModal').on('hide.bs.modal', function () {
-                    actionUploader.clearQueue();
-                });
-            }, 0);
-        }]);
+    function getError() {
+        return Alert.alert1('에러발생')
+    }
+
+    $timeout(function () {
+        jQuery('#saveActionModal').on('hide.bs.modal', function () {
+            actionUploader.clearQueue();
+        });
+    });
+}

@@ -1,66 +1,31 @@
 <!-- 클래스 -->
 <div class="margin-bottom-10"></div>
 <div layout="row">
-    <div flex ng-show="actionList.length ===0">
+    <div flex ng-show="vm.actionList.length ===0">
         <div layout="row" layout-align="center center">
             <h2>클래스를 등록하세요.</h2>
             <md-button class="md-mini md-raised"
-                       ui-sref="adminRegManage.Action.edit({id:idBelongToClub})">등록하기
+                       ui-sref="adminRegManage.Action.edit({id:vm.idBelongToClub})">등록하기
             </md-button>
         </div>
     </div>
 
-    <div flex ng-show="actionList.length >0">
+    <div flex ng-show="vm.actionList.length >0">
         <div layout="row" layout-align="space-between center">
-            <h2>{{club.name}}의 클래스 목록</h2>
+            <h2>클래스 목록</h2>
             <md-button class="md-mini md-raised"
-                       ui-sref="adminRegManage.Action.edit({id:idBelongToClub})">클래스
+                       ui-sref="adminRegManage.Action.edit({id:vm.idBelongToClub})">클래스
                 추가
             </md-button>
         </div>
         <div class="margin-bottom-10"></div>
 
-        <div class="panel-group" id="manage-tab" role="tablist"
-             aria-multiselectable="false">
-            <div class="panel panel-default" ng-repeat="action in actionList">
+        <div id="manage-tab" class="panel-group" role="tablist">
+            <div class="panel panel-default" ng-repeat="action in vm.actionList">
                 <div role="tab" id="heading-{{action.id}}">
-                    <div layout="row" layout-wrap show-sm hide>
+                    <div layout="row" layout-wrap>
                         <div>
-                            <md-button
-                                class="btn-material-red-500 noPaddingMargin paddingSide-10"
-                                role="button" data-toggle="collapse" data-parent="#manage-tab"
-                                href="#collapse-{{action.id}}"
-                                aria-controls="collapse-{{action.id}}" flex
-                                onclick="return false;">{{action.title}}
-                            </md-button>
-                        </div>
-                        <div flex flex-sm="100"></div>
-                        <div>
-                            <md-button class="md-raised noPaddingMargin paddingSide-10"
-                                       ui-sref="adminRegManage.Action.Schedule({id:idBelongToClub,actionId:action.id})">
-                                수업시간
-                                관리
-                            </md-button>
-                        </div>
-                        <div>
-                            <md-button class="md-raised noPaddingMargin paddingSide-10"
-                                       ui-sref="adminRegManage.Action.edit({id:idBelongToClub,actionId:action.id})">수정
-                            </md-button>
-                        </div>
-                        <div>
-                            <md-button class="md-raised noPaddingMargin paddingSide-10"
-                                       ng-click="actionDelete(action.id)">삭제
-                            </md-button>
-                        </div>
-                    </div>
-
-                    <div layout="row" layout-wrap hide-sm>
-                        <div>
-                            <md-button class="btn-material-red-500  " role="button"
-                                       data-toggle="collapse" data-parent="#manage-tab"
-                                       href="#collapse-{{action.id}}"
-                                       aria-controls="collapse-{{action.id}}" flex
-                                       onclick="return false;">{{action.title}}
+                            <md-button class="btn-material-red-500" role="button">{{action.title}}
                             </md-button>
                         </div>
                         <div flex flex-sm="100"></div>
@@ -71,18 +36,19 @@
                         </div>
                         <div>
                             <md-button class="md-raised"
-                                       ui-sref="adminRegManage.Action.Schedule({id:idBelongToClub,actionId:action.id})">
+                                       ui-sref="adminRegManage.Action.Schedule({id:vm.idBelongToClub,actionId:action.id})">
                                 스케줄
                                 관리
                             </md-button>
                         </div>
                         <div>
                             <md-button class="md-raised"
-                                       ui-sref="adminRegManage.Action.edit({id:idBelongToClub,actionId:action.id})">수정
+                                       ui-sref="adminRegManage.Action.edit({id:vm.idBelongToClub,actionId:action.id})">
+                                수정
                             </md-button>
                         </div>
                         <div>
-                            <md-button class="md-raised" ng-click="deleteConfirm($event,action.id)">삭제</md-button>
+                            <md-button class="md-raised" ng-click="vm.deleteConfirm($event,action.id)">삭제</md-button>
                         </div>
                     </div>
                 </div>
@@ -92,33 +58,33 @@
                         <div layout="row" layout-align="center" layout-wrap></div>
                         <div layout="row" layout-wrap>
                             <div flex="50" flex-sm="100">
-                                <h3>클래스명</h3>
+                                <div>클래스명</div>
                                 <ul class="list-inline margin-bottom-30">
                                     <li>{{action.title}}</li>
                                 </ul>
-                                <h3>클래스 종목</h3>
+                                <div>클래스 종목</div>
                                 <ul class="list-inline margin-bottom-30">
                                     <li>{{action.category.value}}</li>
                                 </ul>
-                                <h3>youtube ID</h3>
+                                <div>youtube ID</div>
                                 <ul class="list-inline margin-bottom-30">
                                     <li>{{action.movieIds}}</li>
                                 </ul>
                             </div>
                             <div flex="50" flex-sm="100">
-                                <h3>클래스 상세소개</h3>
+                                <div>클래스 상세소개</div>
                                 <ul class="list-inline margin-bottom-30">
                                     <li>
                                         <div ng-bind-html="action.description| nl2br | nl2br2"></div>
                                     </li>
                                 </ul>
-                                <h3>클래스 간단소개</h3>
+                                <div>클래스 간단소개</div>
                                 <ul class="list-inline margin-bottom-30">
                                     <li>
                                         <div ng-bind-html="action.shortDescription| nl2br | nl2br2"></div>
                                     </li>
                                 </ul>
-                                <h3>클래스제한횟수</h3>
+                                <div>클래스제한횟수</div>
                                 <ul class="list-inline margin-bottom-30">
                                     <li>
                                         <div class="weight_5" ng-show="action.useLimitType==='무제한'">무제한
@@ -144,7 +110,7 @@
                                     </div>
                                     <div class="panel-body">
                                         <div layout="row" layout-align="center">
-                                            <md-button ng-click="imgDeleteConfirm($event,action.id,classImg.id)">삭제
+                                            <md-button ng-click="vm.imgDeleteConfirm($event,action.id,classImg.id)">삭제
                                             </md-button>
                                         </div>
                                     </div>

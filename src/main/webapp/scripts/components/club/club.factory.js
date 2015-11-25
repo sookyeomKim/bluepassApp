@@ -23,14 +23,14 @@ angular.module('bluepassApp').factory('Club', ['$resource', function ($resource)
             method: 'DELETE'
         }
     });
-}]).factory('partnerClubs', ['$resource', function ($resource) {
+}]).factory('PartnerClubs', ['$resource', function ($resource) {
     return $resource('api/partner/clubs', {}, {
         'query': {
             method: 'GET',
             isArray: true
         }
     });
-}]).factory('customerByClub', ['$resource', function ($resource) {
+}]).factory('CustomerByClub', ['$resource', function ($resource) {
     return $resource('api/clubs/:id/customers', {
         id: "@id"
     }, {

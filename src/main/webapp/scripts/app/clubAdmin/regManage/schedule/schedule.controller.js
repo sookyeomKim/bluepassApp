@@ -10,16 +10,23 @@ adminMypageRegManageScheduleController.$inject = ['$stateParams', '$mdDialog', '
 function adminMypageRegManageScheduleController( $stateParams, $mdDialog, Action, ActionSchedule, ActionScheduleByaAction, Alert, lodash) {
     var vm = this;
 
+    /*초기화*/
     vm.mpc = true;
     vm.idBelongToAction = $stateParams.actionId;
     vm.idBelongToClub = $stateParams.id;
     vm.action = {};
     vm.actionScheduleList = [];
+    /*스케줄등록*/
     vm.registerSchedule = registerSchedule;
+    /* 스케줄삭제 */
     vm.deleteConfirm = deleteConfirm;
 
-    getAction(vm.idBelongToAction);
-    function getAction(id) {
+    /*클래스정보불러오기*/
+    getActionGet(vm.idBelongToAction);
+    /*스케줄목록불러오기*/
+    getScheduleQuery(vm.idBelongToAction);
+
+    function getActionGet(id) {
         return Action.get({
             id: id
         }).$promise.then(function (success) {
@@ -27,8 +34,8 @@ function adminMypageRegManageScheduleController( $stateParams, $mdDialog, Action
             })
     }
 
-    getSchedule(vm.idBelongToAction);
-    function getSchedule(id) {
+
+    function getScheduleQuery(id) {
         return ActionScheduleByaAction.query({
             id: id
         }).$promise.then(function (success) {
@@ -54,7 +61,6 @@ function adminMypageRegManageScheduleController( $stateParams, $mdDialog, Action
         })
     }
 
-    /* 스케줄삭제 */
     function deleteConfirm($event, id) {
         return Alert.alert2($event, '삭제', '정말 삭제하시겠습니까?', '삭제하기').then(function () {
             return ActionSchedule.delete({id: id}).$promise.then(function () {

@@ -3,7 +3,11 @@
  */
 'use strict';
 
-angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider) {
+angular.module('bluepassApp').config(adminMypageConfig);
+
+adminMypageConfig.$inject = ['$stateProvider'];
+
+function adminMypageConfig($stateProvider) {
     $stateProvider.state('adminRegManage', {
         parent: 'site',
         url: '/partnerManage',
@@ -13,11 +17,13 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'regManage@adminRegManage': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/club/club.html',
-                controller: 'adminMypageRegManageController'
+                controller: 'adminMypageRegManageController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -34,11 +40,13 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'regManage@adminRegManage.edit': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/club/club.edit.html',
-                controller: 'adminMypageRegManageEditController'
+                controller: 'adminMypageRegManageEditController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -55,15 +63,18 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'regManage@adminRegManage.Instructor': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/club/clubDetail.html',
-                controller: 'adminMypageRegManageDetailController'
+                controller: 'adminMypageRegManageDetailController',
+                controllerAs: 'vm'
             },
             'instructor@adminRegManage.Instructor': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/instructor/instructor.html',
-                controller: 'adminMypageRegManageInstructorController'
+                controller: 'adminMypageRegManageInstructorController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -80,15 +91,18 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'regManage@adminRegManage.Instructor.edit': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/club/clubDetail.html',
-                controller: 'adminMypageRegManageDetailController'
+                controller: 'adminMypageRegManageDetailController',
+                controllerAs: 'vm'
             },
             'instructor@adminRegManage.Instructor.edit': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/instructor/instructor.edit.html',
-                controller: 'adminMypageRegManageInstructorEditController'
+                controller: 'adminMypageRegManageInstructorEditController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -105,15 +119,18 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'regManage@adminRegManage.Action': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/club/clubDetail.html',
-                controller: 'adminMypageRegManageDetailController'
+                controller: 'adminMypageRegManageDetailController',
+                controllerAs: 'vm'
             },
             'action@adminRegManage.Action': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/action/action.html',
-                controller: 'adminMypageRegManageActionController'
+                controller: 'adminMypageRegManageActionController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -130,15 +147,18 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'regManage@adminRegManage.Action.edit': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/club/clubDetail.html',
-                controller: 'adminMypageRegManageDetailController'
+                controller: 'adminMypageRegManageDetailController',
+                controllerAs: 'vm'
             },
             'action@adminRegManage.Action.edit': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/action/action.edit.html',
-                controller: 'adminMypageRegManageActionEditController'
+                controller: 'adminMypageRegManageActionEditController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -155,11 +175,13 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'regManage@adminRegManage.Action.Schedule': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/club/clubDetail.html',
-                controller: 'adminMypageRegManageDetailController'
+                controller: 'adminMypageRegManageDetailController',
+                controllerAs: 'vm'
             },
             'action@adminRegManage.Action.Schedule': {
                 templateUrl: 'scripts/app/clubAdmin/regManage/schedule/schedule.html',
@@ -181,11 +203,13 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'userManage@adminUserManage': {
                 templateUrl: 'scripts/app/clubAdmin/userManage/adminMypage.userManage.html',
-                controller: 'adminMypageUserManageController'
+                controller: 'adminMypageUserManageController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -202,11 +226,13 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
         views: {
             'content@': {
                 templateUrl: 'scripts/app/clubAdmin/adminMypage.html',
-                controller: 'adminMypageController'
+                controller: 'adminMypageController',
+                controllerAs: 'vm'
             },
             'userManage@adminUserManage.detail': {
                 templateUrl: 'scripts/app/clubAdmin/userManage/adminMypage.userManage.detail.html',
-                controller: 'adminMypageUserManageDetailController'
+                controller: 'adminMypageUserManageDetailController',
+                controllerAs: 'vm'
             }
         },
         resolve: {
@@ -215,4 +241,4 @@ angular.module('bluepassApp').config(['$stateProvider', function ($stateProvider
             }
         }
     });
-}]);
+}

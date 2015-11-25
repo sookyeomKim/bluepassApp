@@ -11,12 +11,15 @@ actionListTableTypeController.$inject = [
     '$filter',
     'ClassSchedule',
     'legendInit',
-    'ParseLinks'
+    'ParseLinks',
+    'authorize'
 ];
 
-function actionListTableTypeController($scope, $timeout, $filter, ClassSchedule, legendInit, ParseLinks) {
+function actionListTableTypeController($scope, $timeout, $filter, ClassSchedule, legendInit, ParseLinks, authorize) {
     var vm = this;
 
+    /* 유저정보 불러오기 */
+    vm.account = authorize;
     /* 레전드 세팅 */
     vm.navigationState = 0;
     vm.dayArry = legendInit.legendinit(7);
@@ -81,7 +84,7 @@ function actionListTableTypeController($scope, $timeout, $filter, ClassSchedule,
                         addRowToggle: false
                     }).trigger('footable_redraw');
                 });
-            });
+            })
     }
 
     function selected_day(count) {

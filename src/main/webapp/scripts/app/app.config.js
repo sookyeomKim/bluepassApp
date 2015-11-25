@@ -20,10 +20,11 @@ appConfigure.$inject = [
 
 function appConfigure($stateProvider, $urlRouterProvider, $httpProvider,
                       tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider, ezfbProvider, localStorageServiceProvider) {
-    // Cache everything except rest api requests
+    /*rest api 요청 캐싱제거*/
     httpRequestInterceptorCacheBusterProvider
         .setMatchlist([/.*api.*!/, /.*protected.*!/], true);
 
+    /*rest api 요청전에 인증 권한 체크*/
     $httpProvider.interceptors.push('AuthInterceptor');
 
     /* 유효하지 않는 url입력시 액션 */
@@ -73,8 +74,10 @@ function appConfigure($stateProvider, $urlRouterProvider, $httpProvider,
         version: 'v2.4'
     });
 
+    /*쿠키 key 이름 설정*/
     localStorageServiceProvider.setPrefix('bluepassApp').setNotify(true, true);
 
+    /*지역화 파일 불러오기*/
     tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
     tmhDynamicLocaleProvider.useCookieStorage();
 }

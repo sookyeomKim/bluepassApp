@@ -1,19 +1,15 @@
 <div class="margin-bottom-10"></div>
 <div flex>
     <div class="md-whiteframe-z1" layout="row" flex role="tablist">
-        <md-button ui-sref="adminRegManage.Instructor({id:club.id})" ui-sref-active="btn-material-purple-A200"
+        <md-button ui-sref="adminRegManage.Instructor({id:vm.club.id})" ui-sref-active="btn-material-purple-A200"
                    role="tab"
                    class="adminLegend noPaddingMargin" flex>강사관리
         </md-button>
-        <md-button ui-sref="adminRegManage.Action({id:club.id})" ui-sref-active="btn-material-purple-A200" role="tab"
+        <md-button ui-sref="adminRegManage.Action({id:vm.club.id})" ui-sref-active="btn-material-purple-A200" role="tab"
                    class="adminLegend noPaddingMargin" flex>클래스관리
         </md-button>
-        <!-- <md-button ng-class="tabSelected===1?'btn-material-purple-500':''" ng-click="tabSelected=1" role="tab" class="" flex>강사관리</md-button>
-            <md-button ng-class="tabSelected===2?'btn-material-purple-500':''" ng-click="tabSelected=2" role="tab" class="" flex>클래스관리</md-button> -->
     </div>
 
     <div role="tabpanel" ui-view="instructor"></div>
     <div role="tabpanel" ui-view="action"></div>
-    <!-- <div role="tabpanel" ui-view="instructor" ng-show="tabSelected === 1"></div>
-        <div role="tabpanel" ui-view="action" ng-show="tabSelected === 2"></div> -->
 </div>

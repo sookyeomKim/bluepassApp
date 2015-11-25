@@ -1,13 +1,11 @@
 <div class="content-sm" layout="row" layout-align="center">
     <div flex="40" flex-md="60" flex-sm="100">
-        <form name="editForm" role="form" ng-submit="save()">
-            <input type="hidden" class="form-control" name="id"
-                   ng-model="instructor.id" readonly>
+        <form name="editForm" role="form" ng-submit="vm.getInstructor()">
 
             <!-- 강사이름(name) -->
             <md-input-container class="margin-bottom-30">
                 <label for="name">이름</label>
-                <input type="text"id="name" name="name" ng-model="instructor.name" required
+                <input type="text"id="name" name="name" ng-model="vm.instructor.name" required
                        ng-maxlength="30">
 
                 <div ng-messages="editForm.name.$error">
@@ -19,7 +17,7 @@
             <!-- 강사소개(description) -->
             <md-input-container class="margin-bottom-30">
                 <label for="description">소개</label>
-			<textarea id="description"name="description" ng-model="instructor.description"
+			<textarea id="description"name="description" ng-model="vm.instructor.description"
                       required md-maxlength="500"></textarea>
 
                 <div ng-messages="editForm.description.$error">
@@ -31,12 +29,12 @@
             <!-- 강사사진 -->
             <div class="margin-bottom-30">
 				<span class="btn btn-material-deep-orange-A400 btn-file"> <input
-                    type="file" nv-file-select multiple uploader="uploader"
-                    ng-disabled="uploader.queue.length !== 0"/> 올리기
+                    type="file" nv-file-select multiple uploader="vm.uploader"
+                    ng-disabled="vm.uploader.queue.length !== 0"/> 올리기
 				</span>
 
                 <div layout="row" layout-wrap layout-align="center center"
-                     ng-repeat="item in uploader.queue">
+                     ng-repeat="item in vm.uploader.queue">
                     <div flex="50" flex-sm="100">
                         <div ng-thumb="{ file: item._file, width:200 }"></div>
                     </div>
@@ -52,11 +50,11 @@
                             class="glyphicon glyphicon-remove"></i>실패</span>
                         </div>
                         <div flex="100" layout="row" layout-align="center">
-                            <md-button type="button" ng-click="imgUpload($index)"
+                            <md-button type="button" ng-click="vm.imgUpload($index)"
                                        ng-disabled="item.isReady || item.isUploading || item.isSuccess">
                                 <span class="glyphicon glyphicon-upload"></span> 업로드
                             </md-button>
-                            <md-button type="button" ng-click="imgRemove($index)">
+                            <md-button type="button" ng-click="vm.imgRemove($index)">
                                 <span class="glyphicon glyphicon-trash"></span> 지우기
                             </md-button>
                         </div>
@@ -64,15 +62,10 @@
                     <md-divider></md-divider>
                 </div>
             </div>
-            <!-- <div>{{instructor}}</div> -->
-            <input type="hidden" name="clubId"
-                   ng-bind="instructor.photo.id = photoId"> <input
-            type="hidden" name="clubId"
-            ng-bind="instructor.club.id = idBelongToClub">
 
             <div layout="row" layout-align="center">
                 <md-button type="button" class="md-raised"
-                           ui-sref="adminRegManage.Instructor({id:idBelongToClub})">
+                           ui-sref="adminRegManage.Instructor({id:vm.idBelongToClub})">
                     <span>뒤로</span></md-button>
                 <md-button type="submit" ng-disabled="editForm.$invalid"
                            class="md-raised md-primary"><span>등록</span></md-button>
@@ -80,19 +73,3 @@
         </form>
     </div>
 </div>
-
-<!-- 에러 확인 모달 -->
-<div class="modal fade" id="confirmationModal">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal"
-                        aria-hidden="true">&times;</button>
-            </div>
-            <div class="modal-body">
-                <h3>{{alert}}</h3>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- 에러 확인 모달 끝-->
