@@ -3,12 +3,12 @@
  */
 'use strict';
 
-angular.module('bluepassApp').factory('InstructorsByAction', InstructorsByAction);
+angular.module('bluepassApp').factory('InstructorByClub', InstructorByClub);
 
-InstructorsByAction.$inject = ['$resource'];
+InstructorByClub.$inject = ['$resource'];
 
-function InstructorsByAction($resource) {
-    return $resource('/api/actions/:id/instructors', {
+function InstructorByClub($resource) {
+    return $resource('/api/clubs/:id/instructors', {
         id: '@id'
     }, {
         'query': {

@@ -57,10 +57,13 @@ vendorRegisterController.$inject = ['AccountChangeType', 'lodash'];
 
 function vendorRegisterController(AccountChangeType, lodash) {
     var vm = this;
-    var params = {};
     var parseModel;
     var userId;
     var authoritiesArry;
+    var params = {
+        userId :null,
+        requestType:null
+    };
 
     parseModel = JSON.parse(vm.model);
     userId = parseModel.user.id;

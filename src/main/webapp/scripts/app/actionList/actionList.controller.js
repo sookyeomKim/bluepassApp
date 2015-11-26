@@ -20,9 +20,11 @@ function actionListController($rootScope, $scope, $timeout, $stateParams, Random
     var vm = this;
 
     vm.getScope = getScope;
-    vm.stateConfirmRegister = lodash.findIndex(authorize.roles, function (chr) {
-        return chr === 'ROLE_REGISTER'
-    });
+    if (authorize) {
+        vm.stateConfirmRegister = lodash.findIndex(authorize.roles, function (chr) {
+            return chr === 'ROLE_REGISTER'
+        });
+    }
     /* breadcrumbs이미지 로테이션 */
     vm.selectImg = RandomValue.randomCount(6);
     /* 검색조건 초기화 */

@@ -22,7 +22,7 @@ angular.module(
         'ngLodash',
         'timer',
         'ezfb',
-        'datatables', 'datatables.columnfilter',
+        'datatables.columnfilter',
         'youtube-embed',
         'angularLoad',
         'ui.bootstrap',

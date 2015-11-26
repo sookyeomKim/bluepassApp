@@ -5,7 +5,7 @@
              infinite-scroll="vm.loadPage(vm.page + 1,vm.queryPrams)"
              infinite-scroll-disabled="vm.links['last'] == vm.page">
             <!-- 클래스 카드-->
-            <article class="class-card panel" ng-repeat="action in vm.actionList">
+            <article class="class-card panel" ng-repeat="action in vm.actionList|testt">
                 <div class="card-wrap">
                     <div class="img-wrap" auto-height md-number="{{2}}"
                          lg-number="{{2}}">
