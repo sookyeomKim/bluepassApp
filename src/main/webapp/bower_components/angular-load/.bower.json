@@ -15,12 +15,12 @@
     "type": "git",
     "url": "git://github.com/urish/angular-load.git"
   },
-  "version": "0.4.0",
-  "_release": "0.4.0",
+  "version": "0.4.1",
+  "_release": "0.4.1",
   "_resolution": {
     "type": "version",
-    "tag": "0.4.0",
-    "commit": "970d6905054d8a2432f52fa340fca09290e71060"
+    "tag": "0.4.1",
+    "commit": "b9d007064c434e81fd352e2675851c279f1beff9"
   },
   "_source": "git://github.com/urish/angular-load.git",
   "_target": "~0.4.0",
